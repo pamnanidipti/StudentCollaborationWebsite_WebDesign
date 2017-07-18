@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="gradRoomStyle.css">
+  <meta name="description" content="GradRoom, a website that caters to students aspiring to study in universities in USA" >
+<link rel="shortcut icon" href="img/favicon.ico" />
+
+<style>
+
+.containergre{
+ margin-right: -15px;
+ }
+
+ body{
+	position: relative; /* required */
+	background-image: url(img/darkback.png);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;	
+}
+
+.hr {
+ border-width: 3px;
+}
+
+ 
+ div {
+ 	padding:5px;
+ 	color:white;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+table tr{
+background-color:lightgray;
+color:black;
+}
+
+table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	/* margin-right: -15px; */
+	/* width: "90%"; */
+	/* 
+text-align: left;
+	border-collapse: collapse;	
+	position: relative;	
+	float: left;
+ */
+
+}
+table, td, th {border:black medium solid}
+
+</style> </head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+  <!-- Login modal -->
+
+  <!-- Login modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form">
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+              <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+              <input type="password" class="form-control" id="psw" placeholder="Enter password">
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" value="" checked>Remember me</label>
+            </div>
+              <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+          <p>Not a member? <a href="#">Sign Up</a></p>
+          <p>Forgot <a href="#">Password?</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- modal for search -->
+    <!--     <div id="openModal1" class="modalDialog">
+
+   <a href="#close" title="Close" class="close">X</a>
+   <h2>Search</h2>
+   <p><form> 
+First name: <input type="text" onkeyup="showHint(this.value)">
+</form></p>
+   <p>Suggestions: <span id="txtHint"></span></p>
+
+</div> -->
+
+ <div class="modal fade" id="openModal1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+    <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <center>    <h4 class="modal-title">Search GradRoom</h4>
+        </div>
+ 
+<font color="black">   <h2>Search</h2>
+   <p><form> 
+First name: <input type="text" onkeyup="showHint(this.value)">
+</form></p>
+   <p>Suggestions: <span id="txtHint"></span></p></font>
+</div>
+</div>
+</div>
+
+
+
+
+
+<!-- end of this modal -->
+<script>
+function showHint(str) {
+   if (str.length == 0) { 
+       document.getElementById("txtHint").innerHTML = "";
+       return;
+   } else {
+       var xmlhttp = new XMLHttpRequest();
+       xmlhttp.onreadystatechange = function() {
+           if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+               document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+           }
+       };
+       xmlhttp.open("GET", "gethint.php?q=" + str, true);
+       xmlhttp.send();
+   }
+}
+</script>
+
+
+
+<script>
+$(document).ready(function(){
+    $("#myBtn").click(function(){
+        $("#myModal").modal();
+    });
+});
+</script>
+
+
+     <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="glyphicon glyphicon-menu-hamburger"></span>
+        </button>
+          <a class="navbar-brand" href="profile.php"><img src="img/gradLogo.png" width="160" height="35"></a>
+          
+
+      </div>
+
+
+
+      <div class="collapse navbar-collapse" id="myNavbar" >
+        <ul class="nav navbar-nav navbar-right" >
+    
+        <li class="dropdown" style="z-index:90001;">
+          <button class="dropbtn" > <a class="page-scroll" href="profile.php#msinus" >MS in US</a> &#9662</button>
+          <div class="dropdown-content">
+            <a href="listofuniversities.html">List Of Universities</a>
+            <a href="trend.html">Admit Trends</a>
+            <a href="index_forum.php">Discussion forum</a>
+           <a href="newsFeed.html">What's New?</a>
+          </div>
+        </li>
+           <li class="dropdown" style="z-index:90001;">
+          <button class="dropbtn" > <a class="page-scroll" href="profile.php#uniGuide" >UniGuide</a> &#9662</button>
+          <div class="dropdown-content">
+            <a href="uniSearch.html">UniSearch</a>
+            <a href="searchUni.html">UniPredictor</a>
+            <a href="univRating.html">UniReview</a>
+          </div>
+        </li>
+        <li class="dropdown" style="z-index:90000;">
+          <button class="dropbtn"><a class="page-scroll" href="profile.php#resources" >Resources</a> &#9662</button>
+          <div class="dropdown-content">
+            <a href="sop1.html">SOP/LOR</a>
+            <a href="gretoefl.html">GRE/TOEFL</a>
+            <a href="appAssist.html">Application Assist</a>
+              <a href="visainterview.html">Visa Interview</a>
+                <a href="faq-1.html">FAQs</a>
+          </div>
+        </li>
+        <li>
+           <a class="page-scroll" href="profile.php#aboutus" style="font-size:16px">About us</a>
+       </li>
+        <li>
+           <a class="page-scroll" href="profile.php#contact" style="font-size:16px">Contact</a>
+       </li>
+<li>
+       <a href="#openModal1" data-toggle="modal" title="Search" data-placement="bottom" style="font-size:16px"><span class="glyphicon glyphicon-search"></span></a>
+      
+      </li>
+    <li>
+
+       <a href="logout.php" data-toggle="tooltip" title="Logout" data-placement="bottom" style="font-size:16px"><span class="glyphicon glyphicon-log-out"></span></a>
+      </li>
+  
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Navigation -->
+  <!-- Navigation -->
+<script>
+$(document).ready(function(){       
+   var scroll_start = 0;
+   var startchange = $('#wrapper');
+   var offset = startchange.offset();
+    if (startchange.length){
+   $(document).scroll(function() { 
+      scroll_start = $(this).scrollTop();
+      if(scroll_start > offset.top) {
+          $(".navbar-default").css('background-color', 'black');
+       } else {
+          $('.navbar-default').css('background-color', 'transparent');
+       }
+   });
+    }
+});
+</script>
+
+
+<div class="row"  id="wrapper">
+<div class="col-sm-12">
+
+</div>
+</div>
+
+<!-- write your div here -->
+
+
+
+
+<!-- ~~-GRE/TOEFL SAMPLES CODE STARTS HERE~~- -->
+
+<div class="container containergre">
+<div class="row" id="solidnavbar">
+
+<div class="col-sm-3">
+<h4 style="color: white" text-align="center">
+&#9656; What is GRE? <br><br>
+&#9656; GRE Exam Pattern <br><br>
+&#9656; GRE Preparation <br><br>
+&#9656; When should I take GRE?
+<br>
+</h4>
+
+
+
+</div>
+<!-- col-sm-3 -->
+
+<div class="col-sm-9">
+<img src="img/gre.png" width="100%" height="200">
+</div><br>
+<!-- col-sm-9 -->
+
+<div class="col-sm-6">
+<hr>
+<center><h3 style="color: lightblue"> What is GRE?</h3></center>
+<hr>
+
+Students planning to pursue Masters of Science, commonly known as MS, take the GRE - Graduate Record Examination. <br><br>
+
+<p style="color: crimson" ><i>Post July 2011, the GRE pattern has changed and the exam is no longer a computer adaptive test but the performance in the given section will determine the level of the next section.</i></p>
+
+New GRE has 2 sections for GRE Verbal and Quantitative. Each section is considered as one stage. First Section is Stage 1 (or called as Routing Stage). Depending on your performance, the test taker is routed to one of several alternative second-stage tests, each of which consists of a fixed set of questions and differs on average difficulty.
+
+If you get high score in Section 1, your entire set of questions in Section 2 will be under Difficult (or very difficult) category. This makes the New GRE difficult to crack.
+<br>
+<h5>&#9662; How many types of GRE’s are there?<br></h5>
+GRE are of two types:<br></br>
+
+1) <strong><u>GRE General Test:</u></strong> The General Test takes into account verbal reasoning, quantitative ability, and analytical writing skills. Almost all the universities accept the General test score and usually everyone opts for this test. It takes place round the year and you can choose your date according to your convenience.<br><br>
+
+2) <strong><u>GRE Subject Test:</u></strong> The Subject Test measures the achievement in a particular subject area or extensive background in that discipline. These tests are in the following areas: Biochemistry, Cell and Molecular Biology, Biology, Chemistry, Computer Science, Literature (English), Physics and Psychology. It is conducted on a fixed date for everyone, more on the terms of an entrance exam. Mostly none of the engineers go for this.
+
+<br><br><br>
+
+<center>
+<iframe width="80%" height="230" src="https://www.youtube.com/embed/ydzrq1KWv0Q" frameborder="0" allowfullscreen></iframe>
+<br>
+<br>
+<h5>GRE mastering tips</h5>
+</center>
+</div>
+<!-- col-sm-6 -->
+
+<div class="col-sm-6">
+<hr>
+<center><h3 style="color:lightblue"> GRE Exam Pattern</h3></center>
+<hr>
+
+<h4>
+Structure of the GRE :
+</h4>
+The computer-based General Test is composed of 3 sections:
+<br><br>
+&#8226; Verbal Reasoning (English) <br>
+&#8226; Quantitative Reasoning (Math) <br>
+&#8226; Analytical Writing sections (Essays) <br>
+
+<h4>Pattern of GRE Exam:</h4>
+
+<table class="table table-hover table-responsive table-bordered" >
+<thead>
+	<tr style="background-color:gray; text-align:center">
+		<th> Section </th>
+		<th> Revised Pattern & Content</th>
+		<th> Changes from Previous Pattern</th>
+	</tr>
+</thead>	
+<tbody>
+	<tr>
+		<td> Quantitative</td>
+		<td> - Data Sufficiency<br><br>
+		- Data Interpretation & Statistics<br><br>
+		- Problem Solving<br><br>
+		- 2 Sections (20 Q's/35 Minutes per section)</td>
+		<td>- Calculator Allowed<br><br>
+		- No Choice for Problem Solving<br><br>
+		- Statistics part of new pattern<br><br>
+		- 2 Sections instead of 1 but less time </td> 
+	</tr>
+	<tr>
+		<td> Verbal</td>
+		<td> - Reading Comprehension<br><br>
+		- Sentence Correction<br><br>
+		- 2 Sections (20 Q's/30 Minutes per section)	</td>
+		<td>- More stress on Comprehension and Less on Etymology<br><br>
+		- 2 Sections instead of 1<br><br>
+		- Less Questions but more time as it involves RC
+		</td> 
+	</tr>
+	<tr>
+		<td> AWA</td>
+		<td>- Issue essay: 30 minutes<br><br>
+		- Argument Essay: 30 Minutes</td>
+		<td>Time Reduced for Issue Essay by 15 minutes</td> 
+	</tr>
+	<tr>
+		<td> Test Format</td>
+		<td> - No Computer Adaptive Test<br><br>
+		- Skipping Questions Permitted</td>
+		<td>- Skipping questions are NOW ALLOWED<br><br>
+		- Scores not based on solving the first few questions correctly</td> 
+	</tr>
+	<tr>
+		<td> Scoring Scale</td>
+		<td> 130 - 170 with 1 point Increment.</td>
+		<td> Earlier it was 200 - 800 with 10 point incrementEarlier it was 200 - 800 with 10 point increment</td> 
+	</tr>
+		<tr>
+		<td> Score reporting to University</td>
+		<td> 5 Years Validity</td>
+		<td> No change</td>
+	</tr>
+</tbody>	
+</table>
+</div>
+
+
+<div class="col-sm-6">
+<hr>
+<center><h3 style="color:lightblue"> GRE Preparation </h3></center>
+<hr>
+
+Even though the exam pattern has changed, most part of the preparation remains the same. 
+In order to crack the GRE it is advisable to practice vocabulary by 
+referring to the GRE word list as sections like GRE sentence completion demand you to be 
+spontaneous in your verbal section.
+<br>
+<h4>Getting started..</h4>
+The GRE study plan varies with each and every individual. But in general, you need around 50 
+days, give or take a few. As per the old pattern it starts with learning GRE words with the help
+ of vocabulary 'flashcards' . If you're pretty consistent with reading newspapers, you definitely 
+ have an edge, considering you’ve probably come across a handful of vocabulary words already.
+<br>
+<h4>A Month or so to the GRE..</h4>
+
+<strong>Kaplan GRE Practice Test:</strong> One of the most important tests - it has 6 sample tests each for verbal and quant and 3 Full Length GRE Test. Kaplan Quant is really important and helpful, so be serious with it. Make sure you evaluate all your tests properly. With these mock GRE scores, use the Grad School Finder and see where you stand. Repeat the process with different scores. Taking a test is not a big deal; learning from it is definitely one.
+<br>
+<Strong>PowerPrep GRE:</strong> You can download the PowerPrep software which will be of a great help in your GRE preperation.
+<br>
+<Strong>Princeton GRE Test:</strong> Solve Princeton simultaneously along with Kaplan. Finish it off in a week or 10 days.
+<br>
+<Strong>Cambridge GRE TestPrep:</strong> It's an elementary test and it helps you get acquainted with the adaptive exams on the screen. You need a maximum of two days.
+<br>
+
+<h4>Quant..</h4>
+Quant at the first glance might seem simple but it isn’t so simple as to be neglected. Engineers can give less time for math as they’ll be familiar with many of the topics, but remember that the split score matters a lot, so a minimum of 750 (old pattern) or 160 (new pattern) is like a 'must' for engineers. The rest are advised to solve as many questions as they can. Solve some renowned professors notes, Kaplan book (not the adaptive computer exam) and any other notes as and when you get time during your preparation.
+It definitely varies with every student on how they got about Quant, but the one mentioned above is how it is generally followed.
+<br>
+
+<h4>Expert advice..</h4>
+&#9662; Flash cards (GRE words) needs to be revised thoroughly.<br>
+&#9662; Revising the Quant formulae.<br>
+&#9662; Read Newspapers for an hour everyday to stay in touch with long Reading Comprehensions (RC).<br>
+&#9662; Keep your cool. It’s a test of nerves more than anything.
+
+</div>
+
+<div class="col-sm-6">
+
+<hr>
+<center><h3 style="color:lightblue"> When should I take GRE?</h3></center>
+<hr>
+<h4>When should I take the GRE?</h4>
+GRE takes place round the year. It is not like any other exam where the dates will be announced in the newspaper or any official website. So, anytime you feel you are in a position to go and take your best shot, GO FOR IT.
+<br>
+GENERALLY, engineering students prefer to take GRE in their third year either in March or August. No superstitious connections but some logical reason behind it. GRE is an exam which requires you to be tension-free and relaxed. Most engineers remain free during these two months as they aren’t occupied with any work like exams, submissions, etc. There are a few advantages of choosing March over August as enumerated below :
+
+<h4>Reasons to choose March as the GRE month:</h4>
+1) March is the ideal time to take GRE because you get one more chance to take the exam in August if suppose you don’t score well in the March attempt.
+<br>
+2) Giving GRE in March won’t clash your deadlines with final year project, placements (some companies do come in August-September) and most importantly you get more time for your Application Process for USA.
+<br>
+3) You can take TOEFL without any pressure, if your GRE is over in March.
+<br>
+4) If you're planning to appear for MBA entrance exams as well, you get sufficient time.
+<br>
+5) You might have to bunk a lot of lectures for the GRE preparation. This can seriously affect recommendations from your teachers as attendance is the prime parameter. Giving the exam in August leaves you with very less time to ‘butter’ them and make things turn your way.
+<br>
+<h4>Problems with choosing a date..</h4>
+
+Often, the slots are already full and you don’t get your desired date. So, book your date well in advance. Some prefer to wait till the last minute, and once they are confident about their preparation, they start searching for the nearest available date. This can be a problem as you might not get a single date and have to wait for a long time which in turn affects your preparation leading to a BAD day.
+<br><br>
+<u>Note:</u> Please choose your date wisely and carefully. Although you're allowed to postpone the date, you will only be making the ETS richer by $50 or an additional $190 if you reschedule it within 3 days of the exam.
+<br><br>
+<h5>For GRE samples: </h5>
+ 
+<a href="https://www.ets.org/gre/revised_general/prepare/" style="background-color:lightblue"><button type="button"><u> &#8627; Go to GRE official website </u></button></a></br>
+
+
+</div><br>
+
+</div>
+<!-- row gre -->
+
+<div class="row">
+<hr>
+<div class="col-sm-3">
+<h4 style="color:white" text-align="center">
+&#9656; What is TOEFL? <br><br>
+&#9656; TOEFL Exam Pattern <br><br>
+&#9656; TOEFL Preparation <br><br>
+&#9656; When should I take TOEFL?
+<br>
+</h4>
+</div>
+
+<div class="col-sm-9">
+<img src="img/toefl1.png" width="100%" height="230">
+</div>
+
+
+<!-- ~~-toefl content -->
+
+<div class="col-sm-6">
+<hr>
+<center><h3 style="color:lightblue"> What is TOEFL?</h3></center>
+<hr>
+
+TOEFL is a test of English proficiency. 
+It stands for Test of English as a Foreign Language. 
+International students need to show a certain amount of comfort with 
+English as the primary language of communication.
+TOEFL ibt, generally preferred by all international students, is the 
+new internet based test which has four sections, each which would 
+constitute a certain form of student interaction with the education system.
+<br>
+<h4>What Is the TOEFL iBT Test?</h4>
+The TOEFL iBT test measures your ability to use and understand English at the university level. And it evaluates how well you combine your listening, reading, speaking and writing skills to perform academic tasks.
+<br>
+<br><br>
+<center><iframe width="80%" height="250" src="https://www.youtube.com/embed/ZfJXyGkDLZc" frameborder="0" allowfullscreen></iframe>
+<br>
+<br>
+<h5>TOEFL mastering tips</h5>
+</center>
+
+
+</div>
+<!-- col-sm-6 -->
+
+<div class="col-sm-6">
+<hr>
+<center><h3 style="color:lightblue"> TOEFL Exam Pattern</h3></center>
+<hr>
+
+<h4>
+Structure of TOEFL :
+</h4>
+TOEFL comprises of four sections:
+<br><br>
+&#8226; Reading <br>
+&#8226; Listening <br>
+&#8226; Speaking <br>
+&#8226; Writing <br>
+
+<h4>Pattern of TOEFL Exam:</h4>
+
+<!-- <div class="table-responsive"> -->
+<table class="table table-hover table-responsive table-bordered">
+<thead>
+	<tr style="background-color:gray; text-align:center">
+		<th> Task </th>
+		<th> Description</th>
+		<th> Time</th>
+	</tr>
+<thead>
+<tbody>
+	<tr>
+	 	<td> READING</td>
+		<td>- Short format: 3 passages, each with 12-14 questions <br><br>- Long format: 5 passages, each with 12-14 questions</td>
+		<td>- 60 mins <br><br> - 100 mins</td> 
+	</tr>
+	<tr>
+		<td> LISTENING</td>
+		<td> - Short format: 2 conversations & 4 Lectures, each with 5-6 questions<br><br>-Long format: 3 conversations & 6 Lectures, each with 5-6 questions</td>
+		<td>- 60 mins <br><br>- 100 mins</td> 
+	</tr>
+	<tr>
+		<td> Break</td>
+		<td> - </td>
+		<td>10 mins</td> 
+	</tr>
+	<tr>
+		<td>SPEAKING</td>
+		<td> 6 tasks and 6 questions</td>
+		<td>20 mins</td> 
+	</tr>
+	<tr>
+		<td> WRITING</td>
+		<td> - Integrated Essay <br><br> - Independent Essay </td>
+		<td> - 20 mins<br><br>- 30 mins</td>
+	</tr>
+</tbody>	
+</table>
+ 
+<u>Note:</u> If you get Short format in Reading, then you will get Long format in Listening or the other way round.
+</div><br><br>
+<br>
+
+
+<div class="col-sm-6">
+<hr>
+<center><h3 style="color:lightblue"> TOEFL Preparation </h3></center>
+<hr>
+
+Preparing for Toefl isn’t as tedious as GRE. A week or 10 days is more than sufficient. There is no need to solve any books for TOEFL. Directly, start off with the computer tests like Barron’s, Kaplan and Cambridge.  Each of these tests will have individual section of reading, listening, speaking and writing. Solve each section independently and get a hang of all the questions. Notice the type of questions as it is important to get familiar with the type.
+<br><br>
+
+- <strong>Reading</strong> section is pretty simple as it asks you basic questions which can be solved in less than 15 seconds. The only exception in reading is the last question. This question is pretty complicated, time consuming and difficult. GET IT RIGHT! <br><br>
+- <strong>Listening</strong> is altogether a new section. You haven’t been exposed to this section in any part of any exam. So preparation is also required. It isn’t a difficult section but all you need to do is CONCENTRATE. <br><br>
+- <strong>Speaking</strong> is one of the important sections and preparing for it will be fun. It’s the shortest section of TOEFL but requires enough preparation. On presenting the 6 tasks to you followed by the questions, WRITE DOWN SOME POINTS while reading or hearing the questions in this section. They expect you to repeat some of the IMPORTANT words. <br><br>
+- <strong>Writing</strong> section doesn’t require you any preparation. You will be happy to reach this section as the horrible 3 hours will soon be over.  It’s the same part which you have been preparing since childhood days - ESSAY. 
+
+</div>
+
+<div class="col-sm-6">
+<hr>
+<center><h3 style="color:lightblue"> When should I take TOEFL?</h3></center>
+<hr>
+As the TOEFL score is valid for two years, choose your date wisely. Usually, students take TOEFL in the month of September, as it is the ideal time when a student applying for MS is done with his GRE and has no other academic commitments.
+<br><br>
+<i>Conditional admit:</i> If you are applying to a university without your TOEFL score, it’s perfectly ok but it’s always better if you’re done with it. When you apply to a university without a TOEFL score, it gives you a conditional admit which means that you have take your TOEFL exam for the confirmation of the admission. If your TOEFL score is low, then the respective admission committee will either tell you to repeat the exam or take up a course in their institution and complete it. The course isn’t a part of your regular curriculum and it becomes hectic. Moreover, it’s very expensive. So repeating TOEFL is the right choice.
+<br><br>
+<u>Note:</u> TOEFL is a MUST for International Students.
+<br><br>
+<h5>For TOEFL samples: </h5>
+ 
+<a href="https://www.ets.org/toefl/ibt/prepare/test_questions" style="background-color:lightblue"><button type="button"><u> &#8627; Go to TOEFL official website </u></button></a></br>
+
+</div><br>
+
+</div>
+<!-- row toefl-->
+
+</div>
+<!-- container -->
+
+<!-- ~~-GRE/TOEFL SAMPLES CODE ENDS HERE~~- -->
+
+<!-- your div ends here -->
+
+
+<!-- <footer> -->
+
+<div class= "row address">
+
+
+ <div class="col-sm-2"><br/>
+
+
+  <center><address><img src="img/adresses.png" width="60" height="50" align = "center"><br/>
+ <a href="https://www.google.com/maps/@42.3343,-71.1007,15z">
+ <h5> 75 Saint Alphonsus St,<br/> Boston<br/>MA-02120</a></address></center></div>
+
+
+  <div class="col-sm-2"> <br/><center><img src="img/E-Mail-Icon.png" width="60" height="50" align = "center"><br/><br/>
+   <h5>  <a href="mailto:vegashetty@gmail.com" target="_top">contact@gradroom.com</a>
+
+
+  </div>
+
+
+
+  <div class="col-sm-2"><br/><center><img src="img/phone-green-icon.png" width="60" height="50" align = "center">
+<br/><br/>
+   <h5> Call us : <a href="tel:+18578004331">857-800-4331</a>
+
+  </div>
+
+  <div class="col-sm-2"><br/>
+   <center><a href="https://www.facebook.com"><img src="img/fb.png" width="60" height="50" align = "center"></a></center> </div> &nbsp &nbsp &nbsp
+   <div class="col-sm-2"><br/>
+   <center><a href="https://twitter.com"><img src="img/Twitter-icon.png" width="60" height="50" align = "center"></a> </center></div> &nbsp &nbsp &nbsp
+    <div class="col-sm-2">
+    <center><a href="https://www.instagram.com"><img src="img/insta.png" width="60" height="50" align = "center"></a> </center></div>
+
+  </div>
+
+
+
+
+ <div class="row address">
+<div row="col-sm-12">
+<footer>
+
+
+<center> <nav> <a href = "termcon.html"> Terms & Conditions </a>|
+
+ <a href = "faq-1.html" >FAQs </a> | 
+<small><b>© Copyright 2016, GradRoom</b></small> </nav></center>
+
+
+</footer>
+</div>
+</div>
+
+
+  <!-- Footer -->
+
+
+
+
+</body>
+</html>
+

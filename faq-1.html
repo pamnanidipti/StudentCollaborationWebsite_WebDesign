@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="gradRoomStyle.css">
+  <link rel="stylesheet" href="faq.css">
+   <meta name="description" content="GradRoom, a website that caters to students aspiring to study in universities in USA" >
+<link rel="shortcut icon" href="img/favicon.ico" />
+
+<style>
+.FAQ {
+   
+     margin-right: -15px;
+
+}
+
+</style> </head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+
+
+
+  <!-- Login modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form">
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+              <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+              <input type="password" class="form-control" id="psw" placeholder="Enter password">
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" value="" checked>Remember me</label>
+            </div>
+              <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+          <p>Not a member? <a href="#">Sign Up</a></p>
+          <p>Forgot <a href="#">Password?</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- modal for search -->
+    <!--     <div id="openModal1" class="modalDialog">
+
+   <a href="#close" title="Close" class="close">X</a>
+   <h2>Search</h2>
+   <p><form> 
+First name: <input type="text" onkeyup="showHint(this.value)">
+</form></p>
+   <p>Suggestions: <span id="txtHint"></span></p>
+
+</div> -->
+
+ <div class="modal fade" id="openModal1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+    <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <center>    <h4 class="modal-title">Search GradRoom</h4>
+        </div>
+ 
+   <h2>Search</h2>
+   <p><form> 
+First name: <input type="text" onkeyup="showHint(this.value)">
+</form></p>
+   <p>Suggestions: <span id="txtHint"></span></p>
+</div>
+</div>
+</div>
+
+
+
+
+
+<!-- end of this modal -->
+<script>
+function showHint(str) {
+   if (str.length == 0) { 
+       document.getElementById("txtHint").innerHTML = "";
+       return;
+   } else {
+       var xmlhttp = new XMLHttpRequest();
+       xmlhttp.onreadystatechange = function() {
+           if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+               document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+           }
+       };
+       xmlhttp.open("GET", "gethint.php?q=" + str, true);
+       xmlhttp.send();
+   }
+}
+</script>
+
+
+
+<script>
+$(document).ready(function(){
+    $("#myBtn").click(function(){
+        $("#myModal").modal();
+    });
+});
+</script>
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="glyphicon glyphicon-menu-hamburger"></span>
+        </button>
+          <a class="navbar-brand" href="profile.php"><img src="img/gradLogo.png" width="160" height="35"></a>
+          
+
+      </div>
+
+
+
+      <div class="collapse navbar-collapse" id="myNavbar" >
+        <ul class="nav navbar-nav navbar-right" >
+    
+        <li class="dropdown" style="z-index:90001;">
+          <button class="dropbtn" > <a class="page-scroll" href="profile.php#msinus" >MS in US</a> &#9662</button>
+          <div class="dropdown-content">
+            <a href="listofuniversities.html">List Of Universities</a>
+            <a href="trend.html">Admit Trends</a>
+            <a href="index_forum.php">Discussion forum</a>
+           <a href="newsFeed.html">What's New?</a>
+          </div>
+        </li>
+           <li class="dropdown" style="z-index:90001;">
+          <button class="dropbtn" > <a class="page-scroll" href="profile.php#uniGuide" >UniGuide</a> &#9662</button>
+          <div class="dropdown-content">
+            <a href="uniSearch.html">UniSearch</a>
+            <a href="searchUni.html">UniPredictor</a>
+            <a href="univRating.html">UniReview</a>
+          </div>
+        </li>
+        <li class="dropdown" style="z-index:90000;">
+          <button class="dropbtn"><a class="page-scroll" href="profile.php#resources" >Resources</a> &#9662</button>
+          <div class="dropdown-content">
+            <a href="sop1.html">SOP/LOR</a>
+            <a href="gretoefl.html">GRE/TOEFL</a>
+            <a href="appAssist.html">Application Assist</a>
+              <a href="visainterview.html">Visa Interview</a>
+                <a href="faq-1.html">FAQs</a>
+          </div>
+        </li>
+        <li>
+           <a class="page-scroll" href="profile.php#aboutus" style="font-size:16px">About us</a>
+       </li>
+        <li>
+           <a class="page-scroll" href="profile.php#contact" style="font-size:16px">Contact</a>
+       </li>
+<li>
+       <a href="#openModal1" data-toggle="modal" title="Search" data-placement="bottom" style="font-size:16px"><span class="glyphicon glyphicon-search"></span></a>
+      
+      </li>
+    <li>
+
+       <a href="logout.php" data-toggle="tooltip" title="Logout" data-placement="bottom" style="font-size:16px"><span class="glyphicon glyphicon-log-out"></span></a>
+      </li>
+  
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Navigation -->
+
+<script>
+$(document).ready(function(){       
+   var scroll_start = 0;
+   var startchange = $('#wrapper');
+   var offset = startchange.offset();
+    if (startchange.length){
+   $(document).scroll(function() { 
+      scroll_start = $(this).scrollTop();
+      if(scroll_start > offset.top) {
+          $(".navbar-default").css('background-color', 'black');
+       } else {
+          $('.navbar-default').css('background-color', 'transparent');
+       }
+   });
+    }
+});
+</script>
+
+
+<div class="row"  id="wrapper">
+<div class="col-sm-12">
+
+</div>
+</div>
+
+<!-- write your div here -->
+
+
+<div class="FAQ" id="faq">
+  <div class="container faq-container">
+    <center><h1><strong><font color="white">FAQs</h1>
+                        <font size="3px">  We have tried to address some of the most common questions that generally arise in the minds of students. If you have other doubts or more specific questions, you can post them in our community where they can be answered by other students.</font></strong>
+            </center>
+    <br/>
+    <br/>
+
+<!-- Fianl Try -->
+
+<div class = "panel-group" id = "accordion">
+   <div class = "panel panel-default">
+      
+      <div class = "panel-heading panel-heading1">
+         <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion" href = "#collapseOne">
+               <b>Should any special care be taken in preparing my resume/CV?</b>
+            </a>
+         </h4>
+      </div>
+      
+      <div id = "collapseOne" class = "panel-collapse collapse in">
+         <div class = "panel-body">
+            One common mistake generally made is to confuse resume with profile. While there aren't any laws about writing your resume/CV, there certainly are some guidelines that need to be followed. 
+         </div>
+      </div>
+      
+   </div>
+   
+   <div class = "panel panel-default">
+      <div class = "panel-heading panel-heading2">
+         <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion" href = "#collapseTwo">
+               <b>Is work experience essential for MS ?</b>
+            </a>
+         </h4>
+      </div>
+
+      <div id = "collapseTwo" class = "panel-collapse collapse">
+         <div class = "panel-body">
+            For MS generally work experience is not required. I think if you do (very) well in GRE and your academics, your chances of getting financial aid increases.
+         </div>
+      </div>
+      
+   </div>
+   
+   <div class = "panel panel-default">
+      <div class = "panel-heading panel-heading3">
+         <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion" href = "#collapseThree">
+               <b>What are credit hours/credit points/ degree credits ?</b>
+            </a>
+         </h4>
+      </div>
+     
+      <div id = "collapseThree" class = "panel-collapse collapse">
+         <div class = "panel-body">
+           Every regular subject/course is scheduled for 1 to 5 hours/week.A Masters program consists of a required number of credit hours, which varies from University to University.
+         </div>
+      </div>
+     </div>
+
+     <div class = "panel panel-default">
+      
+      <div class = "panel-heading panel-heading1">
+         <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion" href = "#collapseFour">
+               <b>What is the Grade Point Average (GPA) ?</b>
+            </a>
+         </h4>
+      </div>
+      
+      <div id = "collapseFour" class = "panel-collapse collapse">
+         <div class = "panel-body">
+            A system of recording academic achievement based on an average, calculated by multiplying the numerical grade received on each course by the number of credit hours studied.
+         </div>
+      </div>
+      
+   </div>
+   
+   <div class = "panel panel-default">
+      <div class = "panel-heading panel-heading2">
+         <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion" href = "#collapseFive">
+               <b>What to write in an SOP ?</b>
+            </a>
+         </h4>
+      </div>
+
+      <div id = "collapseFive" class = "panel-collapse collapse">
+         <div class = "panel-body">
+            The SOP is supposed to identify to the Univ. what your (1) Interests are in the field you plan to major in. (2) Future plans are. Do you want to get into academia or industry.
+         </div>
+      </div>
+      
+   </div>
+   
+   <div class = "panel panel-default">
+      <div class = "panel-heading panel-heading3">
+         <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion" href = "#collapseSix">
+               <b>How to Calculate Expenses?</b>
+            </a>
+         </h4>
+      </div>
+     
+      <div id = "collapseSix" class = "panel-collapse collapse">
+         <div class = "panel-body">
+           Calculating expenses • Tuition – the cost of instruction is generally charged as a single amount for the term (semester/quarter). Some universities, and many graduate programs, based their fees on the number of credits students take • Fees • health insurance • student activity fee, etc.
+         </div>
+      </div>
+     </div>
+
+<div class = "panel panel-default">
+      
+      <div class = "panel-heading panel-heading1">
+         <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion" href = "#collapse7">
+               <b>Can I get Funding with a good GRE score and good academics?</b>
+            </a>
+         </h4>
+      </div>
+      
+      <div id = "collapse7" class = "panel-collapse collapse">
+         <div class = "panel-body">
+            Good schools have usually first come first serve basis method of giving funding, so even if you have a good GRE score and academics, you have to apply early to get any funding. The good schools have something called a priority deadline which is 3-6 months earlier than the regular deadline, if you want to be considered for funding then your application package need to reach the university before the priority deadline.
+         </div>
+      </div>
+      
+   </div>
+   
+   <div class = "panel panel-default">
+      <div class = "panel-heading panel-heading2">
+         <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion" href = "#collapse8">
+               <b>Free Scholarships for International Students? </b>
+            </a>
+         </h4>
+      </div>
+
+      <div id = "collapse8" class = "panel-collapse collapse">
+         <div class = "panel-body">
+            Scholarships are of two types. One’s which are offered by your department and one’s which are offered by the university. Usually the departments have earlier deadlines for scholarships. So it is always better to check with the department for scholarship deadlines.
+         </div>
+      </div>
+      
+   </div>
+   
+   <div class = "panel panel-default">
+      <div class = "panel-heading panel-heading3">
+         <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion" href = "#collapseNine">
+              <b>There are so many schools in the U.S. How do I decide which schools to apply to?</b>
+            </a>
+         </h4>
+      </div>
+     
+      <div id = "collapseNine" class = "panel-collapse collapse">
+         <div class = "panel-body">
+            Research your options and define your priorities. Contact the EducationUSA advising center nearest you and browse college search engines online.
+         </div>
+      </div>
+     </div>
+
+
+</div>
+
+    <ul class="pager">
+              <li class="disabled"><a href="#">&larr; Previous</a></li>
+              <li><a href="faqNext-1.html">Next &rarr;</a></li>
+            </ul>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- your div ends here -->
+
+<!-- <footer> -->
+
+<div class= "row address">
+
+
+ <div class="col-sm-2"><br/>
+
+
+  <center><address><img src="img/adresses.png" width="60" height="50" align = "center"><br/>
+ <a href="https://www.google.com/maps/@42.3343,-71.1007,15z">
+ <h5> 75 Saint Alphonsus St,<br/> Boston<br/>MA-02120</a></address></center></div>
+
+
+  <div class="col-sm-2"> <br/><center><img src="img/E-Mail-Icon.png" width="60" height="50" align = "center"><br/><br/>
+   <h5>  <a href="mailto:vegashetty@gmail.com" target="_top">contact@gradroom.com</a>
+
+
+  </div>
+
+
+
+  <div class="col-sm-2"><br/><center><img src="img/phone-green-icon.png" width="60" height="50" align = "center">
+<br/><br/>
+   <h5> Call us : <a href="tel:+18578004331">857-800-4331</a>
+
+  </div>
+
+  <div class="col-sm-2"><br/>
+   <center><a href="https://www.facebook.com"><img src="img/fb.png" width="60" height="50" align = "center"></a></center> </div> &nbsp &nbsp &nbsp
+   <div class="col-sm-2"><br/>
+   <center><a href="https://twitter.com"><img src="img/Twitter-icon.png" width="60" height="50" align = "center"></a> </center></div> &nbsp &nbsp &nbsp
+    <div class="col-sm-2">
+    <center><a href="https://www.instagram.com"><img src="img/insta.png" width="60" height="50" align = "center"></a> </center></div>
+
+  </div>
+
+
+
+
+ <div class="row address">
+<div row="col-sm-12">
+<footer>
+
+
+<center> <nav> <a href = "termcon.html"> Terms & Conditions </a>|
+
+ <a href = "faq-1.html" >FAQs </a> | 
+<small><b>© Copyright 2016, GradRoom</b></small> </nav></center>
+
+
+</footer>
+</div>
+</div>
+
+
+  <!-- Footer -->
+
+
+</body>
+</html>
+

@@ -1,0 +1,68 @@
+@charset "utf-8";
+
+
+body {
+
+    background-image:url('img/news.jpg');
+    text-align:center;
+}
+
+ul {
+	list-style:circle;
+	margin-left:15px;	
+}
+
+
+
+#feedControl, #feedControlTwo, #feedControlThree, #feedControlNew {
+  	width: 580px;
+  	height: 300px;
+	padding: 10px 10px;
+	background-color:white;
+	text-align:center;
+}
+
+
+
+.gfg-title {
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 1.7em;
+	color:black;
+	margin: 1px;
+	text-align:center;
+}
+
+
+.gf-title {
+	font-family::"Courier New", Courier, monospace;
+	font-size: 1em;
+	font-weight: 500;
+	color: black;
+	text-align:center;
+}
+
+.gf-list {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: .85em;
+	margin-top: 1px;
+	color: black;
+	margin-bottom: 1px;
+	text-align:center;
+}
+
+.gf-relativePublishedDate {
+	font-weight:bold;
+	text-align:center;
+}
+
+.gf-snippet {
+	font-family: Verdana, Geneva, sans-serif;
+	margin-bottom: 1px;
+	color: black;
+	font-size: 1em;
+	line-height: 1.3em;
+	text-align:center;
+}
+
+
+	

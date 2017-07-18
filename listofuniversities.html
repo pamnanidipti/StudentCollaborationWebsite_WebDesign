@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="gradRoomStyle.css">
+  <meta name="description" content="GradRoom, a website that caters to students aspiring to study in universities in USA" >
+<link rel="shortcut icon" href="img/favicon.ico" />
+
+<style>
+.containerlist{
+margin-right: -15px;
+}
+
+
+body{
+	position: relative; /* required */
+	background-image: url(img/mixcolor.png);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;	
+}
+
+
+ div {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+ul.nav-tabs {
+	
+	width: 130px;
+	margin-top: 100px;
+	border-radius: 4px;
+    background: #fff;
+    z-index: 999;
+	border: 1px solid #ddd;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+	margin-bottom: 0px;
+	
+}
+ul.nav-tabs li {
+	margin: 0;
+	border-top: 1px solid #ddd;
+}
+ul.nav-tabs li:first-child {
+	border-top: none;
+}
+ul.nav-tabs li a {
+	margin: 0;
+	padding: 5px 16px;
+	border-radius: 0;
+}
+ul.nav-tabs li.active a, ul.nav-tabs li.active a:hover {
+	color: #fff;
+	background: #0088cc;
+	border: 1px solid #0088cc;
+}
+ul.nav-tabs li:first-child a {
+	border-radius: 4px 4px 0 0;
+}
+ul.nav-tabs li:last-child a {
+	border-radius: 0 0 4px 4px;
+}
+ul.nav-tabs.affix {
+	top: 0px; /* set the top position of pinned element */
+}
+@media screen and (min-width: 992px) and (max-width: 1199px){
+    ul.nav-tabs{
+        width: 180px; set nav width on medium devices    }
+}
+@media screen and (min-width: 1200px){
+    ul.nav-tabs{
+        width: 220px; set nav width on large devices    }
+}
+
+
+
+
+</style> 
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top, #myScrollspy">
+
+<!-- start of navbar section -->
+ <div class="modal fade" id="openModal1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+    <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <center>    <h4 class="modal-title">Search GradRoom</h4>
+        </div>
+ 
+   <h2>Search</h2>
+   <br/>
+   <p><form> 
+What are you looking for?: <input type="text" onkeyup="showHint(this.value)">
+</form></p>
+   <p>Suggestions: <span id="txtHint"></span></p>
+</div>
+</div>
+</div>
+
+
+
+
+
+<!-- end of this modal -->
+<script>
+function showHint(str) {
+   if (str.length == 0) { 
+       document.getElementById("txtHint").innerHTML = "";
+       return;
+   } else {
+       var xmlhttp = new XMLHttpRequest();
+       xmlhttp.onreadystatechange = function() {
+           if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+               document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+           }
+       };
+       xmlhttp.open("GET", "gethint.php?q=" + str, true);
+       xmlhttp.send();
+   }
+}
+</script>
+
+
+
+<script>
+$(document).ready(function(){
+    $("#myBtn").click(function(){
+        $("#myModal").modal();
+    });
+});
+</script>
+
+ <script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+
+
+   <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="glyphicon glyphicon-menu-hamburger"></span>
+        </button>
+          <a class="navbar-brand" href="profile.php"><img src="img/gradLogo.png" width="160" height="35"></a>
+          
+
+      </div>
+
+
+
+      <div class="collapse navbar-collapse" id="myNavbar" >
+        <ul class="nav navbar-nav navbar-right" >
+		
+        <li class="dropdown" style="z-index:90001;">
+          <button class="dropbtn" > <a class="page-scroll" href="profile.php#msinus" >MS in US</a> &#9662</button>
+          <div class="dropdown-content">
+            <a href="listofuniversities.html">List Of Universities</a>
+            <a href="trend.html">Admit Trends</a>
+            <a href="index_forum.php">Discussion forum</a>
+           <a href="newsFeed.html">What's New?</a>
+          </div>
+        </li>
+           <li class="dropdown" style="z-index:90001;">
+          <button class="dropbtn" > <a class="page-scroll" href="profile.php#uniGuide" >UniGuide</a> &#9662</button>
+          <div class="dropdown-content">
+            <a href="uniSearch.html">UniSearch</a>
+            <a href="searchUni.html">UniPredictor</a>
+            <a href="univRating.html">UniReview</a>
+          </div>
+        </li>
+        <li class="dropdown" style="z-index:90000;">
+          <button class="dropbtn"><a class="page-scroll" href="profile.php#resources" >Resources</a> &#9662</button>
+          <div class="dropdown-content">
+            <a href="sop1.html">SOP/LOR</a>
+            <a href="gretoefl.html">GRE/TOEFL</a>
+            <a href="appAssist.html">Application Assist</a>
+              <a href="visainterview.html">Visa Interview</a>
+                <a href="faq-1.html">FAQs</a>
+          </div>
+        </li>
+        <li>
+           <a class="page-scroll" href="profile.php#aboutus" style="font-size:16px">About us</a>
+       </li>
+        <li>
+           <a class="page-scroll" href="profile.php#contact" style="font-size:16px">Contact</a>
+       </li>
+<li>
+       <a href="#openModal1" data-toggle="modal" title="Search" data-placement="bottom" style="font-size:16px"><span class="glyphicon glyphicon-search"></span></a>
+      
+      </li>
+	  <li>
+
+       <a href="logout.php" data-toggle="tooltip" title="Logout" data-placement="bottom" style="font-size:16px"><span class="glyphicon glyphicon-log-out"></span></a>
+      </li>
+  
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Navigation -->
+
+  <script>
+$(document).ready(function(){       
+   var scroll_start = 0;
+   var startchange = $('#msinus');
+   var offset = startchange.offset();
+    if (startchange.length){
+   $(document).scroll(function() { 
+      scroll_start = $(this).scrollTop();
+      if(scroll_start > offset.top) {
+          $(".navbar-default").css('background-color', 'black');
+       } else {
+          $('.navbar-default').css('background-color', 'transparent');
+       }
+   });
+    }
+});
+</script>
+
+        <!-- /.container -->
+<!-- end of navbar section -->
+
+
+
+<!-- write your div here -->
+
+
+<!-- <list of universities body code starts here> -->
+
+<div class="containerlist">
+<div class="bgimage">
+
+    <div class="row" id="solidnavbar">
+        <div class="col-sm-2" id="myScrollspy">
+            <ul class="nav  nav-tabs nav-stacked" data-offset-top="120" data-spy="affix">
+                <li class="active"><a href="#section1">Arizona</a></li>
+                <li><a href="#section2">California</a></li>
+                <li><a href="#section3">Colorado</a></li>
+                <li><a href="#section4">Florida</a></li>
+                <li><a href="#section5">Illinois</a></li>
+                <li><a href="#section6">Maryland</a></li>
+                <li><a href="#section7">Massachusetts</a></li>
+                <li><a href="#section8">New Jersey</a></li>
+                <li><a href="#section9">New York</a></li>
+                <li><a href="#section10">North Carolina</a></li>
+                <li><a href="#section11">Ohio</a></li>
+                <li><a href="#section12">Pennsylvania</a></li>
+                <li><a href="#section13">Rhode Island</a></li>
+                <li><a href="#section14">Texas</a></li>
+                <li><a href="#section15">Virginia</a></li>
+                <li><a href="#section16">Washington</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-10" style="padding:30px">
+			<div id="section1">
+				<h2 style="color:black; background-color:silver" > &nbsp<img src="img/arizona.png" height="20" weight="20"> &nbsp Arizona</h2>
+					<div class="box" style="color:black; background-color:white; padding:10px">
+				        <h5> &#8226; Arizona State University, Tempe <a href="http://www.arizona.edu"> (www.arizona.edu) </a>  </h5>
+				        <p style="color:gray">Arizona State University (commonly referred to as ASU or Arizona State) 
+				        is a public flagship metropolitan research university located on five 
+				        campuses across the Phoenix, Arizona, metropolitan area, and four regional 
+				        learning centers throughout Arizona. The 2016 university ratings by 
+				        U.S. News & World Report rank ASU No. 1 among the Most Innovative Schools in America.</p>
+				        <h5> &#8226; Grand Canyon University, Phoenix <a href="http://www.gcu.edu"> (www.gcu.edu) </a> </h5>
+				        <p style="color:gray">Grand Canyon University (GCU) is a private, for-profit Christian university located in Phoenix, Arizona, United States. 
+				        GCU was founded in 1949 as a non-profit liberal arts college, and was purchased by Grand Canyon Education, Inc. (NASDAQ: LOPE) in February 2004.
+						Grand Canyon University is accredited by the Higher Learning Commission and provides campus-based as well as online postsecondary education services 
+						focused on graduate and undergraduate degree programs in education, liberal arts, business, and healthcare through its eight colleges.</p>
+				        <h5> &#8226; Northcentral University, Prescott Valley <a href="http://www.ncu.edu"> (www.ncu.edu) </a> </h5>
+				        <p style="color:gray">
+				        Northcentral University is a virtual, private, for-profit university established in 1996. Under the Carnegie Classification of Institutions of 
+				        Higher Education, Northcentral is classified as a Doctoral Research University. The school is based in Prescott Valley, Arizona and is currently 
+				        owned by Rockbridge Growth Equity, LLC and Falcon Investments, LLC.
+						Northcentral offers bachelor's, master's (MA, MBA and MEd), specialist (EdS), 
+						and doctoral (PhD, DBA and EdD) degrees in business and technology management, education, 
+						Marriage and Family Therapy, and behavioral and health sciences.
+				        </p>
+					</div>	
+			</div>
+			<hr>
+			<div id="section2">
+				<h2 style="color:black; background-color:silver" ><img src="img/california.png" height="20" weight="20"> &nbsp California</h2>
+					<div class="box" style="color:black; background-color:white; padding:10px">
+				        <h5> &#8226; University of Southern California, Los Angeles <a href="http://www.usc.edu"> (www.usc.edu) </a>  </h5>
+				        <p style="color:gray">
+				        The University of Southern California (USC[a] or SC) is a private, not-for-profit, and nonsectarian research university founded in 1880 
+				        with its main campus in the city area of Los Angeles, California. As California's oldest private research university,
+				         USC has historically educated a large number of the region's business leaders and professionals. In recent decades, 
+				         the university has also leveraged its location in Los Angeles to establish relationships with research and cultural 
+				         institutions throughout Asia and the Pacific Rim. An engine for economic activity, USC contributes approximately $5 billion 
+				         annually to the economy of the Los Angeles county area.
+				        </p>
+				        <h5> &#8226; University of California, Berkley <a href="http://www.berkeley.edu"> (www.berkeley.edu) </a> </h5>
+				         <p style="color:gray">
+				         The University of California, Berkeley (also referred to as Berkeley, UC Berkeley, California or simply Cal)
+				         is a public research university located in Berkeley, California. It is the flagship campus of the University of California system, 
+				         one of three parts in the state's public higher education plan, which also includes the California State University system and the California 
+				         Community Colleges System. It is considered by the Times Higher Education World University Rankings as one of six university brands that lead 
+				         in world reputation rankings in 2015 and is ranked third on the U.S. News' 2015 Best Global Universities rankings conducted in the U.S. 
+				         and nearly 50 other countries.
+				        </p>
+				        <h5> &#8226; Stanford University, Stanford <a href="http://www.stanford.edu"> (www.stanford.edu) </a> </h5>
+				         <p style="color:gray">
+				        Stanford University, officially Leland Stanford Junior University, is a private research university in 
+				        Stanford, California, and one of the world's most prestigious institutions. Stanford was founded in 1885 by Leland Stanford, 
+				        former Governor of and U.S. Senator from California and leading railroad tycoon, and his wife, Jane Lathrop Stanford, in memory of their only child, Leland Stanford, Jr., 
+				        who had died of typhoid fever at age 15 the previous year. Stanford admitted its first students on October 1, 1891[2][3] as a coeducational and 
+				        non-denominational institution. Tuition was free until 1920. The university struggled financially after Leland Stanford's 1893 death and again after much of the campus was 
+				        damaged by the 1906 San Francisco earthquake.[24] Following World War II, Provost Frederick Terman supported faculty and graduates' entrepreneurialism to build self-sufficient 
+				        local industry in what would later be known as Silicon Valley. By 1970, Stanford was home to a linear accelerator, and was one of the original four ARPANET nodes (precursor to the Internet).
+				        </p>
+				        <h5> &#8226; University of California, Los Angeles <a href="http://www.ucla.edu"> (www.ucla.edu) </a> </h5>
+				    	 <p style="color:gray">
+				        The University of California, Los Angeles (UCLA) is a public research university located in the Westwood district of Los Angeles, 
+				        California, United States. It became the Southern Branch of the University of California in 1919, making it the second-oldest undergraduate 
+				        campus of the ten-campus system after the original University of California campus in Berkeley (1873). It offers 337 undergraduate and graduate 
+				        degree programs in a wide range of disciplines. UCLA has an approximate enrollment of 30,000 undergraduate and 12,000 graduate students, and has 119,000 
+				        applicants for Fall 2016, including transfer applicants, the most applicants for any American university.
+						The Times Higher Education World University Rankings for 2015–2016 ranks UCLA 16th in the world for academics and 13th in the world for reputation. 
+						In 2015/16, UCLA is ranked 12th in the world (10th in North America) by the Academic Ranking of World Universities (ARWU) and 27th in the 2015/16 QS 
+						World University Rankings. In 2015, the Center for World University Rankings (CWUR) ranked the university 15th in the world based on quality of education, 
+						alumni employment, quality of faculty, publications, influence, citations, broad impact, and patents.
+				        </p>
+				    </div>	
+			</div>
+			<hr>
+			<div id="section3">
+				<h2 style="color:black; background-color:silver" ><img src="img/colorado.png" height="20" weight="20"> &nbsp Colorado</h2>
+					<div class="box" style="color:black; background-color:white; padding:10px">
+				        <h5> &#8226; University of Colorado, Denver <a href="http://www.ucdenver.edu"> (www.ucdenver.edu) </a>  </h5>
+				         <p style="color:gray">
+				        The University of Colorado Denver | Anschutz Medical Campus (sic) is a public research university in the U.S. state of Colorado. It is part of the University of Colorado system.
+						The university has two campuses — one in downtown Denver at the Auraria Campus, and the other at the Anschutz Medical Campus located in neighboring Aurora. The single university 
+						is the result of the 2004 consolidation of the University of Colorado Denver and the University of Colorado Health Sciences Center. The University of Colorado Denver is the largest 
+						research institution in Colorado, attracting more than $375 million in research grants annually and granting more graduate degrees than any other institution in the state. 
+						CU Denver, along with University of Colorado Hospital and University Physicians, Inc., employs more than 12,200 Coloradans, making it one of the metro Denver area's top employers. 
+						The university serves more than 500,000 patients a year through its hospital and clinical services.
+				        </p>
+				        <h5> &#8226; Adams State University, Alamosa <a href="http://www.adams.edu"> (www.adams.edu) </a> </h5>
+				         <p style="color:gray">
+				        Adams State University (ASU) is a small, state-supported liberal arts university in Alamosa, Colorado, U.S., in the San Luis Valley, 
+				        home to the Great Sand Dunes National Park and Preserve. ASU offers undergraduate programs in physical and social sciences, in fine arts, 
+				        business and nursing, and specializes in educator curricula in several disciplines. ASU also offers graduate degrees in, among others, history, art, 
+				        business (MBA), and educator programs, including counselor education. There is also a postgraduate (PhD) program in counselor education. The University 
+				        has an active athletic program, both in participatory sports and in athletics educator training; the Adams State Grizzlies intramural teams compete under 
+				        the auspices of the Rocky Mountain Athletic Conference.
+				        </p>
+				        <h5> &#8226; Colorado state University, Fort Collins, <a href="http://www.colostate.edu">(www.colostate.edu) </a> </h5>
+				    	 <p style="color:gray">
+				        Colorado State University (also referred to as Colorado State and CSU) is a public research university located in Fort Collins, in the U.S. state of Colorado. 
+				        The university is the state's land grant university, and the flagship university of the Colorado State University System. The current enrollment is approximately 
+				        32,236 students, including resident and non-resident instruction students and the University is planning on having 35,000 students by 2020. The university has 
+				        approximately 1,540 faculty in eight colleges and 55 academic departments. Bachelor's degrees are offered in 65 fields of study, with master's degrees in 55 fields. 
+				        Colorado State confers doctoral degrees in 40 fields of study, in addition to a professional degree in veterinary medicine. In fiscal year 2012, CSU spent $375.9 
+				        million on research and development, ranking 60th in the nation overall and 34th when excluding medical school spending.
+				        </p>
+				    </div>	
+			</div>
+			<hr>
+			<div id="section4">
+				<h2 style="color:black; background-color:silver" ><img src="img/florida.png" height="20" weight="20"> &nbsp Florida</h2>
+					<div class="box" style="color:black; background-color:white; padding:10px">
+				        <h5> &#8226; University of Florida, Gainesville <a href="http://www.ufl.edu"> (www.ufl.edu) </a>  </h5>
+				        <p style="color:gray">
+				        The University of Florida (commonly referred to as Florida or UF) is an American public land-grant, sea-grant, and space-grant research university located on a 2,000-acre (8.1 km2) campus in Gainesville, Florida. 
+				        It is a senior member of the State University System of Florida and traces its historical origins to 1853,[8] and has operated continuously on its present Gainesville campus since September 1906. The University of 
+				        Florida is one of sixty-two elected member institutions of the Association of American Universities (AAU), the association of preeminent North American research universities, and the only AAU member university located 
+				        in Florida. The University is classified as a Research University with Very High Research by the Carnegie Foundation for the Advancement of Teaching.[11] Following the creation of performance standards by the Florida 
+				        state legislature in 2013, the Florida Board of Governors designated the University of Florida as one of the two "preeminent universities" among the twelve universities of the State University System of Florida. 
+				        In 2015, U.S. News & World Report ranked Florida as the fourteenth best public university in the United States.
+				        </p>
+				        <h5> &#8226; Florida State University, Tallahassee  <a href="http://www.fsu.edu"> (www.fsu.edu) </a> </h5>
+				        <p style="color:gray">
+				        The Florida State University (commonly referred to as Florida State or FSU) is an American public space-grant and sea-grant research university. 
+				        Its primary campus is located on a 1,391.54-acre (5.631 km2) campus in Tallahassee, Florida, United States. It is a senior member of the State University System of Florida. 
+				        Founded in 1851, it is located on the oldest continuous site of higher education in the state of Florida. The University is classified as a Research University with Very High 
+				        Research by the Carnegie Foundation for the Advancement of Teaching. The university comprises 16 separate colleges and more than 110 centers, facilities, labs and institutes 
+				        that offer more than 360 programs of study, including professional school programs. The university has an annual budget of over $1.7 billion. Florida State is home to Florida's 
+				        only National Laboratory – the National High Magnetic Field Laboratory and is the birthplace of the commercially viable anti-cancer drug Taxol. 
+				        </p>
+				        <h5> &#8226; University of Miami, Coral Gables <a href="http://www.miami.edu">(www.miami.edu) </a> </h5>
+				        <p style="color:gray">
+				        The University of Miami (informally referred to as UM, U of M, or The U) is a private, nonsectarian research university located in Coral Gables, Florida, United States. 
+				        As of 2014, the university currently enrolls 16,774 students in 12 separate colleges/schools, including a medical school located in Miami's Civic Center neighborhood, 
+				        a law school on the main campus, and a school focused on the study of oceanography and atmospheric sciences on Virginia Key, with a research facilities at the Richmond 
+				        Facility in southern Miami-Dade County. These colleges offer approximately 115 undergraduate, 104 master's, and 63 doctoral of which 59 are research/scholarship and four 
+				        professional areas of study. Over the years, the University's students have represented all 50 states and close to 150 foreign countries.[13] With more than 14,000 full 
+				        and part-time faculty and staff, UM is the sixth largest employer in Miami-Dade County
+				        </p>
+				        <h5> &#8226; University of Tampa, Tampa  <a href="http://http://www.ut.edu"> (www.ut.edu) </a> </h5>
+				        <p style="color:gray">
+				        The University of Tampa (UT), is a private, co-educational university in Downtown Tampa, Florida, United States. It is accredited by the Southern Association of Colleges 
+				        and Schools. In 2011, the University celebrated its 80th anniversary. UT offers more than 200 programs of study, including 11 master's degrees and a broad variety of majors,
+				         minors, pre-professional programs and certificates. 
+				        </p>
+				    </div>	
+			</div>
+			<hr>
+			<div id="section5">
+				<h2 style="color:black; background-color:silver"><img src="img/illinois.png" height="20" weight="20"> &nbsp Illinois</h2>
+					<div class="box" style="color:black; background-color:white; padding:10px">
+				        <h5> &#8226; University of Illinois, Urbana-Champaign <a href="http://www.illinois.edu"> (www.illinois.edu) </a>  </h5>
+				         <p style="color:gray">
+				        The University of Illinois at Urbana–Champaign (U of I, University of Illinois, UIUC, or simply Illinois) is a public research-intensive university in the U.S. state of Illinois. 
+				        A land-grant university, it is the flagship campus of the University of Illinois system. The University of Illinois at Urbana–Champaign (founded, 1867) is the second oldest public 
+				        university in the state (after Illinois State University), and is a founding member of the Big Ten Conference. It is a member of the Association of American Universities and is designated 
+				        as a RU/VH Research University (very high research activities). The campus library system possesses the second-largest university library in the United States after Harvard University. 
+				        The university comprises 17 colleges that offer more than 150 programs of study. Additionally, the university operates an extension that serves 2.7 million registrants per year around 
+				        the state of Illinois and beyond. The campus holds 647 buildings on 4,552 acres (1,842 ha) in the twin cities of Champaign and Urbana (together known as Champaign–Urbana); its annual 
+				        operating budget in 2011 was over $1.7 billion
+				        </p>
+				        <h5> &#8226; Northwestern University, Chicago <a href="http://northwestern.edu"> (www.northwestern.edu) </a>     </h5>
+				         <p style="color:gray">
+				        Northwestern University (NU) is a private research university with campuses in Evanston and Chicago in Illinois, United States, as well as Doha, Qatar. Composed of twelve schools and colleges, 
+				        Northwestern offers 124 undergraduate degrees and 145 graduate and professional degrees. Northwestern was founded in 1851 by John Evans, for whom the City of Evanston is named, and eight other 
+				        lawyers, businessmen and Methodist leaders. Its founding purpose was to serve the Northwest Territory, an area that today includes the states of Ohio, Indiana, Illinois, Michigan, Wisconsin and 
+				        parts of Minnesota. Instruction began in 1855; women were admitted in 1869. Today, the main campus is a 240-acre (97 ha) parcel in Evanston, along the shores of Lake Michigan just 12 miles north 
+				        of downtown Chicago. The university's law, medical, and professional schools are located on a 25-acre (10 ha) campus in Chicago's Streeterville neighborhood. In 2008, the university opened a campus 
+				        in Education City, Doha, Qatar with programs in journalism and communication. Northwestern is a large research university with a comprehensive doctoral program and attracts over $550 million in 
+				        sponsored research each year. Northwestern has the eighth largest university endowment in the United States, valued at $10.19 billion in 2015. In 2015, the university accepted 13% of undergraduate 
+				        applicants, making Northwestern one of the most selective universities in the country.
+				        </p>
+				        <h5> &#8226; University of Chicago, Chicago <a href="http://www.uchicago.edu">(www.uchicago.edu) </a> </h5>
+				   		 <p style="color:gray">
+				        The University of Chicago (U of C, Chicago, or UChicago) is a private research university in Chicago. The university, established in 1890, consists of The College, various graduate programs, 
+				        interdisciplinary committees organized into four academic research divisions and seven professional schools. Beyond the arts and sciences, Chicago is also well known for its professional 
+				        schools, which include the Pritzker School of Medicine, the University of Chicago Booth School of Business, the Law School, the School of Social Service Administration, the Harris School 
+				        of Public Policy Studies, the Graham School of Continuing Liberal and Professional Studies and the Divinity School. The university currently enrolls approximately 5,000 students in the 
+				        College and around 15,000 students overall.
+				        </p>
+				    </div>	
+			</div>
+			<hr>
+			<div id="section6">
+				<h2 style="color:black; background-color:silver"><img src="img/maryland.png" height="20" weight="20"> &nbsp Maryland</h2>
+					<div class="box" style="color:black; background-color:white; padding:10px">
+				        <h5> &#8226; University of Maryland, College Park <a href="http://www.umd.edu"> (www.umd.edu) </a>  </h5>
+				         <p style="color:gray">
+				         Maryland Listeni/ˈmɛrᵻlənd/[8] is a state located in the Mid-Atlantic region of the United States, bordering Virginia, West Virginia, 
+				         and Washington, D.C. to its south and west; Pennsylvania to its north; and Delaware to its east. The state's largest city is Baltimore, and 
+				         its capital is Annapolis. It has three occasionally used nicknames: the Old Line State, the Free State, and the Chesapeake Bay State. 
+				         One of the original Thirteen Colonies, Maryland is considered to be the birthplace of religious freedom in America, when it was 
+				         formed in the early 17th century as an intended refuge for persecuted Catholics from England by George Calvert. George Calvert was the first Lord 
+				         Baltimore and the first English proprietor of the then-Maryland colonial grant. Maryland was the seventh state to ratify the United States Constitution. 
+				         Maryland is one of the smallest states in terms of area, as well as one of the most densely populated states with nearly 6 million residents. 
+				         With its close proximity to Washington, D.C., and a highly diversified economy spanning manufacturing, services, and biotechnology, Maryland has the 
+				         highest median household income of any state. The state is officially claimed to be named after Queen Henrietta Maria,[13] wife of King Charles I of England 
+				         and mother of Charles II and James II, by George Calvert, 1st Lord Baltimore, prior to his death in 1632.
+				        </p>
+				        <h5> &#8226; Johns Hopkins University, Baltimore <a href="http://www.jhu.edu"> (www.jhu.edu) </a> </h5>
+				         <p style="color:gray">
+				        The Johns Hopkins University (commonly referred to as Johns Hopkins, JHU, or simply Hopkins) is a private research university in Baltimore, Maryland. 
+				        Founded in 1876, the university was named after its first benefactor, the American entrepreneur, abolitionist, and philanthropist Johns Hopkins. 
+				        His $7 million bequest—of which half financed the establishment of The Johns Hopkins Hospital—was the largest philanthropic gift in the history 
+				        of the United States at the time. Daniel Coit Gilman, who was inaugurated as the institution's first president on February 22, 1876, led the 
+				        university to revolutionize higher education in the U.S. by integrating teaching and research. Adopting the concept of a graduate school from 
+				        Germany's ancient Heidelberg University, Johns Hopkins University is considered the first research university in the United States.
+				        </p>
+				        <h5> &#8226; Towson University, Baltimore County <a href="http://www.towson.edu">(www.towson.edu) </a> </h5>
+				    	 <p style="color:gray">
+				        Towson University, often referred to as TU or simply Towson for short, is a public university located in Towson in Baltimore County, Maryland, United States. 
+				        It is a part of the University System of Maryland. Founded in 1866 as Maryland's first training school for teachers, Towson University has evolved into a 4-year 
+				        degree-granting institution consisting of 8 colleges with over 20,000 students enrolled. Towson is one of the largest public universities in Maryland and still 
+				        produces the most teachers of any university in the state. The U.S. News & World Report ranked Towson University 8th in the Public Universities-Master’s (North) 
+				        category for its 2010 America's Best Colleges issue. Forbes included Towson University in its 2009 list of the top 100 public colleges and universities in the 
+				        United States. Kiplinger's Personal Finance magazine named Towson University one of the top 100 best values in public colleges for the 2008-2009 academic year.
+				        </p>
+				    </div>	
+			</div>
+			
+			<hr>
+			<div id="section7">
+				<h2 style="color:black; background-color:silver"><img src="img/massachusetts.png" height="20" weight="20"> &nbsp Massachusetts</h2>
+					<div class="box" style="color:black; background-color:white; padding:10px">
+				        <h5> &#8226; Harvard University, Cambridge <a href="http://Harvard.edu"> (www.Harvard.edu) </a>  </h5>
+				         <p style="color:gray">
+				        Harvard University is a private Ivy League research university in Cambridge, Massachusetts, established 1636, whose history, influence and wealth have made it one of the most prestigious universities in the world. 
+				        Established originally by the Massachusetts legislature and soon thereafter named for John Harvard (its first benefactor), Harvard is the United States' oldest institution of higher learning, and the Harvard 
+				        Corporation (formally, the President and Fellows of Harvard College) is its first chartered corporation. Although never formally affiliated with any denomination, the early College primarily trained Congregationalist 
+				        and Unitarian clergy. Its curriculum and student body were gradually secularized during the 18th century, and by the 19th century Harvard had emerged as the central cultural establishment among Boston elites. Harvard is a large, 
+				        highly residential research university. The nominal cost of attendance is high, but the University's large endowment allows it to offer generous financial aid packages. It operates several arts, cultural, and scientific museums, 
+				        alongside the Harvard Library, which is the world's largest academic and private library system, comprising 79 individual libraries with over 18 million volumes. Harvard's alumni include eight U.S. presidents, several foreign heads 
+				        of state, 62 living billionaires, 335 Rhodes Scholars, and 242 Marshall Scholars. To date, some 150 Nobel laureates and 5 Fields Medalists (when awarded) have been affiliated as students, faculty, or staff.
+				        </p>
+				        <h5> &#8226; Massachusetts Institute of Technology, Cambridge <a href="http://MIT.edu"> (www.MIT.edu) </a> </h5>
+				        <p style="color:gray">
+				        Massachusetts Listeni, officially the Commonwealth of Massachusetts, is a state in the New England region of the Northeastern United States. It is bordered by Rhode Island and Connecticut to the south, 
+				        New York to the west, Vermont and New Hampshire to the north, and the Atlantic Ocean to the east. Massachusetts is the 7th smallest state by land area, but the 15th most populous and the 3rd most 
+				        densely populated of the 50 states. With an estimated 6.8 million residents in 2015, it is the most populous of the six New England states and has the nation's sixth highest GDP per capita. 
+				        The capital of Massachusetts, as well as the state's largest city, is Boston. Originally dependent on fishing, agriculture, and trade, Massachusetts was transformed into a manufacturing center during the Industrial Revolution.
+				         During the 20th century, Massachusetts' economy shifted from manufacturing to services.[58] In the 21st century, Massachusetts is an international economic leader in life science, the finance industry, biotechnology, information 
+				         technology, manufacturing, renewable energy, the defense industry, and maritime trade.
+				        </p>
+				        <h5> &#8226; Northeastern University, Boston <a href="http://www.neu.edu">(www.neu.edu) </a> </h5>
+				        <p style="color:gray">
+				        Northeastern University (NU formerly NEU) is a private research university in Boston, Massachusetts, established in 1898. It is categorized as R1 (Doctoral Universities: Highest Research Activity) by the Carnegie Classification of 
+				        Institutions of Higher Education. The university offers undergraduate and graduate programs leading to doctoral degrees on its main campus in the Fenway-Kenmore, Roxbury, South End, and Back Bay neighborhoods, as well as advanced 
+				        degrees at graduate campuses in Charlotte, North Carolina and Seattle, Washington. It has roughly 16,000 undergraduates and nearly 8,000 graduate students. Northeastern features a cooperative education program that integrates classroom 
+				        study with professional experience on seven continents. In 2011, the university opened the George J. Kostas Research Institute for Homeland Security
+				        </p>
+				        <h5> &#8226; Boston University, Boston <a href="http://www.bu.edu"> (www.bu.edu) </a> </h5>
+				        <p style="color:gray">
+				        Boston University (most commonly referred to as BU or otherwise known as Boston U.) is a private research university located in Boston, Massachusetts. The university is nonsectarian, 
+				        but is historically affiliated with the United Methodist Church. The university has more than 3,800 faculty members and 33,000 students, and is one of Boston's largest employers. 
+				        It offers bachelor's degrees, master's degrees, and doctorates, and medical, dental, business, and law degrees through eighteen schools and colleges on two urban campuses. 
+				        The main campus is situated along the Charles River in Boston's Fenway-Kenmore and Allston neighborhoods, while the Boston University Medical Campus is in Boston's South End neighborhood. 
+				        The Boston University Terriers compete in the NCAA's Division I. BU athletic teams compete in the Patriot League, and Hockey East conferences, and their mascot is Rhett the Boston Terrier. 
+				        Boston University is well known for men's hockey, in which it has won five national championships, most recently in 2009.
+				        </p>
+				        <h5> &#8226; University of Massachusetts, Amherst <a href="http://www.umass.edu">(www.umass.edu) </a> </h5>
+				    	<p style="color:gray">
+				        The University of Massachusetts Amherst (otherwise known as UMass Amherst or simply UMass) is a public research and land-grant university in Amherst, Massachusetts, United States, 
+				        and the flagship of the University of Massachusetts system. With approximately 1,300 faculty members and more than 29,000 students, UMass Amherst is the largest public university 
+				        in New England[9] and is ranked the 29th best public university in the nation. The university offers bachelor's degrees, master's degrees, and doctoral degrees in 111 undergraduate,
+				        75 master's and 47 doctoral programs in nine schools and colleges.[4] The main campus is situated north of downtown Amherst. In a 2009 article for MSN.com, Amherst was ranked first in Best College Towns in the United States.
+				        </p>
+				    </div>	
+			</div>
+			
+			<hr>
+			<div id="section8">
+				<h2 style="color:black; background-color:silver"><img src="img/nj.png" height="20" weight="20"> &nbsp New Jersey</h2>
+					<div class="box" style="color:black; background-color:white; padding:10px">
+				        <h5> &#8226; Rutgers University, New Jersey <a href="http://www.rutgers.edu"> (www.rutgers.edu) </a>  </h5>
+				        <p style="color:gray">
+				        Rutgers, The State University of New Jersey, commonly referred to as Rutgers University, Rutgers, or RU, is an 
+				        American public research university and the largest institution for higher education in New Jersey. Originally 
+				        chartered as Queen's College on November 10, 1766, Rutgers is the eighth-oldest college in the United States and 
+				        one of the nine "Colonial Colleges" chartered before the American Revolution. The college was renamed Rutgers College 
+				        in 1825 in honor of Colonel Henry Rutgers (1745–1830), a New York City landowner, philanthropist and former military officer, 
+				        whose $5000 bond donation to the school allowed it to reopen after years of financial difficulty. For most of its existence, 
+				        Rutgers was a private liberal arts college affiliated with the Dutch Reformed Church and admitted only male students. 
+				        The college expanded its role in research and instruction in agriculture, engineering, and science when it was named as 
+				        the state's sole land-grant college in 1864 under the Morrill Act of 1862. It gained university status in 1924 with the 
+				        introduction of graduate education and further expansion.
+				        </p>
+				        
+				        <h5> &#8226; Princeton University, Newark  <a href="http://www.princeton.edu"> (www.princeton.edu) </a> </h5>
+				        <p style="color:gray">
+				        Princeton University is a private Ivy League research university in Princeton, New Jersey, United States. Founded in 1746 
+				        in Elizabeth as the College of New Jersey, Princeton was the fourth chartered institution of higher education in the Thirteen 
+				        Colonies and thus one of the nine Colonial Colleges established before the American Revolution. The institution moved to Newark 
+				        in 1747, then to the current site nine years later, where it was renamed Princeton University in 1896. Princeton provides 
+				        undergraduate and graduate instruction in the humanities, social sciences, natural sciences, and engineering. 
+				        It offers professional degrees through the Woodrow Wilson School of Public and International Affairs, the School of Engineering 
+				        and Applied Science, the School of Architecture and the Bendheim Center for Finance. The University has ties with the Institute 
+				        for Advanced Study, Princeton Theological Seminary, and the Westminster Choir College of Rider University. 
+				        Princeton has the largest endowment per student in the United States.
+				        </p>
+				        <h5> &#8226; New Jersey Institute of Technology, Newark <a href="http://NJIT.edu">(NJIT.edu) </a> </h5>
+				   		<p style="color:gray">
+				        The New Jersey Institute of Technology (NJIT) is a public research university in the University Heights neighborhood of Newark, New Jersey. 
+				        NJIT is New Jersey's Science & Technology University.[9] Centrally located in the New York metropolitan area its campus is within walking 
+				        distance of downtown Newark. New York City, 9 miles (14.5 km) and under 30 minutes away, is directly accessible from campus via public transit. 
+				        Founded in 1881 with the support of local industrialists and inventors, especially Edward Weston (334 US Patents), NJIT opened as Newark Technical 
+				        School in 1884. Application oriented from inception the school grew into a classic engineering college – Newark College of Engineering (NCE) – and then,
+				         with the addition of a School of Architecture in 1973, into a polytechnic university that is now home to five colleges and one school.
+				        </p>
+				    </div>	
+			</div>
+			
+			<hr>
+			<div id="section9">
+				<h2 style="color:black; background-color:silver"><img src="img/ny.png" height="20" weight="20"> &nbsp New York</h2>
+					<div class="box" style="color:black; background-color:white; padding:10px">
+				        <h5> &#8226; Cornell University, Ithaca <a href="http://www.cornell.edu"> (www.cornell.edu) </a>  </h5>
+				         <p style="color:gray">
+				        Cornell University is an American private Ivy League and federal land-grant research university located in Ithaca, New York. 
+				        Founded in 1865 by Ezra Cornell and Andrew Dickson White, the university was intended to teach and make contributions in all 
+				        fields of knowledge — from the classics to the sciences, and from the theoretical to the applied. These ideals, unconventional 
+				        for the time, are captured in Cornell's motto, a popular 1865 Ezra Cornell quotation: "I would found an institution where any 
+				        person can find instruction in any study." 
+				        </p>
+				        <h5> &#8226; New York University, New York City <a href="http://www.nyu.edu"> (www.nyu.edu) </a> </h5>
+				        <p style="color:gray">
+				        New York is a state in the Northeastern United States and is the United States' 27th-most extensive, fourth-most populous, 
+				        and seventh-most densely populated state. New York is bordered by New Jersey and Pennsylvania to the south and Connecticut, 
+				        Massachusetts, and Vermont to the east. The state has a maritime border in the Atlantic Ocean with Rhode Island, east of Long 
+				        Island, as well as an international border with the Canadian provinces of Quebec to the north and Ontario to the west and north. 
+				        The state of New York, with an estimated 19.8 million residents in 2015, is often referred to as New York State to distinguish it 
+				        from New York City, the state's most populous city and its economic hub.
+				        </p>
+				        <h5> &#8226; Columbia University, New York City<a href="http://www.columbia.edu">(www.columbia.edu) </a> </h5>
+				    	<p style="color:gray">
+				        Columbia University (officially Columbia University in the City of New York) is a private, Ivy League, research university in Upper Manhattan, New York City. 
+				        It was established in 1754 as King's College by royal charter of George II of Great Britain and is the oldest college in New York State as well as the fifth 
+				        chartered institution of higher learning in the country, making Columbia one of nine colonial colleges founded before the Declaration of Independence. 
+				        After the revolutionary war, King's College briefly became a state entity, and was renamed Columbia College in 1784. A 1787 charter placed the institution 
+				        under a private board of trustees before it was renamed Columbia University in 1896 when the campus was moved from Madison Avenue to its current location in 
+				        Morningside Heights occupying land of 32 acres (13 ha). Columbia is one of the fourteen founding members of the Association of American Universities, and was 
+				        the first school in the United States to grant the M.D. degree.
+				        </p>
+				    </div>	
+			</div>
+			
+			<hr>
+			<div id="section10">
+				<h2 style="color:black; background-color:silver"><img src="img/nc.png" height="20" weight="20"> &nbsp North Carolina</h2>
+					<div class="box" style="color:black; background-color:white; padding:10px">
+				        <h5> &#8226; University of North Carolina, Chapel Hill <a href="http://www.unc.edu"> (http://www.unc.edu) </a>  </h5>
+				        <p style="color:gray">
+				        The University of California (UC) is a public university system in the U.S. state of California. Under the California Master 
+				        Plan for Higher Education, the University of California is a part of the state's three-system public higher education plan, 
+				        which also includes the California State University system and the California Community Colleges System. Governed by a semi-autonomous Board of Regents, 
+				        the University of California has 10 campuses, a combined student body of 238,700 students, 19,700 faculty members, 135,900 staff 
+				        members and over 1.6 million living alumni as of spring 2015. The University of California was founded in 1868 in Berkeley, California. 
+				        Its tenth and newest campus, UC Merced, opened for classes in fall 2005. Nine campuses enroll both undergraduate and graduate students; 
+				        one campus, UC San Francisco, enrolls only graduate and professional students in the medical and health sciences. In addition, the UC Hastings College of Law, 
+				        located in San Francisco, shares the "UC" name but is otherwise effectively unaffiliated with the UC system.
+				        </p>
+				        <h5> &#8226; North Carolina State University, Raleigh <a href="http://www.ncsu.edu"> (http://www.ncsu.edu) </a> </h5>
+				         <p style="color:gray">
+				        North Carolina State University, officially North Carolina State University at Raleigh, is a public, coeducational, research university located in Raleigh, 
+				        North Carolina, United States. Commonly known as NC State or simply State, the university is part of the University of North Carolina system and is a land, sea, 
+				        and space grant institution. The university forms one of the corners of the Research Triangle together with Duke University in Durham and The University of North 
+				        Carolina at Chapel Hill. The North Carolina General Assembly founded the North Carolina College of Agriculture and Mechanic Arts, now NC State, on March 7, 1887, 
+				        as a land-grant college. Today, NC State has an enrollment of more than 34,000 students, making it the largest university in the Carolinas. NC State has historical 
+				        strengths in engineering, agriculture, life sciences, textiles and design and now offers 106 bachelor's degrees. The graduate school offers 104 master's degrees, 
+				        61 doctoral degrees, and a Doctor of Veterinary Medicine.
+				        </p>
+				        <h5> &#8226; Duke University, Durham <a href="http://www.duke.edu">(www.duke.edu) </a> </h5>
+				    	 <p style="color:gray">
+				        Duke University is a private research university located in Durham, North Carolina, United States. Founded by Methodists and Quakers in the present-day town of 
+				        Trinity in 1838, the school moved to Durham in 1892. In 1924, tobacco and electric power industrialist James Buchanan Duke established the Duke Endowment, at which 
+				        time the institution changed its name to honor his deceased father, Washington Duke. Duke's research expenditures in the 2014 fiscal year were $1.037 billion, 
+				        the seventh largest in the nation. In 2014, Thomson Reuters named 32 Duke professors to its list of Highly Cited Researchers, making it fourth globally in terms of 
+				        primary affiliations. Duke also ranks 5th among national universities to have produced Rhodes, Marshall, Truman, Goldwater, and Udall Scholars.[12] Ten Nobel laureates 
+				        and three Turing Award winners are affiliated with the university. Duke's sports teams compete in the Atlantic Coast Conference and the basketball team is renowned for 
+				        having won five NCAA Men's Division I Basketball Championships, the most recent in 2015. Duke's research expenditures in the 2014 fiscal year were $1.037 billion, the seventh 
+				        largest in the nation. In 2014, Thomson Reuters named 32 Duke professors to its list of Highly Cited Researchers, making it fourth globally in terms of primary affiliations. 
+				        Duke also ranks 5th among national universities to have produced Rhodes, Marshall, Truman, Goldwater, and Udall Scholars. Ten Nobel laureates and three Turing Award winners 
+				        are affiliated with the university. Duke's sports teams compete in the Atlantic Coast Conference and the basketball team is renowned for having won five NCAA Men's Division 
+				        I Basketball Championships, the most recent in 2015.
+				        </p>
+				    </div>	
+			</div>
+			
+			<hr>
+			<div id="section11">
+				<h2 style="color:black; background-color:silver"><img src="img/ohio.png" height="20" weight="20"> &nbsp Ohio</h2>
+					<div class="box" style="color:black; background-color:white; padding:10px">
+				        <h5> &#8226; The Ohio State University, Columbus <a href="http://www.osu.edu"> (www.osu.edu) </a>  </h5>
+				        <p style="color:gray">
+				        The Ohio State University, commonly referred to as Ohio State or OSU, is a public research university in Columbus, Ohio. 
+				        Founded in 1870, as a land-grant university and ninth university in Ohio with the Morrill Act of 1862,[4] the university 
+				        was originally known as the Ohio Agricultural and Mechanical College. The college began with a focus on training students 
+				        in various agricultural and mechanical disciplines but was developed into a comprehensive university under the direction of 
+				        Governor Rutherford B. Hayes and in 1878 the Ohio General Assembly passed a law changing the name to "The Ohio State University". 
+				        It has since grown into the third largest university campus in the United States. The university is also home to an extensive student 
+				        life program, with over 1,000 student organizations; intercollegiate, club and recreational sports programs; student media organizations 
+				        and publications, fraternities and sororities; and three active student governments. 
+				        </p>
+				        <h5> &#8226; University of Cincinnati, Cincinnati <a href="http://www.uc.edu"> (www.uc.edu) </a> </h5>
+				        <p style="color:gray">
+				        The University of Cincinnati (commonly referred to as Cincinnati or UC) is a comprehensive public research university in Cincinnati, in the U.S. state of Ohio, and a part of the University System of Ohio. 
+				        Founded in 1819 as Cincinnati College, it is the oldest institution of higher education in Cincinnati and has an annual enrollment of over 40,000 students, making it the second largest university 
+				        in Ohio and one of the 50 largest universities in the United States. In the 2010 survey by Times Higher Education (UK), the university was ranked in the top 100 universities in North America and as 
+				        one of the top 200 in the world. Beginning with the 2011 edition of the U.S. News and World Report "Best Colleges" rankings, the University of Cincinnati has been ranked as a Tier One university, 
+				        ranking as the 129th best overall university and 63rd best public university in the 2015 rankings. This includes being the number 3 ranked university in the nation in the "Up-and-Coming" National 
+				        Universities section of the 2014 edition. In 2011-2012 academic year the Leiden University ranking put the University of Cincinnati at the 93rd place globally and at the 63rd place in North America 
+				        by the proportion of top-cited publications. In 2014, U.S. News and World Report ranked UC in the top 200 of universities worldwide.
+				        </p>
+				        <h5> &#8226; Kent State University, Prescott Valley <a href="http://www.ncu.edu">(www.ncu.edu) </a> </h5>
+				    	<p style="color:gray">
+				        Kent State University (also known as Kent, Kent State, and KSU) is a public research university in Kent, Ohio, United States. In addition to the main campus in Kent, which is the largest and oldest 
+				        campus and serves as the administrative center, Kent State operates seven regional campuses in Northeast Ohio and additional facilities in the region and internationally. Regional campuses are located 
+				        in Ashtabula, Burton, East Liverpool, Jackson Township, New Philadelphia, Salem, and Warren, Ohio, with additional facilities in Cleveland, Independence, and Twinsburg, Ohio, New York City, and Florence, Italy.
+				        </p>
+				    </div>	
+			</div>
+			
+			<hr>
+			<div id="section12">
+				<h2 style="color:black; background-color:silver"><img src="img/penn.png" height="20" weight="20"> &nbsp Pennsylvania</h2>
+					<div class="box" style="color:black; background-color:white; padding:10px">
+				        <h5> &#8226; University of Pennsylvania, Philadelphia <a href="http://www.upenn.edu"> (www.upenn.edu) </a>  </h5>
+				         <p style="color:gray">
+				        University of Pennsylvania (commonly referred to as Penn or UPenn) is a private, Ivy League, research university located in Philadelphia. 
+				        Incorporated as The Trustees of the University of Pennsylvania, Penn is one of 14 founding members of the Association of American Universities 
+				        and one of the nine original Colonial Colleges. Penn is one of several universities that claims to be the first university in the United States of America. 
+				        Benjamin Franklin, Penn's founder, advocated an educational program that focused as much on practical education for commerce and public service as on the classics 
+				        and theology although Franklin's curriculum was never adopted. The university coat of arms features a dolphin on the red chief, adopted directly from the Franklin 
+				        family's own coat of arms. Penn was one of the first academic institutions to follow a multidisciplinary model pioneered by several European universities, concentrating 
+				        multiple "faculties" (e.g., theology, classics, medicine) into one institution. It was also home to many other educational innovations. The first school of medicine in 
+				        North America (Perelman School of Medicine, 1765), the first collegiate business school (Wharton School of Business, 1881) and the first "student union" building and organization 
+				        (Houston Hall, 1896) were all born at Penn.	Penn offers a broad range of academic departments, an extensive research enterprise and a number of community outreach and public service 
+				        programs. It is particularly well known for its medical school, dental school, design school, business school, law school, engineering school, communications school, nursing school, 
+				        veterinary school, its social sciences and humanities programs, as well as its biomedical teaching and research capabilities. Its undergraduate program is also among the most selective
+				         in the country, with an acceptance rate of 10 percent.[9] One of Penn's most well known academic qualities is its emphasis on interdisciplinary education, which it promotes through numerous 
+				         double degree programs, research centers and professorships, a unified campus, and the ability for students to take classes from any of Penn's schools.
+				        </p>
+				        <h5> &#8226; University of Pittsburg, Johnstown <a href="http://www.upj.pitt.edu"> (www.upj.pitt.edu) </a> </h5>
+				         <p style="color:gray">
+				        University of Pittsburgh at Johnstown, also known as UPJ or Pitt-Johnstown, is a four-year, degree-granting state-related university institution that is a 
+				        residential, regional campus of the University of Pittsburgh. The university is located in Richland Township, a suburban area of Johnstown, Pennsylvania, and 
+				        was founded in 1927 as one of the first regional campuses of a major university in the United States. UPJ is ranked as the 28th best baccalaureate college in 
+				        the North and the eighth best public baccalaureate college in the North by U.S. News & World Report in its "America's Best Colleges 2010" annual college guide.
+				         UPJ is also listed among the "Best Colleges in the Northeastern Region" by The Princeton Review.
+				        </p>
+				        <h5> &#8226; Carnegie Mellon University, Pittsburg <a href="http://www.cmu.edu">(www.cmu.edu) </a> </h5>
+				    	 <p style="color:gray">
+				        Carnegie Mellon University (Carnegie Mellon or CMU) is a private research university in Pittsburgh, Pennsylvania. The university began as the Carnegie Technical Schools, founded 
+				        by Andrew Carnegie in 1900. In 1912, the school became the Carnegie Institute of Technology and began granting four-year degrees. In 1967, the Carnegie Institute of Technology 
+				        merged with the Mellon Institute of Industrial Research to form Carnegie Mellon University. The university's 140-acre (57 ha) main campus is 3 miles (4.8 km) from Downtown 
+				        Pittsburgh and abuts the Carnegie Museums of Pittsburgh, the main branch of the Carnegie Library of Pittsburgh, the Carnegie Music Hall, Schenley Park, and the Phipps 
+				        Conservatory and Botanical Gardens. Carnegie Mellon has seven colleges and independent schools: the College of Engineering, College of Fine Arts, Dietrich College of 
+				        Humanities and Social Sciences, Mellon College of Science, Tepper School of Business, H. John Heinz III College and the School of Computer Science.
+				        </p>
+				    </div>	
+			</div>
+			
+			<hr>
+			<div id="section13">
+				<h2 style="color:black; background-color:silver"><img src="img/rhodeisland.png" height="20" weight="20"> &nbsp Rhode Island</h2>
+					<div class="box" style="color:black; background-color:white; padding:10px">
+				        <h5> &#8226; Brown University, Providence <a href="http://www.brown.edu"> (www.brown.edu) </a>  </h5>
+				         <p style="color:gray">
+				        Brown University is a private, Ivy League research university in Providence, Rhode Island. Founded in 1764 as "The College in the English Colony of Rhode Island 
+				        and Providence Plantations," Brown is the seventh-oldest institution of higher education in the United States and one of the nine Colonial Colleges established 
+				        before the American Revolution. At its foundation, Brown was the first college in the United States to accept students regardless of their religious affiliation.
+				         Its engineering program, established in 1847, was the first in what is now known as the Ivy League. Brown's New Curriculum—sometimes referred to in education 
+				         theory as the Brown Curriculum—was adopted by faculty vote in 1969 after a period of student lobbying; the New Curriculum eliminated mandatory "general education"
+				          distribution requirements, made students "the architects of their own syllabus," and allowed them to take any course for a grade of satisfactory or unrecorded no-credit.
+				           In 1971, Brown's coordinate women's institution, Pembroke College, was fully merged into the university. Undergraduate admissions is among the most selective in the country, 
+				           with an acceptance rate of 9.5 percent for the class of 2019, according to the university. The University comprises The College, the Graduate School, Alpert Medical School, 
+				           the School of Engineering, the School of Public Health, and the School of Professional Studies (which includes the IE Brown Executive MBA program). Brown's international 
+				           programs are organized through the Watson Institute for International and Public Affairs, and is academically affiliated with the Marine Biological Laboratory and the Rhode 
+				           Island School of Design. The Brown/RISD Dual Degree Program, offered in conjunction with the Rhode Island School of Design, is a five-year course that awards degrees from both 
+				           institutions.
+				        </p>
+				        <h5> &#8226; University of Rhode Island, Kingston <a href="http://www.uri.edu"> (www.uri.edu) </a> </h5>
+				         <p style="color:gray">
+				        University of Rhode Island, commonly referred to as URI, is the principal public research as well as the land grant and sea grant university for the state of Rhode Island. Its main 
+				        campus is located in the village of Kingston in southern Rhode Island. Additionally, smaller campuses include the Feinstein Campus in Providence, the Narragansett Bay Campus in 
+				        Narragansett, and the W. Alton Jones Campus in West Greenwich. The university offers bachelor's degrees, master's degrees, and doctoral degrees in 80 undergraduate and 49 graduate 
+				        areas of study through seven academic colleges. These colleges include Arts and Sciences, Business Administration, Engineering, Human Science and Services, Environment and Life Sciences,
+				         Nursing and Pharmacy. Another college, University College (UC) serves primarily as an advising college for all incoming undergraduates and follows them through their enrollment at URI. 
+				         The University currently enrolls about 13,589 undergraduate and 2,900 graduate students.[3] U.S. News & World Report classifies URI as a tier 1 national university, ranking it tied for 
+				         161st in the U.S.
+				        </p>
+				        <h5> &#8226; Bryant University, Smithfield <a href="http://www.bryant.edu"> (www.bryant.edu) </a> </h5>
+				    	 <p style="color:gray">
+				        Bryant University is a private university, located in Smithfield, Rhode Island, U.S., that grants the degrees of bachelor of arts, bachelor of science, and master's
+				         degrees in business, taxation and accounting. Until August 2004, it was known as Bryant College. Bryant comprises the College of Arts and Sciences and the College 
+				         of Business, and is accredited by the New England Association of Schools and Colleges and the AACSB International.
+				        </p>
+				    	<h5> &#8226; Providence College, Providence <a href="http://www.providence.edu"> (www.providence.edu) </a>  </h5>
+				         <p style="color:gray">
+				        Providence College (also known as Providence or PC) is a private, coeducational, Roman Catholic university located about two miles west of downtown Providence, 
+				        Rhode Island, United States, the state's capital city. With a 2012–2013 enrollment of 3,852 undergraduate students and 735 graduate students, the college specializes 
+				        in academic programs in the liberal arts. It is the only college or university in North America administered by the Dominican Friars. Founded in 1917, the college 
+				        offers 49 majors and 34 minors and, beginning with the class of 2016, requires all its students to complete 16 credits in the Development of Western Civilization, 
+				        which serves as a major part of the college's core curriculum (down from 20 credits previously). Fr. Brian Shanley has been the school's president since 2005. In athletics, 
+				        Providence College competes in the NCAA's Division I and is a founding member of the Big East Conference and Hockey East. In December 2012, the College announced it and 
+				        six other Catholic colleges would leave the Big East Conference to form its own league, taking with them the Big East name and branding.
+				        </p>
+				    </div>	
+			</div>
+			
+			<hr>
+			<div id="section14">
+				<h2 style="color:black; background-color:silver"><img src="img/texas.png" height="20" weight="20"> &nbsp Texas</h2>
+					<div class="box" style="color:black; background-color:white; padding:10px">
+				        <h5> &#8226; University of Texas, Austin <a href="http://www.utexas.edu"> (www.utexas.edu) </a>  </h5>
+				          <p style="color:gray">
+				        University of Texas at Austin, informally UT Austin, UT, University of Texas, or Texas in sports contexts, is a public research university and the flagship 
+				        institution of The University of Texas System. Founded in 1883 as "The University of Texas," its campus is located in Austin—approximately 1 mile (1,600 m)
+				         from the Texas State Capitol. The institution has the fifth-largest single-campus enrollment in the nation, with over 50,000 undergraduate and graduate 
+				         students and over 24,000 faculty and staff. The university has been labeled one of the "Public Ivies," a publicly funded university considered to provide 
+				         a quality of education comparable to those of the Ivy League. UT Austin was inducted into the American Association of Universities in 1929, becoming only 
+				         the third university in the American South to be elected. It is a major center for academic research, with research expenditures exceeding $550 million 
+				         for the 2013–2014 school year. The university houses seven museums and seventeen libraries, including the Lyndon Baines Johnson Library and Museum 
+				         and the Blanton Museum of Art, and operates various auxiliary research facilities, such as the J. J. Pickle Research Campus and the McDonald Observatory. 
+				         Among university faculty are recipients of the Nobel Prize, Pulitzer Prize, the Wolf Prize, the Emmy Award, and the National Medal of Science, as well as 
+				         many other awards.
+				        </p>
+				        <h5> &#8226; Rice University, Houston <a href="http://www.rice.edu"> (www.rice.edu) </a> </h5>
+				         <p style="color:gray">
+				        William Marsh Rice University, commonly referred to as Rice University or Rice, is a private research university located on a 295-acre (1.19 km2) campus in 
+				        Houston, Texas, United States. The university is situated near the Houston Museum District and is adjacent to the Texas Medical Center. Opened in 1912 after
+				         the murder of its namesake William Marsh Rice, Rice is now a research university with an undergraduate focus. Its emphasis on education is demonstrated by a 
+				         small student body and 6:1 student-faculty ratio. The university has a very high level of research activity for its size, with $115.3 million in sponsored 
+				         research funding in 2011. Rice is noted for its applied science programs in the fields of artificial heart research, structural chemical analysis, signal 
+				         processing, space science, and nanotechnology. It was ranked first in the world in materials science research by the Times Higher Education (THE) in 2010.
+				          Rice is a member of the Association of American Universities. The university is organized into eleven residential colleges and eight schools of academic 
+				          study, including the Wiess School of Natural Sciences, the George R. Brown School of Engineering, the School of Social Sciences, and the School of Humanities. 
+				          Graduate programs are offered through the Jesse H. Jones Graduate School of Business, School of Architecture, Shepherd School of Music, and Susanne M. 
+				          Glasscock School of Continuing Studies. Rice students are bound by the strict Honor Code, which is enforced by a student-run Honor Council.
+				        </p>
+				        <h5> &#8226; Texas A&M University, College Station <a href="http://www.tamu.edu">(www.tamu.edu) </a> </h5>
+				    	 <p style="color:gray">
+				        Texas A&M University (Texas A&M, TAMU or A&M) is a coeducational public research university located in College Station, Texas, United States. It is the flagship
+				         institution of the Texas A&M University System, the fourth-largest university in the United States and the largest university in Texas. Texas A&M's designation 
+				         as a land, sea, and space grant institution reflects a range of research with ongoing projects funded by agencies such as the National Aeronautics and Space 
+				         Administration (NASA), the National Institutes of Health, the National Science Foundation, and the Office of Naval Research. The school ranks in the top 20
+				          American research institutes in funding and has made contributions to such fields as animal cloning and petroleum engineering. The main campus is one of the 
+				          largest in the United States, spanning 5,200 acres (21 km2), and includes the George Bush Presidential Library. 
+				        About one-fifth of the student body lives on campus. Texas A&M has approximately 1,000 officially recognized student organizations. Many students also 
+				        observe the traditions of Texas A&M University, which govern daily life, as well as special occasions, including sports events. On July 1, 2012, the school 
+				        joined the Southeastern Conference. A&M operates two branches: Texas A&M at Qatar and Texas A&M University at Galveston. Working with agencies such as the Texas 
+				        AgriLife Research and Texas AgriLife Extension Service, Texas A&M has a direct presence in each of the 254 counties in Texas. The university offers degrees in 
+				        over 150 courses of study through ten colleges and houses 18 research institutes. Texas A&M has awarded over 320,000 degrees, including 70,000 graduate and 
+				        professional degrees.
+				        </p>
+				    </div>	
+			</div>
+			
+			<hr>
+			<div id="section15">
+				<h2 style="color:black; background-color:silver"><img src="img/virginia.png" height="20" weight="20"> &nbsp Virginia</h2>
+					<div class="box" style="color:black; background-color:white; padding:10px">
+				        <h5> &#8226; University of Virginia, Charlottesville  <a href="http://www.virginia.edu"> (www.virginia.edu) </a>  </h5>
+				         <p style="color:gray">
+				        The University of Virginia (U.Va. or UVA), frequently referred to simply as Virginia, is a public-private research university founded by Declaration of 
+				        Independence author Thomas Jefferson and located in Charlottesville, Virginia. It is known for its historic foundations, student-run honor code, and secret societies. 
+				        UNESCO designated UVA as America's first and only collegiate World Heritage Site in 1987, an honor shared with nearby Monticello. The university was established in 1819 
+				        and its original governing Board of Visitors included U.S. Presidents Thomas Jefferson, James Madison, and James Monroe. Monroe was the sitting President of the United 
+				        States at the time of its foundation. Jefferson and Madison were the first two rectors, and the Academical Village and original courses of study were conceived and designed by Jefferson. 
+				        Highly recognized are the university's research endeavors, and Science honored UVA faculty for discovering two of the Top 10 worldwide scientific breakthroughs of 2015 (from the fields of 
+				        Medicine and Psychology). UVA is one of sixty-two elected member institutions of the Association of American Universities, the association of preeminent North American research universities, 
+				        and the only AAU member university located in Virginia. It is classified as a Research University with Very High Research by the Carnegie Foundation and is considered Virginia's flagship 
+				        research university by the College Board. The university was the first non-founding member, and the first university of the American South, to attain AAU membership in 1904. UVA has been 
+				        referred to as a "Public Ivy" by various sources.
+				        </p>
+				        
+				        <h5> &#8226; Virginia Tech, Blacksburg <a href="http://www.vt.edu"> (www.vt.edu) </a> </h5>
+				         <p style="color:gray">
+				        Virginia Polytechnic Institute and State University, popularly known as Virginia Tech, is a public, land-grant, 
+				        research university with a main campus in Blacksburg, Virginia, educational facilities in six regions statewide, 
+				        and a study-abroad site in Switzerland. The commonwealth's third-largest university and a leading research institution, 
+				        Virginia Tech offers 225 undergraduate and graduate degree programs to some 29,373 students and manages a research portfolio 
+				        of US$513 million. The university fulfills its land-grant mission of transforming knowledge to practice through technological 
+				        leadership and by fueling economic growth and job creation locally, regionally, and across Virginia. The Virginia Tech Board of 
+				        Visitors, which serves as the university's governing body, comprises 13 members who are appointed by the governor of Virginia; 
+				        the president of the state's Board of Agriculture and Consumer Services serves ex-officio as the 14th voting member. 
+				        Serving as non-voting representatives are the presidents of the university's Faculty Senate and Staff Senate, who serve ex-officio, 
+				        and an undergraduate student and a graduate student selected through a competitive review process. The endowment is managed by the 
+				        Virginia Tech Foundation, and as of 2015 topped US$817.8 million.
+				        </p>
+				        <h5> &#8226; George Mason University, Fairfax <a href="http://www.gmu.edu"> (www.gmu.edu) </a> </h5>
+				   	 <p style="color:gray">
+				        George Mason University (also Mason), located in Fairfax, Virginia, United States, is the largest public 
+				        research university in the Commonwealth of Virginia. The university was founded as a branch of the University 
+				        of Virginia in 1957 and became an independent institution in 1972. Today, Mason is recognized for its programs in 
+				        economics, law, creative writing, computer science, and business. In recent years, George Mason faculty have 
+				        twice won the Nobel Prize in Economics. The university enrolls 33,917 students, making it the largest university 
+				        by head count in the Commonwealth of Virginia.
+				        </p>
+				    </div>	
+			</div>
+			
+						<hr>
+			<div id="section16">
+				<h2 style="color:black; background-color:silver"><img src="img/washington.png" height="20" weight="20"> &nbsp Washington</h2>
+					<div class="box" style="color:black; background-color:white; padding:10px">
+				        <h5> &#8226; University of Washington, Seattle <a href="http://www.washington.edu"> (www.washington.edu) </a>  </h5>
+				         <p style="color:gray">
+				        The University of Washington, commonly referred to as Washington or informally U-Dub, or locally as UW is a public flagship research university based in Seattle, Washington, United States. 
+				        Founded in 1861, UW is one of the oldest universities on the West Coast and features one of the most highly regarded medical schools in the world. The university has three campuses: the primary 
+				        and largest in the University District of Seattle and two others in Tacoma and Bothell. Its operating expenses and research budget for fiscal year 2014–15 is expected to be $6.4 billion. 
+				        The UW occupies over 500 buildings, with over 20 million gross square footage of space, including the University of Washington Plaza, consisting of the 325-foot (99 m) UW Tower and conference center.
+				        </p>
+				        <h5> &#8226; Seattle University, Seattle <a href="http://www.seattleu.edu"> (http://www.seattleu.edu) </a> </h5>
+				         <p style="color:gray">
+				        Seattle (Listeni/siˈætəl/) is a West Coast inlet seaport city and the seat of King County. With an estimated 662,400 residents as of 2015,
+				         Seattle is the largest city in both the state of Washington and the Pacific Northwest region of North America. In July 2013 it was the fastest-growing
+				          major city in the United States, and remained in the top five in May 2015 with an annual growth rate of 2.1%. The Seattle metropolitan area of around 
+				          3.6 million inhabitants is the 15th largest metropolitan area in the United States. The city is situated on an isthmus between Puget Sound (an inlet of the Pacific Ocean) 
+				          and Lake Washington, about 100 miles (160 km) south of the Canada–United States border. A major gateway for trade with Asia, Seattle is the third largest port in North 
+				          America in terms of container handling as of 2015. 
+				        </p>
+				        <h5> &#8226; George Washington University, Washington, D.C. <a href="http://www.gwu.edu"> (www.gwu.edu) </a> </h5>
+				    	 <p style="color:gray">
+				        The George Washington University (GW, GWU, or George Washington) is a private, coeducational research university located in the Foggy Bottom neighborhood of Washington, 
+				        D.C. with two other campuses including the Mount Vernon campus in the Foxhall neighborhood, as well as the Virginia Science & Technology campus in Loudoun County, Virginia.
+				         GW is the largest institution of higher education in the District of Columbia. The university has ten colleges and schools: the Columbian College of Arts and Sciences 
+				         (which includes the Corcoran School of the Arts and Design, the School of Media and Public Affairs, and the Trachtenberg School of Public Policy and Public Administration); 
+				         the School of Business, the Elliott School of International Affairs, the Milken Institute School of Public Health, the College of Professional Studies (which includes the 
+				         Graduate School of Political Management), the School of Engineering and Applied Science, the George Washington University School of Medicine & Health Sciences, the Law School, 
+				         the School of Nursing, and the Graduate School of Education and Human Development.
+				        </p>
+				    </div>	
+			</div>
+		</div>
+    </div>
+</div>
+</div>
+<!-- </list of universities body code ends here> -->
+
+<!-- your div ends here -->
+
+<!-- <footer> -->
+
+<div class= "row address">
+
+
+ <div class="col-sm-2"><br/>
+
+
+  <center><address><img src="img/adresses.png" width="60" height="50" align = "center"><br/>
+ <a href="https://www.google.com/maps/@42.3343,-71.1007,15z">
+ <h5> 75 Saint Alphonsus St,<br/> Boston<br/>MA-02120</a></address></center></div>
+
+
+  <div class="col-sm-2"> <br/><center><img src="img/E-Mail-Icon.png" width="60" height="50" align = "center"><br/><br/>
+   <h5>  <a href="mailto:vegashetty@gmail.com" target="_top">contact@gradroom.com</a>
+
+
+  </div>
+
+
+
+  <div class="col-sm-2"><br/><center><img src="img/phone-green-icon.png" width="60" height="50" align = "center">
+<br/><br/>
+   <h5> Call us : <a href="tel:+18578004331">857-800-4331</a>
+
+  </div>
+
+  <div class="col-sm-2"><br/>
+   <center><a href="https://www.facebook.com"><img src="img/fb.png" width="60" height="50" align = "center"></a></center> </div> &nbsp &nbsp &nbsp
+   <div class="col-sm-2"><br/>
+   <center><a href="https://twitter.com"><img src="img/Twitter-icon.png" width="60" height="50" align = "center"></a> </center></div> &nbsp &nbsp &nbsp
+    <div class="col-sm-2">
+    <center><a href="https://www.instagram.com"><img src="img/insta.png" width="60" height="50" align = "center"></a> </center></div>
+
+  </div>
+
+
+
+
+ <div class="row address">
+<div row="col-sm-12">
+<footer>
+
+
+<center> <nav> <a href = "termcon.html"> Terms & Conditions </a>|
+
+ <a href = "faq-1.html" >FAQs </a> | 
+<small><b>© Copyright 2016, GradRoom</b></small> </nav></center>
+
+
+</footer>
+</div>
+</div>
+
+
+  <!-- Footer -->
+
+
+
+
+</body>
+</html>
+

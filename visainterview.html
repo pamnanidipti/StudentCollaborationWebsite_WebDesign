@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="gradRoomStyle.css">
+  <meta name="description" content="GradRoom, a website that caters to students aspiring to study in universities in USA" >
+<link rel="shortcut icon" href="img/favicon.ico" />
+
+<style>
+.containervisa {
+   
+     margin-right: -15px;
+
+}
+
+ body{
+ background-color:#d0d0d0;
+ }
+ 
+ .bs-example{
+    	margin: 20px;
+    	background-color: gray;
+    }
+div {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+</style> </head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+
+
+  <!-- Login modal -->
+
+  <!-- Login modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form">
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+              <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+              <input type="password" class="form-control" id="psw" placeholder="Enter password">
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" value="" checked>Remember me</label>
+            </div>
+              <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+          <p>Not a member? <a href="#">Sign Up</a></p>
+          <p>Forgot <a href="#">Password?</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- modal for search -->
+    <!--     <div id="openModal1" class="modalDialog">
+
+   <a href="#close" title="Close" class="close">X</a>
+   <h2>Search</h2>
+   <p><form> 
+First name: <input type="text" onkeyup="showHint(this.value)">
+</form></p>
+   <p>Suggestions: <span id="txtHint"></span></p>
+
+</div> -->
+
+ <div class="modal fade" id="openModal1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+    <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <center>    <h4 class="modal-title">Search GradRoom</h4>
+        </div>
+ 
+   <h2>Search</h2>
+   <p><form> 
+First name: <input type="text" onkeyup="showHint(this.value)">
+</form></p>
+   <p>Suggestions: <span id="txtHint"></span></p>
+</div>
+</div>
+</div>
+
+
+
+
+
+<!-- end of this modal -->
+<script>
+function showHint(str) {
+   if (str.length == 0) { 
+       document.getElementById("txtHint").innerHTML = "";
+       return;
+   } else {
+       var xmlhttp = new XMLHttpRequest();
+       xmlhttp.onreadystatechange = function() {
+           if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+               document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+           }
+       };
+       xmlhttp.open("GET", "gethint.php?q=" + str, true);
+       xmlhttp.send();
+   }
+}
+</script>
+
+
+
+<script>
+$(document).ready(function(){
+    $("#myBtn").click(function(){
+        $("#myModal").modal();
+    });
+});
+</script>
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="glyphicon glyphicon-menu-hamburger"></span>
+        </button>
+          <a class="navbar-brand" href="profile.php"><img src="img/gradLogo.png" width="160" height="35"></a>
+          
+
+      </div>
+
+
+
+      <div class="collapse navbar-collapse" id="myNavbar" >
+        <ul class="nav navbar-nav navbar-right" >
+    
+        <li class="dropdown" style="z-index:90001;">
+          <button class="dropbtn" > <a class="page-scroll" href="profile.php#msinus" >MS in US</a> &#9662</button>
+          <div class="dropdown-content">
+            <a href="listofuniversities.html">List Of Universities</a>
+            <a href="trend.html">Admit Trends</a>
+            <a href="index_forum.php">Discussion forum</a>
+           <a href="newsFeed.html">What's New?</a>
+          </div>
+        </li>
+           <li class="dropdown" style="z-index:90001;">
+          <button class="dropbtn" > <a class="page-scroll" href="profile.php#uniGuide" >UniGuide</a> &#9662</button>
+          <div class="dropdown-content">
+            <a href="uniSearch.html">UniSearch</a>
+            <a href="searchUni.html">UniPredictor</a>
+            <a href="univRating.html">UniReview</a>
+          </div>
+        </li>
+        <li class="dropdown" style="z-index:90000;">
+          <button class="dropbtn"><a class="page-scroll" href="profile.php#resources" >Resources</a> &#9662</button>
+          <div class="dropdown-content">
+            <a href="sop1.html">SOP/LOR</a>
+            <a href="gretoefl.html">GRE/TOEFL</a>
+            <a href="appAssist.html">Application Assist</a>
+              <a href="visainterview.html">Visa Interview</a>
+                <a href="faq-1.html">FAQs</a>
+          </div>
+        </li>
+        <li>
+           <a class="page-scroll" href="profile.php#aboutus" style="font-size:16px">About us</a>
+       </li>
+        <li>
+           <a class="page-scroll" href="profile.php#contact" style="font-size:16px">Contact</a>
+       </li>
+<li>
+       <a href="#openModal1" data-toggle="modal" title="Search" data-placement="bottom" style="font-size:16px"><span class="glyphicon glyphicon-search"></span></a>
+      
+      </li>
+    <li>
+
+       <a href="logout.php" data-toggle="tooltip" title="Logout" data-placement="bottom" style="font-size:16px"><span class="glyphicon glyphicon-log-out"></span></a>
+      </li>
+  
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Navigation -->
+<script>
+$(document).ready(function(){       
+   var scroll_start = 0;
+   var startchange = $('#wrapper');
+   var offset = startchange.offset();
+    if (startchange.length){
+   $(document).scroll(function() { 
+      scroll_start = $(this).scrollTop();
+      if(scroll_start > offset.top) {
+          $(".navbar-default").css('background-color', 'black');
+       } else {
+          $('.navbar-default').css('background-color', 'transparent');
+       }
+   });
+    }
+});
+</script>
+
+
+<div class="row"  id="wrapper">
+<div class="col-sm-12">
+
+</div>
+</div>
+
+<!-- write your div here -->
+
+
+<!-- <Interview code starts here> -->
+<div class="container containervisa" >
+ 	<div class="row" id="solidnavbar">
+		<div class="col-sm-12" class="margin">
+		<div class="jumbotron">
+		 <center><h2 style="color:black"> Visa Application & Interview - The Final Phase </h2></center>
+		 
+		<center><img src="img/application.png" width="100%" height="300"></center></div>
+			
+
+
+	<div class="col-sm-12"> 
+		<div class="bs-example">
+    		<ul class="nav nav-tabs">
+        		<li class="active"><a data-toggle="tab" href="#procedure"><h3 style="color:black"> Procedure</h3></a></li>
+        		<li><a data-toggle="tab" href="#interview"><h3 style="color:black">Interview</h3></a></li>
+        		<li><a data-toggle="tab" href="#docs"><h3 style="color:black">Documents</h3></a></li>
+    		</ul>
+    	</div>
+<!-- BS-EXAMPLE ENDS -->
+    
+    
+    <div class="tab-content">
+        <div id="procedure" class="tab-pane fade in active">
+            <h3><u>Getting Your Student F1 Visa</u></h3>
+            
+            <h5 style="color: gray">Since August 2012, the VISA norms have changed. In the new procedure, 
+            students have to book an apointment for the VISA Application Centre a.k.a Biometrics 
+            (photo + fingerprints) followed by booking an appointment for the VISA interview.</h5>
+            
+            <h4>Below are the steps one has to follow for applying a Student (F1) VISA - </h4>
+            
+            <h4><u>Step 1: DS-160 Form</u></h4>
+            The DS-160, Online Nonimmigrant Visa Electronics Application, is a fully integrated online 
+            application form that is used to collect the necessary application information from a person seeking 
+            a nonimmigrant visa for temporary travel to the United States. You can fill the DS-160 form here: <a href="https://ceac.state.gov/genniv/"> https://ceac.state.gov/genniv/ </a></br>
+            &#8226; Complete DS-160 online application form.</br>
+            &#8226; Print the DS-160 barcode confirmation sheet at the end of the DS-160 application on a laser printer. </br>
+            &#8226; After you have printed it, email the confirmation page to yourself so you have a backup copy.</br>
+            
+            
+            <h4><u>Step 2: Registration at the designated banks</u> </h4>
+            &#8226; The fee for application of Student F1 Visa is USD 160  + VFS service charge + Bank charges which makes it a total amount, approx. Rs. 9000/-</br>
+            &#8226; The amount is payable by cash or DD/Cheque at Axis Bank or Citi Bank. </br>
+            &#8226; The bank will issue you a visa fee receipt in duplicate which will have a 10 digit barcode number affixed on it. You require this barcode number to 
+            schedule your VISA interview appointment. It takes two days for the barcode to get activated.</br>
+            &#8226; The above fees are not refundable. </br>
+            &#8226; If you do not appear for an interview within one year after the purchase of your fee receipt, it will no longer be valid. </br>
+            </h6>
+            
+            <h4><u>Step 3: SEVIS FEE </u> </h4>
+            &#8226; Pay the SEVIS (Service and Exchange Visitor Information System) fee which is USD 200 on the following link: <a href="https://www.fmjfee.com/i901fee/"> https://www.fmjfee.com/i901fee/ </a><br>
+            &#8226; Please print the SEVIS receipt.
+            
+            <h4><u>Step 4: VISA Appointment</u></h4>
+            1) Make your <a href="https://cgifederal.secure.force.com/?language=English&country=India">VISA appointment</a> using your barcode and fee receipt. </br>
+            2) Once you have scheduled your VISA interview date, you need to book an appointment for the VAC (biometrics: photo + fingerprint) atleast a day before the interview. You can use the above link to book the VAC schedule. </br>
+            
+            Following are the things required while <strong> booking the VAC appointment</strong>:</br>
+            &#8226; Your passport number </br>
+            &#8226; The date you paid your fee </br>
+            &#8226; The ten (10) digit barcode number from your DS-160 confirmation page </br>
+            
+            3) On the <strong> VAC day</strong>, you need to get:
+              <br>
+             &#8226; A passport valid for travel to the United States with a validity date at least six months beyond your intended period of stay in the United States (unless country-specific agreements provide exemptions).<br>
+             &#8226; Your DS-160 confirmation page<br>
+             &#8226; Your appointment confirmation page<br>
+            
+             4) On the <strong>VISA interivew day</strong>, you need to get: <br>
+             &#8226; A printed copy of your appointment letter<br>
+             &#8226; Your DS-160 confirmation page, and one photograph taken within the last six months<br>
+             &#8226; Your current and all old passports, and<br>
+             &#8226; Original visa fee payment receipt<br>
+            <br>
+            <i> <u> NOTE:</u> If denied visa previously please complete a new Nonimmigrant Visa Electronic Application (DS-160) form </i>
+            <br>
+            </h6>
+
+</div>
+<!-- PROCEDURE ENDS -->
+
+
+<div id="interview" class="tab-pane fade">
+            <h3><u>Interview</u></h3>
+            The F1 VISA interview is the final hurdle you'll have to clear before you are well, and truly, on your way. 
+            After all the documents you are required to show at the time of the interview, you have to be prepared for the normal drill that the VISA Officer will take you through.
+        	<br><br>
+        	Every applicant should take care of the following three things:
+        	<br><br>
+           <div class = "panel-group" id = "accordion">
+   		<div class = "panel panel-primary">
+     <div class = "panel-heading panel-heading1">
+         <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion" href = "#collapseOne">
+               <b>Bonafide Student</b>
+            </a>
+         </h4>
+      </div>
+      <div id = "collapseOne" class = "panel-collapse collapse in">
+         <div class = "panel-body">
+            The officer will ask about your educational background and plans in order to assess how likely you are to enroll and remain in University until graduation. 
+            Be prepared to discuss the reasons you chose a particular University, your anticipated major, and your career plans. Bring school mark sheets, college mark 
+            sheets, GRE & TOEFL scores and anything else that demonstrates your academic commitment.
+         </div>
+      </div>
+   </div>
+   <div class = "panel panel-primary">
+      <div class = "panel-heading panel-heading2">
+         <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion" href = "#collapseTwo">
+               <b>Sponsor</b>
+            </a>
+         </h4>
+      </div>
+      <div id = "collapseTwo" class = "panel-collapse collapse">
+         <div class = "panel-body">
+           Your chances are improved if your parents are sponsoring your education. If somebody is sponsoring you other than your parents, 
+           you should explain your special relationship with this person, who may be committing tens of thousand of dollars to your education. 
+           Provide solid evidence of your finances. This will assure the Visa Officer that your sponsor has enough funds till the time you 
+           complete Graduation. If your sponsor’s income is from several different source (such as salary, contracts or consulting fees, 
+           acres of land, rental property, investments) have the sponsor write a letter listing and documenting eachsource of income.
+            </div>
+      </div>  
+   </div>
+   <div class = "panel panel-primary">
+      <div class = "panel-heading panel-heading2">
+         <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion" href = "#collapseThree">
+               <b>Your ties to Home Country</b>
+            </a>
+         </h4>
+      </div>
+      <div id = "collapseThree" class = "panel-collapse collapse">
+         <div class = "panel-body">
+           <u>Economic Ties:</u> These include your family’s economic position, property you may own and your own economic potential when you come home with a U.S education. 
+           The Visa Officer will be impressed to see evidence of your career planning and your knowledge of the local employment scene.<br><br>
+		   <u>Family & Social Ties:</u> How many close family members live in your home country, compared to those living in the States? 
+		   What community activities have you participated in that demonstrate a sincere connection to your town or country?<br><br>
+           Very often, the interview doesn't even last long enough for the Officer to ask you these few questions. 
+           As long as you can maintain your composure and come up with straightforward answers to whatever he asks, you should be fine. 
+        </div>
+      </div>  
+    </div>
+  </div>
+  <center><iframe width="600" height="400" src="https://www.youtube.com/embed/vgX7dGyziCI" frameborder="0" allowfullscreen></iframe></center>
+</div>
+      
+<!--     ~~~~~~ -->
+
+  <div id="docs" class="tab-pane fade">
+            <h3><u>Documents required for Visa Interview</u></h3>
+            VISA Interview is the last step in your long journey to reach the USA. Your documents will speak for you. There can be times during the interview where the Officer may not be too convinced by what you say. It’s the ideal time to show a particular document and win over his trust. Below is the list of documents you are expected to have at the time of the interview. The list is VERY long but it’s always advisable to have all of them.
+            <br><br>
+            
+           <div class = "panel-group" id = "accordion1">
+   		<div class = "panel panel-primary">
+     <div class = "panel-heading panel-heading1">
+         <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion1" href = "#collapseFour">
+               <b>Mandatory/General List</b>
+            </a>
+         </h4>
+      </div>
+      <div id = "collapseFour" class = "panel-collapse collapse in">
+         <div class = "panel-body">
+         	1) Copy of interview appointment letter <br>
+		    2) DS-160 Confirmation Barcode printout<br>
+			3) Original, valid Axis or Citi Bank VISA fee receipt (Applicant’s Copy)<br>
+			4) Original I-20, approved and signed by you and the University authority<br>
+			5) SEVIS Fee Receipt<br>
+ 			6) Passport<br>
+			7) Birth Certificate<br>   
+        
+         </div>
+      </div>
+   </div>
+   <div class = "panel panel-primary">
+      <div class = "panel-heading panel-heading2">
+         <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion1" href = "#collapseFive">
+               <b>Academic List</b>
+            </a>
+         </h4>
+      </div>
+      <div id = "collapseFive" class = "panel-collapse collapse">
+         <div class = "panel-body">
+           You must get Provisional Degree Certificates made from the college. If the college does not issue a Provisional Degree Certificate, 
+           then you must get a Bonafide certificate made which will indicate that you are a student of this college, you have given the final 
+           semester exams and the results for the same are expected in XYZ month/year. <br>
+				<br>
+			1) Original degree certificates (Bachelors / Masters / Provisional Degree Certificates) <br>
+			2) Original mark sheets (10th and 12th standard, first year bachelors to date)<br>
+			3) Provisional marksheet for any pending results<br>
+			4) Original mark sheets (diploma), original diploma transcripts (stamped and sealed), and original diploma certificate<br>
+			5) Original Extra- curricular / curricular activity certificates<br>
+			6) Original scholarship certificates / awards (if any)<br>
+			7) Original Certificates showing professional courses / examinations done along with marksheets<br>
+			8) Copies of your research work / project<br>
+			9) Relevant test scores, e.g. TOEFL and SAT, GRE, GMAT or LSAT in Original.<br>
+		   10) Bonafide certificate from college (if degree is not received )<br>
+		   11) Resume<br>
+           
+           </div>
+      </div>  
+   </div>
+   <div class = "panel panel-primary">
+      <div class = "panel-heading panel-heading2">
+         <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion1" href = "#collapseSix">
+               <b>Your ties to Home Country</b>
+            </a>
+         </h4>
+      </div>
+      <div id = "collapseSix" class = "panel-collapse collapse">
+         <div class = "panel-body">
+          1) Original Affidavit of Support from Sponsor/s dated 4-5 days before visa interview date. <br>
+		  2) Authentic and Original C.A. statement showing summary of fixed and liquid assets dated 4-5 days before visa interview date. <br>
+		  3) Student should carry original and valuation documents for every item stated in the C.A. statement as proof.<br>
+		  4) Original Evidence of financial resources: Proof of liquid assets sufficient to pay for the entire first year of education and living expenses as well as proof of readily available funds to cover the remaining year(s) of studies, dated 3-4 days before visa interview date. <br>
+             NOTE: The amount should be as per duration of study mentioned in I-20.<br>
+		  5) Original Bank statements of Sponsor(s) for the past six months (savings account) OR Original Passbook/s of sponsor/s (savings account) dated 4-5 days before visa interview date.<br>
+		  6) Original Income tax papers of Sponsor(s) for the last three years from visa interview date<br>
+		  7) Proof of income of sponsor(s) like appointment letter, payslips/salary certificates for past six months from visa interview date (All original)<br>
+		  8) Balance sheet of business of last three years from visa interview date (Original)<br>
+          9) Original Proof of all liquid assets declared in C.A. Statement including fixed deposits, shares, PPF, investments and so on<br>
+	     10) Original Proof showing amount that can be withdrawn against various liquid assets like shares, LIC Policy, Provident fund etc. (redeemable value), dated 4-5 days before visa interview date.<br>
+         11) Original Letters from respective authorities on their letterhead indicating that items such as mutual funds, shares, PPF, Provident fund, Fixed Deposits, etc are liquid and can be redeemed before maturity date, dated 4-5 days before visa interview date.<br>
+         12) Original Proof of Ownership, agreement of sale, share certificate for all fixed assets declared in C.A. statement.<br>
+		 13) Valuation Certificate(s) from Chartered Engineer for every property declared in the C.A. statement in original<br>
+          </div>
+      </div>  
+    </div>
+  </div>
+  
+  <center><iframe width="600" height="400" src="https://www.youtube.com/embed/uIgmnidr5ZQ" frameborder="0" allowfullscreen></iframe></center>
+  
+</div>  
+       
+    
+    
+<!--     ~~~~~~ -->
+    
+    		</div>
+			<!-- ~~TAB CONTENT ENDS -->
+		 </div>
+		<!--  ~~COL-SM-12 ENDS -->
+      </div>
+     <!--  ~~JUMBOTRON ENDS -->
+   </div>
+ <!--   ~~ROW ENDS -->
+</div>
+<!-- ~~CONTAINER END-->
+
+
+
+
+<!-- <Interview code ends here> -->
+
+
+<!-- your div ends here -->
+
+
+<!-- <footer> -->
+
+<div class= "row address">
+
+
+ <div class="col-sm-2"><br/>
+
+
+  <center><address><img src="img/adresses.png" width="60" height="50" align = "center"><br/>
+ <a href="https://www.google.com/maps/@42.3343,-71.1007,15z">
+ <h5> 75 Saint Alphonsus St,<br/> Boston<br/>MA-02120</a></address></center></div>
+
+
+  <div class="col-sm-2"> <br/><center><img src="img/E-Mail-Icon.png" width="60" height="50" align = "center"><br/><br/>
+   <h5>  <a href="mailto:vegashetty@gmail.com" target="_top">contact@gradroom.com</a>
+
+
+  </div>
+
+
+
+  <div class="col-sm-2"><br/><center><img src="img/phone-green-icon.png" width="60" height="50" align = "center">
+<br/><br/>
+   <h5> Call us : <a href="tel:+18578004331">857-800-4331</a>
+
+  </div>
+
+  <div class="col-sm-2"><br/>
+   <center><a href="https://www.facebook.com"><img src="img/fb.png" width="60" height="50" align = "center"></a></center> </div> &nbsp &nbsp &nbsp
+   <div class="col-sm-2"><br/>
+   <center><a href="https://twitter.com"><img src="img/Twitter-icon.png" width="60" height="50" align = "center"></a> </center></div> &nbsp &nbsp &nbsp
+    <div class="col-sm-2">
+    <center><a href="https://www.instagram.com"><img src="img/insta.png" width="60" height="50" align = "center"></a> </center></div>
+
+  </div>
+
+
+
+
+ <div class="row address">
+<div row="col-sm-12">
+<footer>
+
+
+<center> <nav> <a href = "termcon.html"> Terms & Conditions </a>|
+
+ <a href = "faq-1.html" >FAQs </a> | 
+<small><b>© Copyright 2016, GradRoom</b></small> </nav></center>
+
+
+</footer>
+</div>
+</div>
+
+
+  <!-- Footer -->
+
+
+
+
+</body>
+</html>
+

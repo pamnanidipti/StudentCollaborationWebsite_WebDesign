@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="gradRoomStyle.css">
+  <meta name="description" content="GradRoom, a website that caters to students aspiring to study in universities in USA" >
+<link rel="shortcut icon" href="img/favicon.ico" />
+
+<style>
+.container{
+    
+     margin-right: -15px;
+ 
+}
+
+</style> </head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+
+
+  <!-- Login modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form">
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+              <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+              <input type="password" class="form-control" id="psw" placeholder="Enter password">
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" value="" checked>Remember me</label>
+            </div>
+              <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+          <p>Not a member? <a href="#">Sign Up</a></p>
+          <p>Forgot <a href="#">Password?</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- modal for search -->
+    <!--     <div id="openModal1" class="modalDialog">
+
+   <a href="#close" title="Close" class="close">X</a>
+   <h2>Search</h2>
+   <p><form> 
+First name: <input type="text" onkeyup="showHint(this.value)">
+</form></p>
+   <p>Suggestions: <span id="txtHint"></span></p>
+
+</div> -->
+
+ <div class="modal fade" id="openModal1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+    <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <center>    <h4 class="modal-title">Search GradRoom</h4>
+        </div>
+ 
+   <h2>Search</h2>
+   <p><form> 
+First name: <input type="text" onkeyup="showHint(this.value)">
+</form></p>
+   <p>Suggestions: <span id="txtHint"></span></p>
+</div>
+</div>
+</div>
+
+
+
+
+
+<!-- end of this modal -->
+<script>
+function showHint(str) {
+   if (str.length == 0) { 
+       document.getElementById("txtHint").innerHTML = "";
+       return;
+   } else {
+       var xmlhttp = new XMLHttpRequest();
+       xmlhttp.onreadystatechange = function() {
+           if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+               document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+           }
+       };
+       xmlhttp.open("GET", "gethint.php?q=" + str, true);
+       xmlhttp.send();
+   }
+}
+</script>
+
+
+
+<script>
+$(document).ready(function(){
+    $("#myBtn").click(function(){
+        $("#myModal").modal();
+    });
+});
+</script>
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="glyphicon glyphicon-menu-hamburger"></span>
+        </button>
+          <a class="navbar-brand" href="profile.php"><img src="img/gradLogo.png" width="160" height="35"></a>
+          
+
+      </div>
+
+
+
+      <div class="collapse navbar-collapse" id="myNavbar" >
+        <ul class="nav navbar-nav navbar-right" >
+    
+        <li class="dropdown" style="z-index:90001;">
+          <button class="dropbtn" > <a class="page-scroll" href="profile.php#msinus" >MS in US</a> &#9662</button>
+          <div class="dropdown-content">
+            <a href="listofuniversities.html">List Of Universities</a>
+            <a href="trend.html">Admit Trends</a>
+            <a href="index_forum.php">Discussion forum</a>
+           <a href="newsFeed.html">What's New?</a>
+          </div>
+        </li>
+           <li class="dropdown" style="z-index:90001;">
+          <button class="dropbtn" > <a class="page-scroll" href="profile.php#uniGuide" >UniGuide</a> &#9662</button>
+          <div class="dropdown-content">
+            <a href="uniSearch.html">UniSearch</a>
+            <a href="searchUni.html">UniPredictor</a>
+            <a href="univRating.html">UniReview</a>
+          </div>
+        </li>
+        <li class="dropdown" style="z-index:90000;">
+          <button class="dropbtn"><a class="page-scroll" href="profile.php#resources" >Resources</a> &#9662</button>
+          <div class="dropdown-content">
+            <a href="sop1.html">SOP/LOR</a>
+            <a href="gretoefl.html">GRE/TOEFL</a>
+            <a href="appAssist.html">Application Assist</a>
+              <a href="visainterview.html">Visa Interview</a>
+                <a href="faq-1.html">FAQs</a>
+          </div>
+        </li>
+        <li>
+           <a class="page-scroll" href="profile.php#aboutus" style="font-size:16px">About us</a>
+       </li>
+        <li>
+           <a class="page-scroll" href="profile.php#contact" style="font-size:16px">Contact</a>
+       </li>
+<li>
+       <a href="#openModal1" data-toggle="modal" title="Search" data-placement="bottom" style="font-size:16px"><span class="glyphicon glyphicon-search"></span></a>
+      
+      </li>
+    <li>
+
+       <a href="logout.php" data-toggle="tooltip" title="Logout" data-placement="bottom" style="font-size:16px"><span class="glyphicon glyphicon-log-out"></span></a>
+      </li>
+  
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Navigation -->
+
+<script>
+$(document).ready(function(){       
+   var scroll_start = 0;
+   var startchange = $('#wrapper');
+   var offset = startchange.offset();
+    if (startchange.length){
+   $(document).scroll(function() { 
+      scroll_start = $(this).scrollTop();
+      if(scroll_start > offset.top) {
+          $(".navbar-default").css('background-color', 'black');
+       } else {
+          $('.navbar-default').css('background-color', 'transparent');
+       }
+   });
+    }
+});
+</script>
+
+
+<div class="row"  id="wrapper">
+<div class="col-sm-12">
+
+</div>
+</div>
+
+<!-- write your div here -->
+
+<div class="container" style="background-color:#000033;">
+  <br/>
+  <div class="jumbotron" style="background-color:#FFFAF0 !important;">
+        <h1>Admission Process</h1>
+        <p>If you plan to study MS in USA you better start preparing everything one year before you want to take admission. For example if you want to take admission in FALL 2017 session , then you should start your admission process from August 2016.
+
+</p>
+
+ </div>
+<div class = "panel panel-default" style="background-color:#FFFAF0 !important;">
+      
+      <div class = "panel-heading panel-heading">
+        <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion" href = "#r1">
+               <b><font color="crimson">View Step by Step Requirements >> </font></b>
+            </a>
+         </h4>
+      </div>
+      
+      <div id = "r1" class = "panel-collapse collapse">
+         <div class = "panel-body">
+           <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-2">
+          <h2><font color="#663399"><strong>What After GRE</strong></font></h2>
+            <p>Once you’re done with your GRE and obtained a satisfactory score, you will start feeling relaxed thinking, “Well, now my job’s done”. It won’t be long enough when you’ll realise that appearing for GRE exam was just the beginning. The major chunk of the work still remains and frustration slowly creeps in because you keep forgetting one thing or the other.Listed below are the important steps that you need to follow after your GRE :
+              </p><ul><b>
+                <li>Appear for TOEFL</li>
+                <li>Deciding your Course and University</li>
+                <li>Arranging Documents</li>
+               </b></ul> 
+            You should view the Admit Trends for different universities before starting the application process.
+            <br/><br/>
+            <a href="trend.html" target="_blank" class="btn btn-primary">Application Trends >></a>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-2">
+          <h2><font color="#006699"><strong>Selecting & Applying</strong></font></h2>
+            <p>This is certainly the crucial stage in your journey from GRE to the VISA and you can't (rather, you shouldn't) take it lightly. So, here's a detailed yet easy-to-understand step-by-step questions that everyone of you must consider -</p>
+            <ul><b>
+              <li>How do I select Universities?</li>
+              <li>How many Universities should I apply?</li>
+              <li>Submit Online Applications for each University</li>
+            </b></ul>
+            Know abut different universities and their admission requirements.
+            <br/><br/>
+            <p><a href="listofuniversities.html" target="_blank" class="btn btn-info">List of Universities >></a></p>
+        </div>
+        <div class="clearfix visible-sm-block"></div>
+        <div class="col-sm-6 col-md-4 col-lg-2">
+          <h2><font color="#006600"><strong>SOP/LOR</strong></font></h2>
+            <p><b>SOP:</b><br/>
+              An SOP stands for Statement of Purpose.The evaluator has never seen you or heard of you. So, the SoP serves the purpose of telling the admission committee why they should choose you.It is “the” most important document.<br/>
+              A well written SoP, particularly for the top universities in US for MS courses, can tilt the scales in your favour.
+              <br/><br/>
+              <b>LOR:</b><br/>
+              Letter of Recommendation (LoR) helps the admission committee know about your technical, academic and non-academic expertise through your recommender.
+              There are certain areas on which the universities expect you to be rated by your receommender.
+              
+            </p>
+            <p><a href="sop1.html" target="_blank" class="btn btn-success">View Samples >></a></p>
+        </div>
+        <div class="clearfix visible-md-block"></div>
+        <div class="col-sm-6 col-md-4 col-lg-2">
+            <h2><font color="#CCCC00"><strong>Visa Interview</strong></font></h2>
+            <p>
+              This is the most important step and probably the final step of the entire process.You should be prepared for the visa interview with all your supporting documents.<br/><br/>
+              Please read about the entire process.
+            </p>
+            <p><a href="visainterview.html" target="_blank" class="btn btn-warning">Visa Process >></a></p>
+        </div>
+        <div class="clearfix visible-sm-block"></div>
+        <div class="col-sm-6 col-md-4 col-lg-2">
+            <h2><font color="#FF0000"><strong>FAQs</strong></font></h2>
+            <p>For any other queries that are not answered, you may find some of your questions answered in our FAQs section.</p>
+            <p><a href="faq-1.html" target="_blank" class="btn btn-danger">View FAQs >></a></p>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-2">
+            <h2><font color="#003300"><strong>Forum</strong></font></h2>
+            <p> Do not miss on important discussions about the entire Application Process.
+              If you have any unanswered questions, Please post it in our Discussion Forum.
+            </p>
+            <p><a href="index_forum.php" target="_blank" class="btn btn-success">View Discussions >></a></p>
+        </div>
+    </div>
+         </div>
+      </div>
+      
+
+</div>
+
+        <!-- <p><a href="http://www.zombieipsum.com/" target="_blank" class="btn btn-success btn-lg">Zombie Ipsum</a></p> -->
+   
+
+
+
+</div>
+
+
+
+
+<!-- your div ends here -->
+
+<!-- <footer> -->
+
+<div class= "row address">
+
+
+ <div class="col-sm-2"><br/>
+
+
+  <center><address><img src="img/adresses.png" width="60" height="50" align = "center"><br/>
+ <a href="https://www.google.com/maps/@42.3343,-71.1007,15z">
+ <h5> 75 Saint Alphonsus St,<br/> Boston<br/>MA-02120</a></address></center></div>
+
+
+  <div class="col-sm-2"> <br/><center><img src="img/E-Mail-Icon.png" width="60" height="50" align = "center"><br/><br/>
+   <h5>  <a href="mailto:vegashetty@gmail.com" target="_top">contact@gradroom.com</a>
+
+
+  </div>
+
+
+
+  <div class="col-sm-2"><br/><center><img src="img/phone-green-icon.png" width="60" height="50" align = "center">
+<br/><br/>
+   <h5> Call us : <a href="tel:+18578004331">857-800-4331</a>
+
+  </div>
+
+  <div class="col-sm-2"><br/>
+   <center><a href="https://www.facebook.com"><img src="img/fb.png" width="60" height="50" align = "center"></a></center> </div> &nbsp &nbsp &nbsp
+   <div class="col-sm-2"><br/>
+   <center><a href="https://twitter.com"><img src="img/Twitter-icon.png" width="60" height="50" align = "center"></a> </center></div> &nbsp &nbsp &nbsp
+    <div class="col-sm-2">
+    <center><a href="https://www.instagram.com"><img src="img/insta.png" width="60" height="50" align = "center"></a> </center></div>
+
+  </div>
+
+
+
+
+ <div class="row address">
+<div row="col-sm-12">
+<footer>
+
+
+<center> <nav> <a href = "termcon.html"> Terms & Conditions </a>|
+
+ <a href = "faq-1.html" >FAQs </a> | 
+<small><b>© Copyright 2016, GradRoom</b></small> </nav></center>
+
+
+</footer>
+</div>
+</div>
+
+
+  <!-- Footer -->
+
+
+</body>
+</html>
+

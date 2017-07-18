@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="gradRoomStyle.css">
+<style>
+.forum {
+   
+     margin-right: -15px;
+
+}
+.start {
+
+     margin-right: -15px;
+
+}
+</style> </head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+
+
+  <!-- Login modal -->
+
+  <!-- Login modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form">
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+              <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+              <input type="password" class="form-control" id="psw" placeholder="Enter password">
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" value="" checked>Remember me</label>
+            </div>
+              <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+          <p>Not a member? <a href="#">Sign Up</a></p>
+          <p>Forgot <a href="#">Password?</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- modal for search -->
+    <!--     <div id="openModal1" class="modalDialog">
+
+   <a href="#close" title="Close" class="close">X</a>
+   <h2>Search</h2>
+   <p><form> 
+First name: <input type="text" onkeyup="showHint(this.value)">
+</form></p>
+   <p>Suggestions: <span id="txtHint"></span></p>
+
+</div> -->
+
+ <div class="modal fade" id="openModal1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+    <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <center>    <h4 class="modal-title">Search GradRoom</h4>
+        </div>
+ 
+   <h2>Search</h2>
+   <p><form> 
+First name: <input type="text" onkeyup="showHint(this.value)">
+</form></p>
+   <p>Suggestions: <span id="txtHint"></span></p>
+</div>
+</div>
+</div>
+
+
+
+
+
+<!-- end of this modal -->
+<script>
+function showHint(str) {
+   if (str.length == 0) { 
+       document.getElementById("txtHint").innerHTML = "";
+       return;
+   } else {
+       var xmlhttp = new XMLHttpRequest();
+       xmlhttp.onreadystatechange = function() {
+           if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+               document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+           }
+       };
+       xmlhttp.open("GET", "gethint.php?q=" + str, true);
+       xmlhttp.send();
+   }
+}
+</script>
+
+
+
+<script>
+$(document).ready(function(){
+    $("#myBtn").click(function(){
+        $("#myModal").modal();
+    });
+});
+</script>
+
+
+   <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="glyphicon glyphicon-menu-hamburger"></span>
+        </button>
+          <a class="navbar-brand" href="gradRoomFinal.html"><img src="img/gradLogo.png" width="160" height="35"></a>
+           <button type="button" class="btn btn-primary btn-lg" id="myBtn">Login</button>
+
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar" >
+        <ul class="nav navbar-nav navbar-right" >
+        <li class="dropdown" style="z-index:90001;">
+          <button class="dropbtn" > <a class="page-scroll" href="gradRoomFinal.html#msinus" >MS in US</a> &#9662</button>
+          <div class="dropdown-content">
+            <a href="listofuniversities.html">List Of Universities</a>
+            <a href="trend.html">Admit Trends</a>
+            <a href="forums.html">Discussion forum</a>
+           <a href="newsFeed.html">What's New?</a>
+          </div>
+        </li>
+           <li class="dropdown" style="z-index:90001;">
+          <button class="dropbtn" > <a class="page-scroll" href="gradRoomFinal.html#uniGuide" >UniGuide</a> &#9662</button>
+          <div class="dropdown-content">
+            <a href="uniSearch.html">UniSearch</a>
+            <a href="searchUni.html">UniPredictor</a>
+            <a href="univRating.html">UniReview</a>
+          </div>
+        </li>
+        <li class="dropdown" style="z-index:90000;">
+          <button class="dropbtn"><a class="page-scroll" href="gradRoomFinal.html#resources" >Resources</a> &#9662</button>
+          <div class="dropdown-content">
+            <a href="sop1.html">SOP/LOR</a>
+            <a href="gretoefl.html">GRE/TOEFL</a>
+            <a href="appAssist.html">Application Assist</a>
+              <a href="visainterview.html">Visa Interview</a>
+                <a href="faq-1.html">FAQs</a>
+          </div>
+        </li>
+        <li>
+           <a class="page-scroll" href="gradRoomFinal.html#aboutus" style="font-size:16px">About us</a>
+       </li>
+        <li>
+           <a class="page-scroll" href="gradRoomFinal.html#contact" style="font-size:16px">Contact</a>
+       </li>
+<li>
+       <a href="#openModal1" data-toggle="modal" style="font-size:16px"><span class="glyphicon glyphicon-search"></span></a>
+      </li>
+      <li>
+
+       <a href="#" data-toggle="modal" style="font-size:16px"><span class="glyphicon glyphicon-log-out"></span></a>
+      </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<script>
+$(document).ready(function(){       
+   var scroll_start = 0;
+   var startchange = $('#wrapper');
+   var offset = startchange.offset();
+    if (startchange.length){
+   $(document).scroll(function() { 
+      scroll_start = $(this).scrollTop();
+      if(scroll_start > offset.top) {
+          $(".navbar-default").css('background-color', 'black');
+       } else {
+          $('.navbar-default').css('background-color', 'transparent');
+       }
+   });
+    }
+});
+</script>
+
+
+<div class="row"  id="wrapper">
+<div class="col-sm-12">
+
+</div>
+</div>
+
+<div class="start" id="start">
+<center><p><strong><font color="white">DISCUSSION FORUM</p>
+                        <font size="3px">Students can share each other’s profile and experiences and can get connected to Official group of GradRoom and other USA Universities Groups & help the fellow aspirants.</font></strong>
+            </center>
+            <br/>
+</div>
+
+<div class="forum">
+
+<div class="container">
+  
+    <br/>
+    <br/>
+        <div class="row test">
+
+            <div class="col-sm-6 col-md-4 col-lg-3"><p><div class="box1">
+              <font color="#FFFF99"><strong>Masters Degree in US</strong></font>
+              <br>Post by <b> Dipti </b> >> February 12, 04:27 <br>
+              <br>I want to do my master's degree in USA and i've been searching information and read old topics here but does anyone have "new" information about studying USA. I have few questions?
+              <br><br>
+              <!-- <div class = "panel-group" id = "accordion"> -->
+              <div class = "panel panel-default">
+      
+      <div class = "panel-heading panel-heading">
+         <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion" href = "#comment1">
+               <b>View 2 Comments >> </b>
+            </a>
+         </h4>
+      </div>
+      
+      <div id = "comment1" class = "panel-collapse collapse">
+         <div class = "panel-body">
+           <font color="black">
+            <b>Aakash:</b> I have the same question.What all should be exactly done.<br>
+            <b>Tanisha:</b> You might want to look at the Application Assist Page on GradRoom.<br><br>
+            <b>Post a reply:</b>&nbsp;&nbsp;<input type="text" name="comment" style="width:110px;height:20px;"/></font>
+         </div>
+      </div>
+      
+   </div>
+  </div></p></div>
+
+<div class="col-sm-6 col-md-4 col-lg-3"><p><div class="box2">
+    <font color="#FFFF99"><strong>Profile Evalution</strong></font>
+              <br>Post by <b> Aakash </b> >> February 22, 23:27 <br>
+              <br>All Fall and Spring 2015 evaluation threads should be posted here for evaluations. 
+              <br><br>
+              <div class = "panel panel-default">
+      
+      <div class = "panel-heading panel-heading">
+         <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion" href = "#comment2">
+               <b>View 1 Comment >></b>
+            </a>
+         </h4>
+      </div>
+      
+      <div id = "comment2" class = "panel-collapse collapse">
+         <div class = "panel-body">
+           <font color="black"><b> Dipti: </b>Please review my profile <a href="">abc@abc.com </a>
+            <br><br>
+            <b>Post a reply:</b>&nbsp;&nbsp;<input type="text" name="comment" style="width:110px;height:20px;"/></font>
+         </div>
+      </div>
+  </div>
+</div></p></div>
+
+
+            <div class="clearfix visible-sm-block"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3"><p><div class="box1">
+<font color="#FFFF99"><strong>PHD Choice</strong></font>
+              <br>Post by <b> Tanisha </b> >> February 22, 00.12 <br>
+              <br>If I am admitted and enrolled to the MS program, may I enter the PhD program later on?If I apply to the PhD program but do not get admitted, will I be considered for the MS program? Does this affect my chances of admission to either program?
+              <br><br>
+              <div class = "panel panel-default">
+      
+      <div class = "panel-heading panel-heading">
+         <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion" href = "#comment3">
+               <b>No Comments yet >></b>
+            </a>
+         </h4>
+      </div>
+      
+      <div id = "comment3" class = "panel-collapse collapse">
+         <div class = "panel-body">
+           <font color="black">
+            <b>Post a reply:</b>&nbsp;&nbsp;<input type="text" name="comment" style="width:110px;height:20px;"/></font>
+         </div>
+      </div>
+  </div>
+</div></p></div>
+
+            <div class="clearfix visible-md-block"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3"><p><div class="box2">
+              <font color="#FFFF99"><strong>Prerequisite Courses</strong></font>
+              <br>Post by <b> Vega </b> >> February 23, 15.23 <br>
+              <br>Are there any prerequisite courses before joining any University? Also, my mathematics background isn't that strong. Should I still apply?
+              <br><br>
+              <div class = "panel panel-default">
+      
+      <div class = "panel-heading panel-heading">
+         <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion" href = "#comment4">
+               <b>View 3 Comments >></b>
+            </a>
+         </h4>
+      </div>
+      
+      <div id = "comment4" class = "panel-collapse collapse">
+         <div class = "panel-body">
+           <font color="black">
+            <b>Jamie:</b> Every University has a different course structure.<br>
+            <b>Laila:</b> You should check the University website.<br>
+            <b>Rishabh:</b> Most universities do not require.<br><br>
+            <b>Post a reply:</b>&nbsp;&nbsp;<input type="text" name="comment" style="width:110px;height:20px;"/></font>
+            
+         </div>
+      </div>
+  </div>
+            </div></p></div>
+
+            <div class="clearfix visible-sm-block"></div>
+            <div class="clearfix visible-lg-block"></div>
+
+            <div class="col-sm-6 col-md-4 col-lg-3"><p><div class="box2">
+
+              <font color="#FFFF99"><strong>Data Science</strong></font>
+              <br>Post by <b> Mittal </b> >> February 23, 15.59 <br>
+              <br>What is the difference between the Data Science track in ICME and Statistics?How do I apply for the Statistics Data Science track?Can I apply for the Data Science track as a coterm?
+              <br><br>
+              <div class = "panel panel-default">
+      
+      <div class = "panel-heading panel-heading">
+         <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion" href = "#comment5">
+               <b>No Comments yet >></b>
+            </a>
+         </h4>
+      </div>
+      
+      <div id = "comment5" class = "panel-collapse collapse">
+         <div class = "panel-body">
+           <font color="black">
+            <b>Post a reply:</b>&nbsp;&nbsp;<input type="text" name="comment" style="width:110px;height:20px;"/></font>
+         </div>
+      </div>
+  </div>
+
+            </div></p></div>
+
+
+            <div class="col-sm-6 col-md-4 col-lg-3"><p><div class="box1">
+              <font color="#FFFF99"><strong>Masters Degree</strong></font>
+              <br>Post by <b> Tamana </b> >> February 23, 18:45 <br>
+              <br>Can I complete the Master's degree part-time?
+              <br><br>
+              <!-- <div class = "panel-group" id = "accordion"> -->
+              <div class = "panel panel-default">
+      
+      <div class = "panel-heading panel-heading">
+         <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion" href = "#comment6">
+               <b>View 2 Comments >> </b>
+            </a>
+         </h4>
+      </div>
+      
+      <div id = "comment6" class = "panel-collapse collapse">
+         <div class = "panel-body">
+           <font color="black">
+            <b>Mittal:</b> The majority of courses are only offered on-campus.<br>
+            <b>Sandy:</b> Students must be sponsored by an employer.<br><br>
+            <b>Post a reply:</b>&nbsp;&nbsp;<input type="text" name="comment" style="width:110px;height:20px;"/></font>
+         </div>
+      </div>
+      
+   </div>
+
+            </div></p></div>
+
+
+            <div class="clearfix visible-sm-block"></div>
+            <div class="clearfix visible-md-block"></div>
+
+            <div class="col-sm-6 col-md-4 col-lg-3"><p><div class="box2">
+              <font color="#FFFF99"><strong>Official Transcripts</strong></font>
+              <br>Post by <b> Mary </b> >> February 23, 19.59 <br>
+              <br>Do I need to send my transcripts that reflect my grades for the current quarter/semester?
+              <br><br>
+              <div class = "panel panel-default">
+      
+      <div class = "panel-heading panel-heading">
+         <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion" href = "#comment7">
+               <b>No Comments yet >></b>
+            </a>
+         </h4>
+      </div>
+      
+      <div id = "comment7" class = "panel-collapse collapse">
+         <div class = "panel-body">
+           <font color="black">
+            <b>Post a reply:</b>&nbsp;&nbsp;<input type="text" name="comment" style="width:110px;height:20px;"/></font>
+         </div>
+      </div>
+  </div>
+
+            </div></p></div>
+
+            <div class="col-sm-6 col-md-4 col-lg-3"><p><div class="box1">
+               <font color="#FFFF99"><strong>GRE/TOEFL Requirements</strong></font>
+              <br>Post by <b> Rishabh </b> >> February 24, 07:15 <br>
+              <br>What are the average GRE and TOEFL scores of admitted applicants?Is there a minimum GPA/GRE test score in order to be considered for admission? 
+              <br><br>
+              <div class = "panel panel-default">
+      
+      <div class = "panel-heading panel-heading">
+         <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion" href = "#comment8">
+               <b>View 1 Comment >></b>
+            </a>
+         </h4>
+      </div>
+      
+      <div id = "comment8" class = "panel-collapse collapse">
+         <div class = "panel-body">
+           <font color="black"><b> Dipti: </b>A GRE score above 300 is considered to be a good score.
+            <br><br>
+            <b>Post a reply:</b>&nbsp;&nbsp;<input type="text" name="comment" style="width:110px;height:20px;"/></font>
+         </div>
+      </div>
+  </div>
+
+            </div></p></div>
+            <div class="clearfix visible-sm-block"></div>
+            <div class="clearfix visible-lg-block"></div>
+
+            <div class="col-sm-6 col-md-4 col-lg-3"><p><div class="box1">
+              <font color="#FFFF99"><strong>Tuition Fees</strong></font>
+              <br>Post by <b> Akanksha </b> >> February 23, 21:59 <br>
+              <br>What is the tuition rate for the M.S. program?Is there a different tuition rate for international students?
+
+              <br><br>
+              <div class = "panel panel-default">
+      
+      <div class = "panel-heading panel-heading">
+         <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion" href = "#comment9">
+               <b>No Comments yet >></b>
+            </a>
+         </h4>
+      </div>
+      
+      <div id = "comment9" class = "panel-collapse collapse">
+         <div class = "panel-body">
+           <font color="black">
+            <b>Post a reply:</b>&nbsp;&nbsp;<input type="text" name="comment" style="width:110px;height:20px;"/></font>
+         </div>
+      </div>
+  </div>
+
+            </div></p></div>
+
+            <div class="clearfix visible-md-block"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3"><p><div class="box2">
+
+              <font color="#FFFF99"><strong>Recommendations</strong></font>
+              <br>Post by <b> Kiran </b> >> February 23, 22:03 <br>
+              <br>Who should I ask to write recommendation letters?What does it mean to "Waive Your Right to Review" when entering the names of my recommenders?
+
+              <br><br>
+              <div class = "panel panel-default">
+      
+      <div class = "panel-heading panel-heading">
+         <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion" href = "#comment10">
+               <b>No Comments yet >></b>
+            </a>
+         </h4>
+      </div>
+      
+      <div id = "comment10" class = "panel-collapse collapse">
+         <div class = "panel-body">
+           <font color="black">
+            <b>Post a reply:</b>&nbsp;&nbsp;<input type="text" name="comment" style="width:110px;height:20px;"/></font>
+         </div>
+      </div>
+  </div>
+            </div></p></div>
+            <div class="clearfix visible-sm-block"></div>
+            <div class="col-sm-6 col-md-4 col-lg-3"><p><div class="box1">
+                    <font color="#FFFF99"><strong>FERPA</strong></font>
+              <br>Post by <b> Aakash </b> >> February 24, 10:30 <br>
+              <br>What do you mean by FERPA? How can you waive your FERPA Access Rights? 
+              <br><br>
+              <div class = "panel panel-default">
+      
+      <div class = "panel-heading panel-heading">
+         <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion" href = "#comment11">
+               <b>View 1 Comment >></b>
+            </a>
+         </h4>
+      </div>
+      
+      <div id = "comment11" class = "panel-collapse collapse">
+         <div class = "panel-body">
+           <font color="black"><b> Dipti: </b>Once you are an enrolled student, the Family Educational Rights and Privacy Act of 1974 (FERPA) provides you with a right of access to your education record, including letters of reference if they are retained by the school. 
+            <br><br>
+            <b>Post a reply:</b>&nbsp;&nbsp;<input type="text" name="comment" style="width:110px;height:20px;"/></font>
+         </div>
+      </div>
+  </div>
+
+            </div></p></div>
+            <div class="col-sm-6 col-md-4 col-lg-3"><p><div class="box2">
+
+              <font color="#FFFF99"><strong>CHESICC</strong></font>
+              <br>Post by <b> Aakash </b> >> February 24, 11:22 <br>
+              <br>What is CHESICC?
+
+              <br><br>
+              <div class = "panel panel-default">
+      
+      <div class = "panel-heading panel-heading">
+         <h4 class = "panel-title">
+            <a data-toggle = "collapse" data-parent = "#accordion" href = "#comment12">
+               <b>No Comments yet >></b>
+            </a>
+         </h4>
+      </div>
+      
+      <div id = "comment12" class = "panel-collapse collapse">
+         <div class = "panel-body">
+           <font color="black">
+            <b>Post a reply:</b>&nbsp;&nbsp;<input type="text" name="comment" style="width:110px;height:20px;"/></font>
+         </div>
+      </div>
+  </div>
+
+            </div></p></div>
+
+        </div>
+        <br/><br/>
+
+  </div>
+</div>
+
+
+
+<!-- <footer> -->
+
+<div class= "row address">
+
+
+ <div class="col-sm-2"><br/>
+
+
+  <center><address><img src="img/adresses.png" width="60" height="50" align = "center"><br/>
+ <a href="https://www.google.com/maps/@42.3343,-71.1007,15z">
+ <h5> 75 Saint Alphonsus St,<br/> Boston<br/>MA-02120</a></address></center></div>
+
+
+  <div class="col-sm-2"> <br/><center><img src="img/E-Mail-Icon.png" width="60" height="50" align = "center"><br/><br/>
+   <h5>  <a href="mailto:vegashetty@gmail.com" target="_top">contact@gradroom.com</a>
+
+
+  </div>
+
+
+
+  <div class="col-sm-2"><br/><center><img src="img/phone-green-icon.png" width="60" height="50" align = "center">
+<br/><br/>
+   <h5> Call us : <a href="tel:+18578004331">857-800-4331</a>
+
+  </div>
+
+  <div class="col-sm-2"><br/>
+   <center><a href="https://www.facebook.com"><img src="img/fb.png" width="60" height="50" align = "center"></a></center> </div> &nbsp &nbsp &nbsp
+   <div class="col-sm-2"><br/>
+   <center><a href="https://twitter.com"><img src="img/Twitter-icon.png" width="60" height="50" align = "center"></a> </center></div> &nbsp &nbsp &nbsp
+    <div class="col-sm-2">
+    <center><a href="https://www.instagram.com"><img src="img/insta.png" width="60" height="50" align = "center"></a> </center></div>
+
+  </div>
+
+
+
+
+ <div class="row address">
+<div row="col-sm-12">
+<footer>
+
+
+<center> <nav> <a href = "termcon.html"> Terms & Conditions </a>|
+
+ <a href = "faq-1.html" >FAQs </a> | 
+<small><b>© Copyright 2016, GradRoom</b></small> </nav></center>
+
+
+</footer>
+</div>
+</div>
+
+
+  <!-- Footer -->
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,600 @@
+<!Doctype html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="https://code.jquery.com/jquery-1.12.0.min.js">
+</script>
+<!-- <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script> -->
+<!-- <script src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script> -->
+<!--  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
+</script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js">
+</script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js">
+</script>
+<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-1.12.0.min.js">
+</script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js">
+</script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js">
+</script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">	
+<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css">
+ <meta name="description" content="GradRoom, a website that caters to students aspiring to study in universities in USA" >
+<link rel="shortcut icon" href="img/favicon.ico" />
+
+<link rel="stylesheet" href="gradRoomStyle.css">
+<link rel="stylesheet" href="dipti.css">
+
+
+<script>
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
+
+<style>
+label
+{
+font-size:20px;
+color:black;
+}
+#example_info
+{
+font-size:20px;
+color:black;
+}
+body{
+ background-image:url('img/datatablebg.jpg');
+ color:black;
+}
+
+tfoot{
+background-color:white;
+
+}
+
+tr:nth-child(odd){
+background-color: white;
+
+}
+
+tr:nth-child(even){
+background-color: white;
+}
+</style>
+
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top, #myScrollspy">
+
+<!-- start of navbar section -->
+ <div class="modal fade" id="openModal1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+    <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <center>    <h4 class="modal-title">Search GradRoom</h4>
+        </div>
+ 
+   <h2>Search</h2>
+   <br/>
+   <p><form> 
+What are you looking for?: <input type="text" onkeyup="showHint(this.value)">
+</form></p>
+   <p>Suggestions: <span id="txtHint"></span></p>
+</div>
+</div>
+</div>
+
+
+
+
+
+<!-- end of this modal -->
+<script>
+function showHint(str) {
+   if (str.length == 0) { 
+       document.getElementById("txtHint").innerHTML = "";
+       return;
+   } else {
+       var xmlhttp = new XMLHttpRequest();
+       xmlhttp.onreadystatechange = function() {
+           if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+               document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+           }
+       };
+       xmlhttp.open("GET", "gethint.php?q=" + str, true);
+       xmlhttp.send();
+   }
+}
+</script>
+
+
+
+<script>
+$(document).ready(function(){
+    $("#myBtn").click(function(){
+        $("#myModal").modal();
+    });
+});
+</script>
+
+ <script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+
+
+   <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="glyphicon glyphicon-menu-hamburger"></span>
+        </button>
+          <a class="navbar-brand" href="profile.php"><img src="img/gradLogo.png" width="160" height="35"></a>
+          
+
+      </div>
+
+
+
+      <div class="collapse navbar-collapse" id="myNavbar" >
+        <ul class="nav navbar-nav navbar-right" >
+		
+        <li class="dropdown" style="z-index:90001;">
+          <button class="dropbtn" > <a class="page-scroll" href="profile.php#msinus" >MS in US</a> &#9662</button>
+          <div class="dropdown-content">
+            <a href="listofuniversities.html">List Of Universities</a>
+            <a href="trend.html">Admit Trends</a>
+            <a href="index_forum.php">Discussion forum</a>
+           <a href="newsFeed.html">What's New?</a>
+          </div>
+        </li>
+           <li class="dropdown" style="z-index:90001;">
+          <button class="dropbtn" > <a class="page-scroll" href="profile.php#uniGuide" >UniGuide</a> &#9662</button>
+          <div class="dropdown-content">
+            <a href="uniSearch.html">UniSearch</a>
+            <a href="searchUni.html">UniPredictor</a>
+            <a href="univRating.html">UniReview</a>
+          </div>
+        </li>
+        <li class="dropdown" style="z-index:90000;">
+          <button class="dropbtn"><a class="page-scroll" href="profile.php#resources" >Resources</a> &#9662</button>
+          <div class="dropdown-content">
+            <a href="sop1.html">SOP/LOR</a>
+            <a href="gretoefl.html">GRE/TOEFL</a>
+            <a href="appAssist.html">Application Assist</a>
+              <a href="visainterview.html">Visa Interview</a>
+                <a href="faq-1.html">FAQs</a>
+          </div>
+        </li>
+        <li>
+           <a class="page-scroll" href="profile.php#aboutus" style="font-size:16px">About us</a>
+       </li>
+        <li>
+           <a class="page-scroll" href="profile.php#contact" style="font-size:16px">Contact</a>
+       </li>
+<li>
+       <a href="#openModal1" data-toggle="modal" title="Search" data-placement="bottom" style="font-size:16px"><span class="glyphicon glyphicon-search"></span></a>
+      
+      </li>
+	  <li>
+
+       <a href="logout.php" data-toggle="tooltip" title="Logout" data-placement="bottom" style="font-size:16px"><span class="glyphicon glyphicon-log-out"></span></a>
+      </li>
+  
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Navigation -->
+
+  <script>
+$(document).ready(function(){       
+   var scroll_start = 0;
+   var startchange = $('#msinus');
+   var offset = startchange.offset();
+    if (startchange.length){
+   $(document).scroll(function() { 
+      scroll_start = $(this).scrollTop();
+      if(scroll_start > offset.top) {
+          $(".navbar-default").css('background-color', 'black');
+       } else {
+          $('.navbar-default').css('background-color', 'transparent');
+       }
+   });
+    }
+});
+</script>
+
+        <!-- /.container -->
+<!-- end of navbar section -->
+
+
+
+
+
+
+<br><br><br><br>
+<h1 align="center" style="color:black;">
+Best Graduate Schools (2016-17 Rankings)
+</h1>
+
+<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>School Name</th>
+                <th>Location</th>
+                <th>Tuition</th>
+                <th>Total Graduate Enrollment</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+             	<th>Rank</th>
+                <th>School Name</th>
+                <th>Location</th>
+                <th>Tuition</th>
+                <th>Total Graduate Enrollment</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr>
+                <td><span class="badge"> 1 </span></td>
+                <td>Massachusetts Institute of Technology</td>
+                <td>Cambridge, MA</td>
+                <td>$46,400 per year(full time)</td>
+                <td>3,123</td>
+            </tr>
+            <tr>
+                <td><span class="badge"> 2 </span></td>
+                <td>Stanford University</td>
+                <td>Stanford, CA</td>
+                <td>$48,720 per year (full-time) </td>
+                <td>3,601 </td>
+            </tr>
+            <tr>
+                <td><span class="badge"> 3 </span></td>
+                <td>University of California —​Berkeley</td>
+                <td>Berkeley, CA</td>
+                <td>$11,220 per year (in-state, full-time); <br>
+                $26,322 per year (out-of-state, full-time) </td>
+                <td>1,973 </td>
+            </tr>
+            <tr>
+                <td><span class="badge"> 4</span></td>
+                <td>California Institute of Technology </td>
+                <td>Pasadena, CA</td>
+                <td>$43,710 per year (full-time) </td>
+                <td>545 </td>
+            </tr>
+            <tr>
+                <td><span class="badge"> 5</span></td>
+                <td>Carnegie Mellon University</td>
+                <td>Pittsburgh, PA</td>
+                <td>$42,000 per year (full-time) </td>
+                <td>3,648 </td>
+            </tr>
+            <tr>
+                <td><span class="badge"> 6</span></td>
+                <td>University of Michigan—​Ann Arbor</td>
+                <td>Ann Arbor, MI</td>
+                <td>$13,452 per year (in-state, full-time); <br>
+                 $27,872 per year (out-of-state, full-time) </td>
+                <td>7,504 </td>
+            </tr>
+            <tr>
+                <td><span class="badge">  7</span></td>
+                <td>Georgia Institute of Technology </td>
+                <td>Atlanta, GA</td>
+                <td>$13,452 per year (in-state, full-time); <br>
+                $27,872 per year (out-of-state, full-time) 	</td>
+                <td>3,364 </td>
+            </tr>
+            <tr>
+                <td><span class="badge">  8 </span></td>
+                <td>University of Illinois—​Urbana-​Champaign </td>
+                <td>Urbana, IL</td>
+                <td>$19,643 per year (in-state, full-time); <br> 
+                $31,626 per year (out-of-state, full-time) </td>
+                <td>3,421 </td>
+            </tr>
+            <tr>
+                <td><span class="badge">  9 </span></td>
+                <td>Purdue University—​West Lafayette </td>
+                <td>West Lafayette, IN</td>
+                <td>$10,330 per year (in-state, full-time); <br> $29,132 per year (out-of-state, full-time) </td>
+                <td>3,542 </td>
+            </tr>
+            <tr>
+                <td><span class="badge">  10</span></td>
+                <td>University of Texas—​Austin (Cockrell) </td>
+                <td>Austin, TX</td>
+                <td>$9,564 per year (in-state, full-time); <br> $17,506 per year (out-of-state, full-time) </td>
+                <td>2,373 </td>
+            </tr>
+            <tr>
+                <td><span class="badge">  11</span></td>
+                <td>Texas A&M University—​College Station (Look) </td>
+                <td>College Station, TX</td>
+                <td>$241 per credit (in-state, full-time); $638 per credit (out-of-state, full-time)</td>
+                <td>3,480 </td>
+            </tr>
+            <tr>
+                <td><span class="badge">  12  </span></td>
+                <td>Cornell University </td>
+                <td>Ithaca, NY</td>
+                <td>$29,500 per year (full-time) </td>
+                <td>2,001 </td>
+            </tr>
+            <tr>
+                <td><span class="badge">  13</span></td>
+                <td>University of Southern California (Viterbi) </td>
+                <td>Los Angeles, CA</td>
+                <td>$28,384 per year (full-time) </td>
+                <td>5,195 </td>
+            </tr>
+            <tr>
+                <td><span class="badge">  14 </span></td>
+                <td>Columbia University (Fu Foundation)</td>
+                <td>New York, NY</td>
+                <td>$42,768 per year (full-time) </td>
+                <td>3,212 </td>
+            </tr>
+          
+            <tr>
+                <td><span class="badge">  15</span></td>
+                <td>University of California—​San Diego (Jacobs) </td>
+                <td>La Jolla, CA</td>
+                <td>$12,630 per year (in-state, full-time); <br> $27,732 per year (out-of-state, full-time) 	</td>
+                <td>2,064 </td>
+            </tr>
+            <tr>
+                <td><span class="badge">  16 </span> </td>
+                <td>Princeton University </td>
+                <td>Princeton, NJ</td>
+                <td>$43,450 per year (full-time) </td>
+                <td>568 </td>
+            </tr>
+            <tr>
+                <td><span class="badge">  17</span></td>
+                <td>Northwestern University (McCormick) </td>
+                <td>Evanston, IL</td>
+                <td>$48,624 per year (full-time) </td>
+                <td>1,980</td>
+            </tr>
+            <tr>
+                <td><span class="badge">  18</span></td>
+                <td>University of Pennsylvania </td>
+                <td>Philadelphia, PA</td>
+                <td>$31,068 per year (full-time) </td>
+                <td>1,577</td>
+            </tr>
+            <tr>
+                <td><span class="badge">  19</span></td>
+                <td>Johns Hopkins University (Whiting) </td>
+                <td>Baltimore, MD</td>
+                <td>$48,710 per year (full-time) </td>
+                <td>3,472</td>
+            </tr>
+            <tr>
+                <td><span class="badge">  20</span></td>
+                <td>Virginia Tech</td>
+                <td>Blacksburg, VA</td>
+                <td>$14,900 per year (in-state, full-time); <br> $27,980 per year (out-of-state, full-time) </td>
+                <td>2,257 </td>
+            </tr>
+            <tr>
+                <td><span class="badge">  21</span></td>
+                <td>University of California—​Santa Barbara</td>
+                <td>Santa Barbara, CA</td>
+                <td>$12,240 per year (in-state, full-time); <br> $28,296 per year (out-of-state, full-time)</td>
+                <td>743 </td>
+            </tr>
+            <tr>
+                <td><span class="badge">  22</span></td>
+                <td>Harvard University </td>
+                <td>Cambridge, MA</td>
+                <td>$41,832 per year (full-time) </td>
+                <td>448</td>
+            </tr>
+            <tr>
+                <td><span class="badge">  23</span></td>
+                <td>University of Maryland—​College Park (Clark) </td>
+                <td>College Park, MD</td>
+                <td>$14,162 per year (in-state, full-time);<br> $28,782 per year (out-of-state, full-time) </td>
+                <td>2,318 </td>
+            </tr>
+            <tr>
+                <td><span class="badge">  24</span></td>
+                <td>University of Washington </td>
+                <td>Seattle, WA</td>
+                <td>$16,425 per year (in-state, full-time); <br> $29,274 per year (out-of-state, full-time) </td>
+                <td>2,333 </td>
+            </tr>
+            <tr>
+                <td><span class="badge">  25</span></td>
+                <td>North Carolina State University </td>
+                <td>Raleigh, NC</td>
+                <td>$7,852 per year (in-state, full-time); <br> $21,951 per year (out-of-state, full-time) </td>
+                <td>3,362 </td>
+            </tr>
+            <tr>
+                <td><span class="badge">  26 </span></td>
+                <td>Pennsylvania State University—​University Park </td>
+                <td>University Park, PA</td>
+                <td>$20,422 per year (in-state, full-time); <br> 34,384 per year (out-of-state, full-time) 	</td>
+                <td>1,840 </td>
+            </tr>
+            <tr>
+                <td><span class="badge">  27 </span></td>
+                <td>University of Minnesota—​Twin Cities </td>
+                <td>Minneapolis, MN</td>
+                <td>$15,844 per year (in-state, full-time); <br> $24,508 per year (out-of-state, full-time)</td>
+                <td>1,901 </td>
+            </tr>
+            <tr>
+                <td><span class="badge">  28</span></td>
+                <td>Duke University (Pratt)</td>
+                <td>Durham, NC</td>
+                <td>$50,880 per year (full-time) </td>
+                <td>1,067 </td>
+            </tr>
+            <tr>
+                <td><span class="badge">  29</span></td>
+                <td>Rice University (Brown) </td>
+                <td>Houston, TX</td>
+                <td>$41,560 per year (full-time) </td>
+                <td>903 </td>
+            </tr>
+            <tr>
+                <td><span class="badge">  30</span></td>
+                <td>University of Colorado—​Boulder </td>
+                <td>Boulder, CO</td>
+                <td>$50,880 per year (full-time) </td>
+                <td>1,803</td>
+            </tr>
+            <tr>
+                <td><span class="badge">  31</span></td>
+                <td>Yale University </td>
+                <td>New Haven, CT</td>
+                <td>$38,700 per year (full-time) </td>
+                <td>282</td>
+            </tr>
+            <tr>
+                <td><span class="badge">  32</span></td>
+                <td>University of Virginia </td>
+                <td>Charlottesville, VA</td>
+                <td>$15,216 per year (in-state, full-time); <br>$24,778 per year (out-of-state, full-time) </td>
+                <td>681 </td>
+            </tr>
+            <tr>
+                <td><span class="badge">  33</span></td>
+                <td>University of Rochester </td>
+                <td>Rochester, NY</td>
+                <td>$1,482 per credit (full-time) </td>
+                <td>602 </td>
+            </tr>
+            <tr>
+                <td><span class="badge">  34</span></td>
+                <td>Northeastern University </td>
+                <td>Boston, MA</td>
+                <td>$1,422 per credit (full-time) </td>
+                <td>3,574</td>
+            </tr>
+            <tr>
+                <td><span class="badge">  35</span></td>
+                <td>University of Florida </td>
+                <td>Gainesville, FL</td>
+                <td>$12,737 per year (in-state, full-time); <br> $30,130 per year (out-of-state, full-time) </td>
+                <td>2,797 </td>
+            </tr>
+            <tr>
+                <td><span class="badge">  36</span></td>
+                <td>New York University </td>
+                <td>Brooklyn, NY</td>
+                <td>$1,546 per credit (full-time) </td>
+                <td>2,496 </td>
+            </tr>
+            <tr>
+                <td><span class="badge">  37</span></td>
+                <td>University of Notre Dame </td>
+                <td>Notre Dame, IN</td>
+                <td>$47,730 per year (full-time) </td>
+                <td>511</td>
+            </tr>
+            <tr>
+                <td><span class="badge">  38</span></td>
+                <td>University of Massachusetts—​Amherst </td>
+                <td>Amherst, MA</td>
+                <td>$2,640 per year (in-state, full-time); <br> $9,937 per year (out-of-state, full-time) </td>
+                <td>864</td>
+            </tr>
+              <tr>
+                <td><span class="badge">  39</span></td>
+                <td>University of California—​Los Angeles (Samueli) </td>
+                <td>Los Angeles, CA</td>
+                <td>$10,870 per year (in-state, full-time);</td>
+                <td>5,750</td>
+            </tr>
+            
+              <tr>
+                <td><span class="badge">  40</span></td>
+                <td>Stony Brook University—​SUNY  </td>
+                <td>Stony Brook, NY</td>
+                <td>$10,870 per year (in-state, full-time); <br> $22,210 per year (out-of-state, full-time) </td>
+                <td>1,534 </td>
+            </tr>
+
+        </tbody>
+    </table>
+    
+   <br><br>
+   
+   
+   
+ <!-- Footer starts-->   
+    
+<div class= "row address">
+
+
+ <div class="col-sm-2"><br/>
+
+
+  <center><address><img src="img/adresses.png" width="60" height="50" align = "center"><br/>
+ <a href="https://www.google.com/maps/@42.3343,-71.1007,15z">
+ <h5> 75 Saint Alphonsus St,<br/> Boston<br/>MA-02120</a></address></center></div>
+
+
+  <div class="col-sm-2"> <br/><center><img src="img/E-Mail-Icon.png" width="60" height="50" align = "center"><br/><br/>
+   <h5>  <a href="mailto:vegashetty@gmail.com" target="_top">contact@gradroom.com</a>
+
+
+  </div>
+
+
+
+  <div class="col-sm-2"><br/><center><img src="img/phone-green-icon.png" width="60" height="50" align = "center">
+<br/><br/>
+   <h5> Call us : <a href="tel:+18578004331">857-800-4331</a>
+
+  </div>
+
+  <div class="col-sm-2"><br/>
+   <center><a href="https://www.facebook.com"><img src="img/fb.png" width="60" height="50" align = "center"></a></center> </div> &nbsp &nbsp &nbsp
+   <div class="col-sm-2"><br/>
+   <center><a href="https://twitter.com"><img src="img/Twitter-icon.png" width="60" height="50" align = "center"></a> </center></div> &nbsp &nbsp &nbsp
+    <div class="col-sm-2">
+    <center><a href="https://www.instagram.com"><img src="img/insta.png" width="60" height="50" align = "center"></a> </center></div>
+
+  </div>
+
+
+
+
+ <div class="row address">
+<div row="col-sm-12">
+<footer>
+
+
+<center> <nav> <a href = "termcon.html"> Terms & Conditions </a>|
+
+ <a href="faq-1.html" >FAQs </a> | 
+<small><b>© Copyright 2016, GradRoom</b></small> </nav></center>
+
+
+</footer>
+</div>
+</div>
+    
+  <!-- Footer Ends-->    
+    </body>
+    
+    </html>

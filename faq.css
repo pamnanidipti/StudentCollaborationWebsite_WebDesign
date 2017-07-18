@@ -1,0 +1,43 @@
+.FAQ
+{
+  padding-top: 0px;
+/*background-color: #CC6666; */
+background-image: url(img/faq2.jpg);
+  
+      /*background: linear-gradient(to right, rgba(204,102,102,0), rgba(204,102,102,1)); */*/
+      /*background-image: url(bl.jpeg);*/
+} 
+.faq-container
+{
+  width:70%;
+  margin: auto;
+}
+.panel-heading1
+{
+  background-color: #FF6666 !important;
+
+}
+.panel-heading2
+{
+  background-color: #7FFF00 !important;
+}
+.panel-heading3
+{
+  background-color: #00CC99 !important;
+}
+.panel-body
+{
+  background-color: #CCCCCC !important;
+}
+.pager {
+    margin-bottom: 60px;
+
+    text-align: left;
+}
+
+.pager {
+    padding-left: 0;
+    margin: 20px 0;
+    text-align: center;
+    list-style: none;
+}

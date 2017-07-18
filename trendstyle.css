@@ -1,0 +1,385 @@
+#ad{
+
+background: #d8d6cb;
+}
+
+p { margin: 0; padding: 4px; }
+
+div {	margin: 0; padding: 0;}
+
+#wrapper1 {
+	position:absolute;
+	top: 50%;
+	left: 50%;
+	width:740px;
+	height:680px;
+	margin: -340px 0 0 -370px;
+	padding: 0;
+}
+
+/* Header start */
+
+
+
+/* Header end */
+
+/* Label and percentage data start */
+
+
+#percentage_wrapper {
+	position: absolute;
+	left: 665px;
+	top: 151px;
+	width: 50px;
+	height: 124px;
+	overflow: hidden;
+}
+	
+#percentage {
+	position: left;
+	clip: rect(0px, 50px, 125px, 0px);
+}
+
+#labels ul, #percentage ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+	color: #333333;
+	float: right;
+}
+
+#labels li, #percentage li {
+	display: block;
+
+	margin: 0;
+	padding: 0 0 8px 0;
+		float: left;
+}
+
+#labels span{
+	display: block;
+	float: left;
+	width:8px;
+	height: 8px;
+	margin: 5px 5px 0 0 ;
+	background: #FFFFFF;
+}
+
+#labels ul :nth-child(1) span{ background: #0092B9; }
+#labels ul :nth-child(2) span{ background: #86AD00; }
+#labels ul :nth-child(3) span{ background: #F2B705; }
+#labels ul :nth-child(4) span{ background: #D97904; }
+#labels ul :nth-child(5) span{ background: #BC3603; }
+
+#percentage p {
+	display: block;
+	width: 50px;
+	margin: 0;
+	padding: 0 0 8px 0;
+	float: left;
+}
+
+#percentage ul {
+	position: absolute;
+	width: 300px;
+}
+
+#fall_2011:target #percentage ul { left: -0px; }
+#spring_2012:target #percentage ul { left: -50px; }
+#fall_2012:target #percentage ul { left: -100px; }
+#spring_2013:target #percentage ul { left: -150px; }
+#fall_2013:target #percentage ul { left: -200px; }
+#spring_2014:target #percentage ul { left: -250px; }
+/* Label and percentage data end */
+
+/* Slider (contains two chart div) start */
+#slider {
+	width:300px;
+	height: 350px;
+	margin: 0 auto;
+	padding: 0 auto;
+	overflow-y: hidden;
+	overflow-x: auto;
+}
+
+#slider::-webkit-scrollbar { /* webkit only */
+  height: 12px;
+   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#beb8a1), to(#cfcab9));
+   -webkit-border-radius: 6px;
+}
+ 
+#slider::-webkit-scrollbar-thumb { /* webkit only */
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8c8775), to(#7f7a6a));
+  -webkit-border-radius: 6px;
+}
+
+
+
+
+/* Slider end */
+
+/* Charts start */
+#chart_holder {
+	width: 600px;
+	height: 350px;
+	margin: 0;
+	padding: 0;
+}
+
+#pyr_chart , #pie_chart {
+	position: relative;
+	float: left;
+ 	width: 300px;
+ 	height: 300px;
+ 	margin: 0;
+ 	padding: 0;
+	-webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.5, transparent), to(rgba(255, 255, 255, 0.2) ));
+}
+
+#pyr_chart ul , #pie_chart ul {
+	list-style-type: none;
+	width: 300px;
+	height: 300px;
+	padding: 0;
+ 	margin: 0;
+}
+	
+#pyr_chart li, #pie_chart li {
+	position: absolute;
+	top: 0px;
+	width: 300px;
+	height: 300px;
+ 	padding: 0;
+ 	margin: 0;
+}
+
+#pie_chart p {
+	width: 300px;
+	height: 300px;
+ 	padding: 0;
+ 	margin: 0;
+}
+
+#pie_chart li p { -webkit-transition: all .7s ease-out;}
+
+#pie_chart span { display: block; width: 150px; height: 300px;}
+
+#pie_chart ul :nth-child(odd) { clip: rect(0px, 300px, 300px, 150px);}
+
+#pie_chart ul :nth-child(even) { clip: rect(0px, 150px, 300px, 0px);}
+
+.pie_left{
+	-moz-border-radius-topleft: 150px;
+	-moz-border-radius-bottomleft: 150px;
+	-webkit-border-top-left-radius: 150px;
+	-webkit-border-bottom-left-radius: 150px;
+	border-top-left-radius: 150px;
+	border-bottom-left-radius: 150px;
+}
+
+.pie_right{
+	margin-left: 150px;
+	-moz-border-radius-topright: 150px;
+	-moz-border-radius-bottomright: 150px;
+	-webkit-border-top-right-radius: 150px;
+	-webkit-border-bottom-right-radius: 150px;
+	border-top-right-radius: 150px;
+	border-bottom-right-radius: 150px;
+}
+
+#c1_l span {
+	background: #BC3603;
+	background-image: -moz-radial-gradient(left 45deg, circle closest-corner, #de3d00 10%, #BC3603 100%);
+	background-image: -webkit-gradient(radial, left center, 10, left center, 150, from(#de3d00), to(#BC3603));
+}
+
+#c1_r span {
+	background: #BC3603;
+	background-image: -moz-radial-gradient(right 45deg, circle closest-corner, #de3d00 10%, #BC3603 100%);
+	background-image: -webkit-gradient(radial, right center, 10, right center, 150, from(#de3d00), to(#BC3603));
+}
+ 
+#c2_l span {
+	background: #D97904;
+	background-image: -moz-radial-gradient(left 45deg, circle closest-corner, #fb8a00 10%, #D97904 100%);
+	background-image: -webkit-gradient(radial, left center, 10, left center, 150, from(#fb8a00), to(#D97904));
+}
+
+#c2_r span {
+	background: #D97904;
+	background-image: -moz-radial-gradient(right 45deg, circle closest-corner, #fb8a00 10%, #D97904 100%);
+	background-image: -webkit-gradient(radial, right center, 10, right center, 150, from(#fb8a00), to(#D97904));
+}
+
+#c3_l span {
+	background: #F2B705;
+	background-image: -moz-radial-gradient(left 45deg, circle closest-corner, #ffc517 10%, #F2B705 100%);
+	background-image: -webkit-gradient(radial, left center, 10, left center, 150, from(#ffc517), to(#F2B705));
+}
+
+#c3_r span {
+	background: #F2B705;
+	background-image: -moz-radial-gradient(right 45deg, circle closest-corner, #ffc517 10%, #F2B705 100%);
+	background-image: -webkit-gradient(radial, right center, 10, right center, 150, from(#ffc517), to(#F2B705));
+}
+
+#c4_l span {
+	background: #86AD00;
+	background-image: -moz-radial-gradient(left 45deg, circle closest-corner, #9bc800 10%, #86AD00 100%);
+	background-image: -webkit-gradient(radial, left center, 10, left center, 150, from(#9bc800), to(#86AD00));
+}
+
+#c4_r span {
+	background: #86AD00;
+	background-image: -moz-radial-gradient(right 45deg, circle closest-corner, #9bc800 10%, #86AD00 100%);
+	background-image: -webkit-gradient(radial, right center, 10, right center, 150, from(#9bc800), to(#86AD00));
+}
+
+#c5_l span{ 
+	background: #0092B9;
+	background-image: -moz-radial-gradient(left 45deg, circle closest-corner, #00addb 10%, #0092B9 100%);
+	background-image: -webkit-gradient(radial, left center, 10, left center, 150, from(#00addb), to(#0092B9));
+}
+
+#c5_r span{
+	background: #0092B9;
+	background-image: -moz-radial-gradient(right 45deg, circle closest-corner, #00addb 10%, #0092B9 100%);
+	background-image: -webkit-gradient(radial, right center, 10, right center, 150, from(#00addb), to(#0092B9));
+}
+
+/*Pie chart data (degree value) */
+
+
+#fall_2011:target #pie_chart ul :nth-child(1) p{ -moz-transform: rotate(180deg); -webkit-transform: rotate(180deg); -o-transform: rotate(180deg);}
+#fall_2011:target #pie_chart ul :nth-child(2) p{ -moz-transform: rotate(180deg); -webkit-transform: rotate(180deg); -o-transform: rotate(180deg);}
+#fall_2011:target #pie_chart ul :nth-child(3) p{ -moz-transform: rotate(180deg); -webkit-transform: rotate(180deg); -o-transform: rotate(180deg);}
+#fall_2011:target #pie_chart ul :nth-child(4) p{ -moz-transform: rotate(176deg); -webkit-transform: rotate(176deg); -o-transform: rotate(176deg);}
+#fall_2011:target #pie_chart ul :nth-child(5) p{ -moz-transform: rotate(180deg); -webkit-transform: rotate(180deg); -o-transform: rotate(180deg);}
+#fall_2011:target #pie_chart ul :nth-child(6) p{ -moz-transform: rotate(167deg); -webkit-transform: rotate(167deg); -o-transform: rotate(167deg);}
+#fall_2011:target #pie_chart ul :nth-child(7) p{ -moz-transform: rotate(180deg); -webkit-transform: rotate(180deg); -o-transform: rotate(180deg);}
+#fall_2011:target #pie_chart ul :nth-child(8) p{ -moz-transform: rotate(167deg); -webkit-transform: rotate(167deg); -o-transform: rotate(167deg);}
+#fall_2011:target #pie_chart ul :nth-child(9) p{ -moz-transform: rotate(180deg); -webkit-transform: rotate(180deg); -o-transform: rotate(180deg);}
+#fall_2011:target #pie_chart ul :nth-child(10) p{ -moz-transform: rotate(143deg); -webkit-transform: rotate(143deg); -o-transform: rotate(143deg);}
+
+#pyr_chart li { -webkit-transition: all .5s; }
+
+#pyr_chart ul :nth-child(1) {
+	background: #BC3603;
+	background-image: -moz-radial-gradient(center 0deg, circle closest-corner, #de3d00 10%, #BC3603 100%);
+	background-image: -webkit-gradient(radial, center center, 10, center center, 150, from(#de3d00), to(#BC3603));
+}
+ 
+#pyr_chart ul :nth-child(2) {
+	background: #D97904;
+	background-image: -moz-radial-gradient(center 0deg, circle closest-corner, #fb8a00 10%, #D97904 100%);
+	background-image: -webkit-gradient(radial, center center, 10, center center, 150, from(#fb8a00), to(#D97904));
+	height:292px;
+	
+}
+
+#pyr_chart ul :nth-child(3) {
+	background: #F2B705;
+	background-image: -moz-radial-gradient(center 0deg, circle closest-corner, #ffc517 10%, #F2B705 100%);
+	background-image: -webkit-gradient(radial, center center, 10, center center, 150, from(#ffc517), to(#F2B705));
+	height:277px;
+}
+
+#pyr_chart ul :nth-child(4) {
+	background: #86AD00;
+	background-image: -moz-radial-gradient(center 0deg, circle closest-corner, #9bc800 10%, #86AD00 100%);
+	background-image: -webkit-gradient(radial, center center, 10, center center, 150, from(#9bc800), to(#86AD00));
+	height:255px;
+}
+
+#pyr_chart ul :nth-child(5) { 
+	background: #0092B9;
+	background-image: -moz-radial-gradient(center 0deg, circle closest-corner, #00addb 10%, #0092B9 100%);
+	background-image: -webkit-gradient(radial, center center, 10, center center, 150, from(#00addb), to(#0092B9));
+	height: 180px;
+}
+
+#pyr_chart ul :nth-child(6) { 
+	width: 0;
+	height: 0;
+	border-color: transparent #d8d6cb transparent #d8d6cb;
+	border-width: 0px 150px 300px 150px;
+ 	border-style:solid;
+}
+
+/*Pyramid chart data (height value) */
+
+
+#fall_2011:target #pyr_chart ul :nth-child(2) { height: 297px;}
+#fall_2011:target #pyr_chart ul :nth-child(3) { height: 290px;}
+#fall_2011:target #pyr_chart ul :nth-child(4) { height: 290px;}
+#fall_2011:target #pyr_chart ul :nth-child(5) { height: 269px;}
+/* Charts end */
+
+/* button panel start */
+#btn_panel {
+	position: relative;
+ 	margin-left:auto;
+	margin-right:auto;
+	width:	420px;
+	padding-top: 35px;
+}
+
+#btn_panel ul{
+	list-style-type: none;
+ 	display: inline;
+	padding: 0;
+ 	margin: 0;
+}
+	
+#btn_panel li{ 
+	float: left; 
+	
+}
+
+
+
+
+
+/* Custom Styles */
+body{
+	position: relative; /* required */
+}
+ul.nav-tabs {
+	width: 220px;
+	margin-top: 100px;
+	border-radius: 4px;
+    background: #fff;
+    z-index: 999;
+	border: 1px solid #ddd;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+}
+ul.nav-tabs li {
+	margin: 0;
+	border-top: 1px solid #ddd;
+}
+ul.nav-tabs li:first-child {
+	border-top: none;
+}
+ul.nav-tabs li a {
+	margin: 0;
+	padding: 8px 16px;
+	border-radius: 0;
+}
+ul.nav-tabs li.active a, ul.nav-tabs li.active a:hover {
+	color: #fff;
+	background: #0088cc;
+	border: 1px solid #0088cc;
+}
+ul.nav-tabs li:first-child a {
+	border-radius: 4px 4px 0 0;
+}
+ul.nav-tabs li:last-child a {
+	border-radius: 0 0 4px 4px;
+}
+ul.nav-tabs.affix {
+	top: 0px; /* set the top position of pinned element */
+}
+
+/* button panel end */
+

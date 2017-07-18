@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="gradRoomStyle.css">
+  <link rel="stylesheet" href="sop.css">
+   <meta name="description" content="GradRoom, a website that caters to students aspiring to study in universities in USA" >
+<link rel="shortcut icon" href="img/favicon.ico" />
+
+<style>
+
+.container {
+
+     margin-right: -15px;
+
+}
+
+
+
+</style> </head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top, #myScrollspy">
+
+
+
+  <!-- Login modal -->
+
+  <!-- Login modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form">
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+              <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+              <input type="password" class="form-control" id="psw" placeholder="Enter password">
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" value="" checked>Remember me</label>
+            </div>
+              <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+          <p>Not a member? <a href="#">Sign Up</a></p>
+          <p>Forgot <a href="#">Password?</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- modal for search -->
+    <!--     <div id="openModal1" class="modalDialog">
+
+   <a href="#close" title="Close" class="close">X</a>
+   <h2>Search</h2>
+   <p><form> 
+First name: <input type="text" onkeyup="showHint(this.value)">
+</form></p>
+   <p>Suggestions: <span id="txtHint"></span></p>
+
+</div> -->
+
+ <div class="modal fade" id="openModal1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+    <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <center>    <h4 class="modal-title">Search GradRoom</h4>
+        </div>
+ 
+   <h2>Search</h2>
+   <p><form> 
+First name: <input type="text" onkeyup="showHint(this.value)">
+</form></p>
+   <p>Suggestions: <span id="txtHint"></span></p>
+</div>
+</div>
+</div>
+
+
+
+
+
+<!-- end of this modal -->
+<script>
+function showHint(str) {
+   if (str.length == 0) { 
+       document.getElementById("txtHint").innerHTML = "";
+       return;
+   } else {
+       var xmlhttp = new XMLHttpRequest();
+       xmlhttp.onreadystatechange = function() {
+           if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+               document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+           }
+       };
+       xmlhttp.open("GET", "gethint.php?q=" + str, true);
+       xmlhttp.send();
+   }
+}
+</script>
+
+
+
+<script>
+$(document).ready(function(){
+    $("#myBtn").click(function(){
+        $("#myModal").modal();
+    });
+});
+</script>
+
+
+     <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="glyphicon glyphicon-menu-hamburger"></span>
+        </button>
+          <a class="navbar-brand" href="profile.php"><img src="img/gradLogo.png" width="160" height="35"></a>
+          
+
+      </div>
+
+
+
+      <div class="collapse navbar-collapse" id="myNavbar" >
+        <ul class="nav navbar-nav navbar-right" >
+    
+        <li class="dropdown" style="z-index:90001;">
+          <button class="dropbtn" > <a class="page-scroll" href="profile.php#msinus" >MS in US</a> &#9662</button>
+          <div class="dropdown-content">
+            <a href="listofuniversities.html">List Of Universities</a>
+            <a href="trend.html">Admit Trends</a>
+            <a href="index_forum.php">Discussion forum</a>
+           <a href="newsFeed.html">What's New?</a>
+          </div>
+        </li>
+           <li class="dropdown" style="z-index:90001;">
+          <button class="dropbtn" > <a class="page-scroll" href="profile.php#uniGuide" >UniGuide</a> &#9662</button>
+          <div class="dropdown-content">
+            <a href="uniSearch.html">UniSearch</a>
+            <a href="searchUni.html">UniPredictor</a>
+            <a href="univRating.html">UniReview</a>
+          </div>
+        </li>
+        <li class="dropdown" style="z-index:90000;">
+          <button class="dropbtn"><a class="page-scroll" href="profile.php#resources" >Resources</a> &#9662</button>
+          <div class="dropdown-content">
+            <a href="sop1.html">SOP/LOR</a>
+            <a href="gretoefl.html">GRE/TOEFL</a>
+            <a href="appAssist.html">Application Assist</a>
+              <a href="visainterview.html">Visa Interview</a>
+                <a href="faq-1.html">FAQs</a>
+          </div>
+        </li>
+        <li>
+           <a class="page-scroll" href="profile.php#aboutus" style="font-size:16px">About us</a>
+       </li>
+        <li>
+           <a class="page-scroll" href="profile.php#contact" style="font-size:16px">Contact</a>
+       </li>
+<li>
+       <a href="#openModal1" data-toggle="modal" title="Search" data-placement="bottom" style="font-size:16px"><span class="glyphicon glyphicon-search"></span></a>
+      
+      </li>
+    <li>
+
+       <a href="logout.php" data-toggle="tooltip" title="Logout" data-placement="bottom" style="font-size:16px"><span class="glyphicon glyphicon-log-out"></span></a>
+      </li>
+  
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Navigation -->
+
+<script>
+$(document).ready(function(){       
+   var scroll_start = 0;
+   var startchange = $('#content');
+   var offset = startchange.offset();
+    if (startchange.length){
+   $(document).scroll(function() { 
+      scroll_start = $(this).scrollTop();
+      if(scroll_start > offset.top) {
+          $(".navbar-default").css('background-color', 'black');
+       } else {
+          $('.navbar-default').css('background-color', 'transparent');
+       }
+   });
+    }
+});
+</script>
+
+
+<div class="row"  id="wrapper">
+<div class="col-sm-12">
+
+</div>
+</div>
+
+<!-- write your div here -->
+
+<div class="container">
+ 
+  
+    <div class="row">
+        <div class="col-sm-2 side" id="myScrollspy">
+            <ul class="nav nav-tabs nav-stacked" data-offset-top="120" data-spy="affix" >
+                <li class="active"><a href="#section2">Writing Statement of Purpose</a></li>
+                <li><a href="#section3">Guidelines for SOP</a></li>
+     <li><a href="#section4">Letter of Recommendation</a></li>
+         <li><a href="#section5">Guidelines for LOR</a></li>
+              <li><a href="#section6">Sample SOP/LOR downloads</a></li> 
+            </ul>
+        </div>
+
+
+        <div class="col-sm-10 content" id="content">
+      <div id="section1">
+
+        <center><h2>Statement of Purpose</h2></center><br>
+<p align="justify">This significant component of your application package to a foreign institution should convey in a lucid style what you intend to gain from undergoing the program. It should logically and convincingly explain why you seek admission to the program in the University/Institution. The statement should cover the basic details about your background, interests, achievements, capabilities, career objectives, dreams and future plans. It should be prepared thoughtfully. At any stage, if a question is raised by the admitting authority on any of the points, you should be able to answer it with confidence and clarity, in an honest manner.
+
+Each applicant must submit a statement of purpose. The statement of purpose is your opportunity
+to help reviewers better understand your academic objectives and determine if you are a good
+match for the field to which you are applying.
+Length and Format:
+The statement should be one or two pages. Include your full name and the proposed field of
+study at the top of each page. Please use a standard font and font size for ease of reading.</p>
+
+
+
+</div>
+      
+      <div id="section2">
+<center><h2>Writing the Statement of Purpose</h2><br>
+<img src="img/stat.jpg" class="img-responsive"  height="100px" width="1200px"> </center><br><br>
+The statement of purpose should convince the faculty on the selection committee– that you have solid achievements behind you that show promise for your success in graduate study. Think of the statement of purpose as a composition with four different parts.
+
+Part 1: Introduce yourself, your interests and motivations
+Tell them what you’re interested in, and perhaps, what sparked your desire for graduate study. This should be short and to the point; don’t spend a great deal of time on autobiography.
+<br>
+Part 2: Summarize your undergraduate and previous graduate career
+a) Research you conducted. Indicate with whom, the title of the project, what your
+responsibilities were, and the outcome. Write technically, or in the style of your discipline.
+Professors are the people who read these statements.
+b) Important paper or thesis project you completed, as well as anything scholarly beyond your
+curricular requirements.
+c) Work experience, especially if you had any kind of responsibility for testing, designing,
+researching or interning in an area similar to what you wish to study in graduate school.
+<br>
+Part 3: Discuss the relevance of your recent and current activities
+If you graduated and worked prior to returning to grad school, indicate what you’ve been doing:
+company or non-profit, your work/design team, responsibilities, what you learned. You can also
+indicate here how this helped you focus your graduate studies.
+<br>
+Part 4: Elaborate on your academic interests
+Here you indicate what you would like to study in graduate school in enough detail to convince
+the faculty that you understand the scope of research in their discipline, and are engaged with
+current research themes.
+a) Indicate the area of your interests. Ideally, pose a question, define a problem, or indicate a
+theme that you would like to address, and questions that arise from contemporary research. This
+should be an ample paragraph!
+b) Look on the web for information about departments you’re interested in, including professors
+and their research. Are there professors whose research interests parallel yours? If so, indicate
+this. Check the specific program; many may require you to name a professor or professors with
+whom you might work.
+c) End your statement in a positive manner, indicating your excitement and readiness for the
+challenges ahead of you.
+
+<br><br><br>
+</div>
+
+
+
+     <div id="section3">
+<center><h2>Guidelines for SOP</h2><br></center>
+
+<div class="row">
+   <div class="col-sm-5 col-md-5 col-lg-5 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">   <div class="do"> <h3><center>Do's</center></h3><br>
+ 
+<ul>
+<li><span class="glyphicon glyphicon-ok"> &nbspBe Yourself. Be mindful that you are seeking a &nbsp&nbsp program that is a good match for you. Do not &nbsp&nbsp&nbspdisguise who you are or second-guess what the &nbsp&nbsp&nbspcommittee is looking for</span></li><br>
+
+<li><span class="glyphicon glyphicon-ok">&nbsp&nbspWrite a Strong Opening. You want to stand &nbsp&nbsp&nbspout from the multitude of other applicants. Write &nbsp&nbsp&nbspan opening that grabs the reader’s attention. </span></li><br>
+
+<li><span class="glyphicon glyphicon-ok"> &nbspFrame the points you wish to make in a positive &nbsp&nbsp&nbsplight. You do not want to
+reveal weaknesses.</span></li><br>
+<li><span class="glyphicon glyphicon-ok"><p align="justify">&nbsp&nbspDescribe an important experience that is relevant to the program of interest. It is usually good to place this portion of the essay towards the opening. This
+experience may have contributed to the person that you are today.</span> </p></li><br>
+<li><span class="glyphicon glyphicon-ok">&nbsp&nbspBe Specific, Concise, Honest and Unique in your essay</span></li><br>
+<li><span class="glyphicon glyphicon-ok"><p align="justify">&nbspDescribe why you are a good match for their program. Tell the committee
+about your skills and interest in that particular program. Be specific and
+thoughtful.</p></span></li><br>
+<li><span class="glyphicon glyphicon-ok">&nbsp&nbspTalk about your goals. Explain how a graduate degree will help you
+accomplish those goals.</span></li><br>
+<li><span class="glyphicon glyphicon-ok">&nbsp&nbspExplain any shortcomings in your background.</span></li><br>
+
+
+</ul>
+
+
+</div>
+   </div>
+   <div class="col-sm-5 col-md-5 col-lg-5"><div class="dont"> <h3><center>Don'ts</center></h3><br>
+
+
+<ul>
+<li><span class="glyphicon glyphicon-remove"> &nbspErrors, misspellings, poor English</span></li><br>
+
+<li><span class="glyphicon glyphicon-remove">&nbsp&nbspPlagiarism. You do not want to copy and submit &nbsp&nbsp&nbspanother student’s letter of intent.</span></li><br>
+
+<li><span class="glyphicon glyphicon-remove"> &nbsp“Talk down” to your audience. Your audience does &nbsp&nbsp&nbspnot need to have basic terminology defined for &nbsp&nbsp&nbspthem. Be mindful that they are already experts in    &nbsp&nbsp&nbspthe
+program that you are applying for.</span></li><br>
+<li><span class="glyphicon glyphicon-remove">&nbsp&nbspBe too personal in your essay. Do not focus on &nbsp&nbsp&nbspdeep personal problems or
+excuses for past &nbsp&nbsp&nbspperformances or experiences.</span></li><br>
+<li><span class="glyphicon glyphicon-remove">&nbsp&nbspBe repetitive or too general in your statements.</span></li><br>
+<li><span class="glyphicon glyphicon-remove">&nbsp&nbspCriticize other school programs</span></li><br>
+<li><span class="glyphicon glyphicon-remove">&nbsp&nbspUse uncommon words that look like they came &nbsp&nbsp&nbspfrom a thesaurus.</span></li><br>
+<li><span class="glyphicon glyphicon-remove">&nbsp&nbspWrite an autobiography. You want to give the &nbsp&nbsp&nbspcommittee a sense of who you are but they &nbsp&nbsp &nbsp&nbsp do not want to hear about your entire life&nbsp&nbsp &nbsp&nbsp  story.Be specific and mindful of your personal&nbsp&nbsp &nbsp&nbsp  details.</span></li><br>
+<li><span class="glyphicon glyphicon-remove">&nbsp&nbspSubmit untruthful or irrelevant information in your &nbsp&nbsp essay.</span></li><br>
+<li><span class="glyphicon glyphicon-remove">&nbsp&nbspSubmit untruthful or irrelevant information.</span></li>
+<br>
+</ul>
+
+
+ </div>
+   </div>
+ </div>
+<br><br>
+<h5>The following advice is another
+friendly measure in helping you write that winning essay: </h5>
+<br>
+<ul id="advice"><li>
+ Word Count, Number of Pages & Format (spacing, margins, font size, etc.)</li>
+<li>Examine samples written by other students who have submitted successful
+letters of intent. This will help you get a better understanding of the format.
+Of course, please do not copy their work. Write your own letter of intent.</li>
+<li>Write a first draft. Read the questions again. Make sure that you have
+effectively answered the questions provided by the institution.</li>
+<li>Ask a professor, counselor or someone that you trust to read your first draft
+and provide any feedback on its content.</li>
+<li>Once you have received adequate feedback, make the necessary changes
+to your essay and prepare your final draft. The final draft should
+contain strong sentence variety and be free of spelling and
+grammatical errors.</li>
+<li> Make sure that you have established your voice in your final draft. Your
+tone in the essay should reflect what is special, diverse, unique, or
+impressive about you.</li>
+<li> Save! Save! Save! Be sure to keep a backup file of your document. A
+portion of this essay may be useful for writing another letter of intent to
+another college or university. You definitely do not want to submit the same
+essay when applying to multiple schools.</li>
+</div>
+ <br><br>
+
+<div id="section4">
+<center><h2>Letter of Recommendation</h2><br></center>
+
+<p>Letter of Recommendation (LoR) helps the admission committee know about your technical, academic and non-academic expertise through your recommender. The content in the recommendation is extremely important. So, choose your recommenders wisely. There are certain areas on which the universities expect you to be rated by your receommender. They are as follows:</p>
+<img src="img/Letter-of-Rec.jpg" class="img-responsive"  height="100px" width="1200px"> </center><br><br>
+
+
+
+
+
+
+</div>
+<div id="section5">
+  <center><h2>Guidelines for LOR</h2><br></center>
+Generally, all universities expect you to give three LoRs. Moreover, a letter of recommendation should ideally be drafted by the recommender himself/herself.Now, the next question will be - what should I write in my LoR? So we enumerate the following points:<br><br>
+<ul><li>
+First Para: Write about your recommender’s qualification and the time since s/he knows you and is serving the institution.</li>
+<li>
+Second Para: Highlight your academic details under that teacher, how you have performed in his/her subject. Write marks and more importantly write it in percentage (Example: s/he stands in the top 5% of the class)</li>
+<li>Third Para: This will vary from recommender to recommender. If you're taking one from the project guide, you can describe about the project and your incredible role in the same. Similar is the case with publications, presentations, internships and work experience.</li>
+<li>Fourth Para: Please flaunt as much as you can in this paragraph. This is the extracurricular section, so write about all your achievements in the last three years (Event Head, worked for this and that committee, Sports, etc.)</li>
+<li>Last Para: Keep it small (say 2-3 lines) and it should conclude the above points and tell the university to grant him admission along with Financial aid.</li>
+<li>Bottom Left of Your Draft: Your teacher’s name, signature & stamp, qualification and his/her post in the current institution/company.</li></ul>
+<br><br><br>
+</div>
+<div id="section6">
+  <center><h2>Sample SOP/LOR Downloads</h2><br></center>
+Generally, all universities expect you to give three LoRs. Moreover, a letter of recommendation should ideally be drafted by the recommender himself/herself.Now, the next question will be - what should I write in my LoR? So we enumerate the following points:<br><br>
+
+        
+  <table class="table table-striped table-bordered table-responsive table-hover">
+    <thead>
+      <tr>
+         <th colspan="2"><center><h4>Download Links </h4></center></th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Statement of Purpose - M.S. in Civil Engineering</td>
+        <td><center><button type="button1" class="btn btn-primary"><a href="GradStat.pdf" download><span class="glyphicon glyphicon-download"></span> Download</a></button></center></td>
+      
+      </tr>
+      <tr>
+        <td>Statement of Purpose - M.S. in Management Information Systems </td>
+        <td><center><button type="button1" class="btn btn-primary"><a href="MIS.pdf" download><span class="glyphicon glyphicon-download"></span> Download</a></button></center> </td>
+  
+      </tr>
+      <tr>
+        <td>Statement of Purpose - M.S. in Mechanical</td>
+        <td><center><button type="button1" class="btn btn-primary"><a href="sample-recommendation-letter.pdf" download> <span class="glyphicon glyphicon-download"></span> Download</a></button></center></td>
+     
+      </tr>
+         <tr>
+        <td> Letter of Recommendation</td>
+        <td><center><button type="button1" class="btn btn-primary"><a href="sample-recommendation-letter.pdf" download><span class="glyphicon glyphicon-download"></span> Download</a></button></center></td>
+     
+      </tr>
+         <tr>
+        <td>Letter of Recommendation</td>
+        <td><center><button type="button1" class="btn btn-primary"><a href="sample_letter.pdf" download> <span class="glyphicon glyphicon-download"></span> Download</a></button></center></td>
+     
+      </tr>
+    </tbody>
+  </table>
+
+
+
+
+
+<br><br><br>
+
+
+</div></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- your div ends here -->
+
+<div class= "row address">
+
+
+ <div class="col-sm-2"><br/>
+
+
+  <center><address><img src="img/adresses.png" width="60" height="50" align = "center"><br/>
+ <a href="https://www.google.com/maps/@42.3343,-71.1007,15z">
+ <h5> 75 Saint Alphonsus St,<br/> Boston<br/>MA-02120</a></address></center></div>
+
+
+  <div class="col-sm-2"> <br/><center><img src="img/E-Mail-Icon.png" width="60" height="50" align = "center"><br/><br/>
+   <h5>  <a href="mailto:vegashetty@gmail.com" target="_top">contact@gradroom.com</a>
+
+
+  </div>
+
+
+
+  <div class="col-sm-2"><br/><center><img src="img/phone-green-icon.png" width="60" height="50" align = "center">
+<br/><br/>
+   <h5> Call us : <a href="tel:+18578004331">857-800-4331</a>
+
+  </div>
+
+  <div class="col-sm-2"><br/>
+   <center><a href="https://www.facebook.com"><img src="img/fb.png" width="60" height="50" align = "center"></a></center> </div> &nbsp &nbsp &nbsp
+   <div class="col-sm-2"><br/>
+   <center><a href="https://twitter.com"><img src="img/Twitter-icon.png" width="60" height="50" align = "center"></a> </center></div> &nbsp &nbsp &nbsp
+    <div class="col-sm-2">
+    <center><a href="https://www.instagram.com"><img src="img/insta.png" width="60" height="50" align = "center"></a> </center></div>
+
+  </div>
+
+
+
+
+ <div class="row address">
+<div row="col-sm-12">
+<footer>
+
+
+<center> <nav> <a href = "termcon.html"> Terms & Conditions </a>|
+
+ <a href = "faq-1.html" >FAQs </a> | 
+<small><b>© Copyright 2016, GradRoom</b></small> </nav></center>
+
+
+</footer>
+</div>
+</div>
+
+
+  <!-- Footer -->
+
+
+</body>
+</html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="gradRoomStyle.css">
+ <link rel="stylesheet" href="trendstyle.css">
+  <meta name="description" content="GradRoom, a website that caters to students aspiring to study in universities in USA" >
+<link rel="shortcut icon" href="img/favicon.ico" />
+
+<style>
+.mydiv{
+  margin-right: -15px;
+}
+
+</style> </head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top, #myScrollspy">
+
+
+
+
+  <!-- Login modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form">
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+              <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+              <input type="password" class="form-control" id="psw" placeholder="Enter password">
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" value="" checked>Remember me</label>
+            </div>
+              <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+          <p>Not a member? <a href="#">Sign Up</a></p>
+          <p>Forgot <a href="#">Password?</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- modal for search -->
+    <!--     <div id="openModal1" class="modalDialog">
+
+   <a href="#close" title="Close" class="close">X</a>
+   <h2>Search</h2>
+   <p><form> 
+First name: <input type="text" onkeyup="showHint(this.value)">
+</form></p>
+   <p>Suggestions: <span id="txtHint"></span></p>
+
+</div> -->
+
+ <div class="modal fade" id="openModal1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+    <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <center>    <h4 class="modal-title">Search GradRoom</h4>
+        </div>
+ 
+   <h2>Search</h2>
+   <p><form> 
+First name: <input type="text" onkeyup="showHint(this.value)">
+</form></p>
+   <p>Suggestions: <span id="txtHint"></span></p>
+</div>
+</div>
+</div>
+
+
+
+
+
+<!-- end of this modal -->
+<script>
+function showHint(str) {
+   if (str.length == 0) { 
+       document.getElementById("txtHint").innerHTML = "";
+       return;
+   } else {
+       var xmlhttp = new XMLHttpRequest();
+       xmlhttp.onreadystatechange = function() {
+           if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+               document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+           }
+       };
+       xmlhttp.open("GET", "gethint.php?q=" + str, true);
+       xmlhttp.send();
+   }
+}
+</script>
+
+
+
+<script>
+$(document).ready(function(){
+    $("#myBtn").click(function(){
+        $("#myModal").modal();
+    });
+});
+</script>
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="glyphicon glyphicon-menu-hamburger"></span>
+        </button>
+          <a class="navbar-brand" href="profile.php"><img src="img/gradLogo.png" width="160" height="35"></a>
+          
+
+      </div>
+
+
+
+      <div class="collapse navbar-collapse" id="myNavbar" >
+        <ul class="nav navbar-nav navbar-right" >
+    
+        <li class="dropdown" style="z-index:90001;">
+          <button class="dropbtn" > <a class="page-scroll" href="profile.php#msinus" >MS in US</a> &#9662</button>
+          <div class="dropdown-content">
+            <a href="listofuniversities.html">List Of Universities</a>
+            <a href="trend.html">Admit Trends</a>
+            <a href="index_forum.php">Discussion forum</a>
+           <a href="newsFeed.html">What's New?</a>
+          </div>
+        </li>
+           <li class="dropdown" style="z-index:90001;">
+          <button class="dropbtn" > <a class="page-scroll" href="profile.php#uniGuide" >UniGuide</a> &#9662</button>
+          <div class="dropdown-content">
+            <a href="uniSearch.html">UniSearch</a>
+            <a href="searchUni.html">UniPredictor</a>
+            <a href="univRating.html">UniReview</a>
+          </div>
+        </li>
+        <li class="dropdown" style="z-index:90000;">
+          <button class="dropbtn"><a class="page-scroll" href="profile.php#resources" >Resources</a> &#9662</button>
+          <div class="dropdown-content">
+            <a href="sop1.html">SOP/LOR</a>
+            <a href="gretoefl.html">GRE/TOEFL</a>
+            <a href="appAssist.html">Application Assist</a>
+              <a href="visainterview.html">Visa Interview</a>
+                <a href="faq-1.html">FAQs</a>
+          </div>
+        </li>
+        <li>
+           <a class="page-scroll" href="profile.php#aboutus" style="font-size:16px">About us</a>
+       </li>
+        <li>
+           <a class="page-scroll" href="profile.php#contact" style="font-size:16px">Contact</a>
+       </li>
+<li>
+       <a href="#openModal1" data-toggle="modal" title="Search" data-placement="bottom" style="font-size:16px"><span class="glyphicon glyphicon-search"></span></a>
+      
+      </li>
+    <li>
+
+       <a href="logout.php" data-toggle="tooltip" title="Logout" data-placement="bottom" style="font-size:16px"><span class="glyphicon glyphicon-log-out"></span></a>
+      </li>
+  
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Navigation -->
+
+<script>
+$(document).ready(function(){       
+   var scroll_start = 0;
+   var startchange = $('#mydiv1');
+   var offset = startchange.offset();
+    if (startchange.length){
+   $(document).scroll(function() { 
+      scroll_start = $(this).scrollTop();
+      if(scroll_start > offset.top) {
+          $(".navbar-default").css('background-color', 'black');
+       } else {
+          $('.navbar-default').css('background-color', 'transparent');
+       }
+   });
+    }
+});
+</script>
+
+
+<div class="row"  id="wrapper">
+
+</div>
+
+<!-- write your div here -->
+
+<div class="container mydiv" id="mydiv1">
+ 
+  
+    <div class="row">
+        <div class="col-sm-2" id="myScrollspy">
+            <ul class="nav nav-tabs nav-stacked" data-offset-top="120" data-spy="affix">
+                <li class="active"><a href="#section1">Admit Trends By Universities</a></li>
+                <li ><a href="#section2" class="active" >Latest Admit Statistics</a></li>
+              
+ 
+             
+            </ul>
+        </div>
+
+
+        <div class="col-sm-10">
+          <div id="section1">
+              <h1 id="ad"><center><br>Admit Trends By Universities<br> </h1> <br>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"> 
+
+        <div class="col-sm-10" id="myScrollspy"></div></div></div>  
+      <div id="section2">
+        <br>
+        <div id="fall_2011">
+
+
+ <br/> 
+<h1 id="ad"><b><center><br>Latest Admit Statistics</h1>
+ <br/><br/> <br/> 
+    <div id="labels">
+      <center><ul>
+        <li><span></span>ASU : 61.79%&nbsp&nbsp&nbsp&nbsp</li>
+        <li><span></span>UTD : 24.56%&nbsp&nbsp&nbsp&nbsp</li>
+        <li><span></span>NEU : 6.03%&nbsp&nbsp&nbsp&nbsp</li>
+        <li><span></span>NYU : 4.91%&nbsp&nbsp&nbsp&nbsp</li>
+        <li><span></span>UCLA : 2.73%</li>
+      </ul><br>
+    </div>
+   <div id="btn_panel"><br>
+      <ul><li ><a href="#fall_2011"><center><h3>Click here for <br>Fall 2015 Statistics</a></li></ul>
+   
+    
+   <!--q1_2005-->
+  </div> 
+    
+
+    <div id="slider">
+      <div id="chart_holder">
+        <div id="pie_chart">
+          <ul>
+            <li id="c1_r"><p><span class="pie_left"></span></p></li>  
+            <li id="c1_l"><p><span class="pie_right"></span></p></li>
+            <li id="c2_r"><p><span class="pie_left"></span></p></li>  
+            <li id="c2_l"><p><span class="pie_right"></span></p></li>
+            <li id="c3_r"><p><span class="pie_left"></span></p></li>  
+            <li id="c3_l"><p><span class="pie_right"></span></p></li>
+            <li id="c4_r"><p><span class="pie_left"></span></p></li>  
+            <li id="c4_l"><p><span class="pie_right"></span></p></li>
+            <li id="c5_r"><p><span class="pie_left"></span></p></li>  
+            <li id="c5_l"><p><span class="pie_right"></span></p></li>
+          </ul>
+        </div>
+        <div id="pyr_chart">
+          <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+ <!--q2_2009-->
+  </div> <!--q3_2009-->
+
+
+    <br><br><br>
+       
+ <!--q4_2009-->
+ <!--q1_2010-->
+  </div> <!--q2_2010-->
+        
+            </div>
+      <hr>
+    </div>
+  </div>
+
+
+
+
+
+
+    
+<script type="text/javascript">
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Admit Trend Statistics by the Semester'
+        },
+        xAxis: {
+            categories: [
+                'Fall 2010',
+                'Spring 2011',
+                'Fall 2011',
+                'Spring 2012',
+                'Fall 2012',
+                'Spring 2013',
+                'Fall 2013',
+                'Spring 2014',
+                'Fall 2014',
+                'Spring 2015'
+                
+            ],
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Admits'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'ASU',
+            data: [12000, 8000, 7000, 10000, 6000, 3000, 13000, 12000, 11022, 10000]
+
+        }, {
+            name: 'UTD',
+            data: [8000, 7500, 17000, 20000, 26000, 30000, 23000, 22000, 21022, 15000]
+
+        }, {
+            name: 'NEU',
+            data: [12000, 8000, 7000, 10000, 6000, 3000, 13000, 12000, 11022, 10000]
+
+        }, {
+            name: 'NYU',
+            data: [12000, 8000, 7000, 10000, 6000, 3000, 13000, 12000, 11022, 10000]
+
+        }]
+    });
+});
+
+
+</script>
+      
+         
+
+
+<!-- your div ends here -->
+
+<div class= "row address">
+
+
+ <div class="col-sm-2"><br/>
+
+
+  <center><address><img src="img/adresses.png" width="60" height="50" align = "center"><br/>
+ <a href="https://www.google.com/maps/@42.3343,-71.1007,15z">
+ <h5> 75 Saint Alphonsus St,<br/> Boston<br/>MA-02120</a></address></center></div>
+
+
+  <div class="col-sm-2"> <br/><center><img src="img/E-Mail-Icon.png" width="60" height="50" align = "center"><br/><br/>
+   <h5>  <a href="mailto:vegashetty@gmail.com" target="_top">contact@gradroom.com</a>
+
+
+  </div>
+
+
+
+  <div class="col-sm-2"><br/><center><img src="img/phone-green-icon.png" width="60" height="50" align = "center">
+<br/><br/>
+   <h5> Call us : <a href="tel:+18578004331">857-800-4331</a>
+
+  </div>
+
+  <div class="col-sm-2"><br/>
+   <center><a href="https://www.facebook.com"><img src="img/fb.png" width="60" height="50" align = "center"></a></center> </div> &nbsp &nbsp &nbsp
+   <div class="col-sm-2"><br/>
+   <center><a href="https://twitter.com"><img src="img/Twitter-icon.png" width="60" height="50" align = "center"></a> </center></div> &nbsp &nbsp &nbsp
+    <div class="col-sm-2">
+    <center><a href="https://www.instagram.com"><img src="img/insta.png" width="60" height="50" align = "center"></a> </center></div>
+
+  </div>
+
+
+
+
+ <div class="row address">
+<div row="col-sm-12">
+<footer>
+
+
+<center> <nav> <a href = "termcon.html"> Terms & Conditions </a>|
+
+ <a href = "faq-1.html" >FAQs </a> | 
+<small><b>© Copyright 2016, GradRoom</b></small> </nav></center>
+
+
+</footer>
+</div>
+</div>
+
+
+  <!-- Footer -->
+
+
+</body>
+</html>

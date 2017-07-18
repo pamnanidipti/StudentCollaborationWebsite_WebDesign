@@ -1,0 +1,124 @@
+
+
+    /* Small Devices, Tablets */
+    @media only screen and (min-width : 768px) {
+ #tabs-1{font-size: 14px;  width: 590px;
+
+}
+    }
+
+    /* Medium Devices, Desktops */
+    @media only screen and (min-width : 992px) {
+ #tabs-1{font-size: 14px;  width: 890px;
+}
+    }
+
+    /* Large Devices, Wide Screens */
+    @media only screen and (min-width : 1200px) {
+ #tabs-1{font-size: 14px;  width: 1290px;
+    max-height: 730px;
+}
+    }
+@media only screen and (min-width : 768px) {
+  #accordion-2{font-size: 14px;  width: 590px;
+}
+    }
+
+    /* Medium Devices, Desktops */
+    @media only screen and (min-width : 992px) {
+  #accordion-2{font-size: 14px;  width: 890px;
+}
+    }
+
+    /* Large Devices, Wide Screens */
+    @media only screen and (min-width : 1200px) {
+ #accordion-2{font-size: 14px;  width: 1290px;
+}
+    }
+#search{
+  background-image: url(img/grey.jpg);
+  background-size: cover;
+}
+#searchRating{
+  background-image: url(img/grey.jpg);
+  background-size: cover;
+}
+#white{
+  color : #FFFFFF;
+}
+#poll{
+text-align: left;
+}
+ #tabs-1{font-size: 14px;
+/*  width: 1290px;*/
+}
+         .ui-widget-header {
+         
+            border: 1px solid #b9cd6d;
+            color: #FFFFFF;
+            font-weight: bold;
+         }
+#grey{
+  color:#d3d3d3;
+}
+ #id3{  color:#FFFFFF;}
+  #id4{  color:#fff}
+         #accordion-1{
+      /*    width: 1200px;*/
+            
+          }
+          #accordion-1 .ui-accordion-content{
+    max-height: 700px;
+color: white;
+  font-size:14px;
+  background-image:none;
+  background-color: black;
+/*  color:#fff*/
+}
+ #accordion-2{
+    /*      width: 1290px;*/
+            
+          }
+          #accordion-2 .ui-accordion-content{
+    max-height: 700px;
+color: white;
+  font-size:14px;
+  background-image:none;
+  background-color: black;
+/*  color:#fff*/
+}
+.myform1 .field label { color: white; display:inline-block; width:250px; margin-left:5px; text-align: left;}
+.myform1 .field input { display:inline-block; padding: 7px;
+  
+    border:2px solid #ccc; 
+    -webkit-border-radius: 5px;
+    border-radius: 5px;}
+
+
+.myform .field label { color: white; display:inline-block; width:250px; margin-left:5px; text-align: left;}
+
+.myform .field input { display:inline-block; padding: 7px;
+  
+    border:2px solid #ccc; 
+    -webkit-border-radius: 5px;
+    border-radius: 5px;}
+
+.myform .field textarea { display:inline-block; padding: 6px;
+  
+    border:2px solid #ccc; 
+    -webkit-border-radius: 5px;
+    border-radius: 5px;}
+
+
+ .myform .field input[type=submit] {
+
+  font-weight: bold;
+  font-size: 15px ;
+    padding:5px 15px; 
+    background: #FF9933; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    height: 40px; 
+}
